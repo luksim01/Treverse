@@ -9,8 +9,10 @@ public class MakeSomeNoise : MonoBehaviour
     [SerializeField] private float timeScale = 1;
 
     private float offsetX;
-    private float offsetY;
+    private float offsetZ;
     private MeshFilter meshFilter;
+
+    public Vector3[] vertices;
 
     // Start is called before the first frame update
     void Start()
@@ -24,12 +26,12 @@ public class MakeSomeNoise : MonoBehaviour
     {
         MakeNoise();
         offsetX += Time.deltaTime * timeScale;
-        offsetY += Time.deltaTime * timeScale;
+        offsetZ += Time.deltaTime * timeScale;
     }
 
     void MakeNoise()
     {
-        Vector3[] vertices = meshFilter.mesh.vertices;
+        vertices = meshFilter.mesh.vertices;
 
         for (int i = 0; i < vertices.Length; i++)
         {
@@ -39,11 +41,11 @@ public class MakeSomeNoise : MonoBehaviour
         meshFilter.mesh.vertices = vertices;
     }
 
-    float CalculateHeight(float x, float y)
+    float CalculateHeight(float x, float z)
     {
         float cordX = x * scale * offsetX;
-        float cordY = y * scale * offsetY;
+        float cordZ = z * scale * offsetZ;
 
-        return Mathf.PerlinNoise(cordX, cordY);
+        return Mathf.PerlinNoise(cordX, cordZ);
     }
 }
