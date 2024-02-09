@@ -120,7 +120,7 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1001 &508087368
+--- !u!1001 &466157450
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -137,6 +137,10 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8805266374682001639, guid: bbfa30ce936014ab5b1fadd580d88500, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8805266374682001639, guid: bbfa30ce936014ab5b1fadd580d88500, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -146,7 +150,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8805266374682001639, guid: bbfa30ce936014ab5b1fadd580d88500, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 10
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 8805266374682001639, guid: bbfa30ce936014ab5b1fadd580d88500, type: 3}
       propertyPath: m_LocalRotation.w
@@ -360,13 +364,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1929701180}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalRotation: {x: 0.18615752, y: -0, z: -0, w: 0.9825199}
+  m_LocalPosition: {x: 0, y: 5.55, z: -9.81}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 21.457, y: 0, z: 0}
 --- !u!1001 &3481927769632734143
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -381,6 +385,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8805266374682001639, guid: bbfa30ce936014ab5b1fadd580d88500, type: 3}
       propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8805266374682001639, guid: bbfa30ce936014ab5b1fadd580d88500, type: 3}
+      propertyPath: m_LocalScale.z
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8805266374682001639, guid: bbfa30ce936014ab5b1fadd580d88500, type: 3}
@@ -493,4 +501,4 @@ SceneRoots:
   - {fileID: 689218827}
   - {fileID: 8901885586546207563}
   - {fileID: 3481927769632734143}
-  - {fileID: 508087368}
+  - {fileID: 466157450}
