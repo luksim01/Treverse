@@ -7,7 +7,7 @@ public class KayakController : MonoBehaviour
     public Rigidbody rigidBody;
     private float waterLevel;
 
-    private GameObject waterPlane;
+    private GameObject waterTile;
     [SerializeField] private Vector3[] waterVertices;
 
     // inputs
@@ -20,7 +20,7 @@ public class KayakController : MonoBehaviour
 
     void Start()
     {
-        waterPlane = GameObject.Find("Water Tile");
+        waterTile = GameObject.Find("Water Tile");
     }
 
     void Update()
@@ -58,17 +58,17 @@ public class KayakController : MonoBehaviour
     float GetKayakWaterLevel()
     {
         // get the water level at the kayak position
-        waterVertices = waterPlane.GetComponent<WaveTile>().vertices;
+        waterVertices = waterTile.GetComponent<MeshFilter>().sharedMesh.vertices;
         float waterLevel = 1.5f;
         for (int i = 0; i < waterVertices.Length; i++)
         {
             // vertices transformed from local to world coordinates
-            waterVertices[i] = waterPlane.transform.TransformPoint(waterVertices[i]);
+            waterVertices[i] = waterTile.transform.TransformPoint(waterVertices[i]);
             // allow for overlap between water areas based on water area scaling 
-            if (transform.position.x < waterVertices[i].x + (waterPlane.transform.localScale.x) &&
-               transform.position.x > waterVertices[i].x - (waterPlane.transform.localScale.x) &&
-               transform.position.z < waterVertices[i].z + (waterPlane.transform.localScale.z) &&
-               transform.position.z > waterVertices[i].z - (waterPlane.transform.localScale.z))
+            if (transform.position.x < waterVertices[i].x + (waterTile.transform.localScale.x) &&
+               transform.position.x > waterVertices[i].x - (waterTile.transform.localScale.x) &&
+               transform.position.z < waterVertices[i].z + (waterTile.transform.localScale.z) &&
+               transform.position.z > waterVertices[i].z - (waterTile.transform.localScale.z))
             {
                 waterLevel = waterVertices[i].y + 1.0f;
             }
@@ -79,6 +79,6 @@ public class KayakController : MonoBehaviour
     // update the water level depending on the water area kayak is in
     private void OnTriggerStay(Collider other)
     {
-        waterPlane = other.gameObject;
+        waterTile = other.gameObject;
     }
 }

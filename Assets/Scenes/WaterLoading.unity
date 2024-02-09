@@ -269,101 +269,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!1 &656388297
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 656388299}
-  - component: {fileID: 656388298}
-  m_Layer: 0
-  m_Name: WaveGenerator
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &656388298
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 656388297}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 010d9333e14e744e3a50abde923f4861, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  power: 0.6
-  scale: 0.2
-  timeScale: 1
-  vertices: []
-  waterPlane: {fileID: 6084907976327452131, guid: c2a0c6db648fd4148a80a24fa7e942e6, type: 3}
---- !u!4 &656388299
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 656388297}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -5}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1068872194
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1068872196}
-  - component: {fileID: 1068872195}
-  m_Layer: 0
-  m_Name: WaterSpawnManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1068872195
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1068872194}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ba3e2a97404a41f7801f81e116b7476, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  waterPlane: {fileID: 6084907976327452131, guid: c2a0c6db648fd4148a80a24fa7e942e6, type: 3}
-  isPlaneSpawned: 0
---- !u!4 &1068872196
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1068872194}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -3, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1264167071
 GameObject:
   m_ObjectHideFlags: 0
@@ -502,6 +407,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06f1e3d0092ed42f68df2c9f8b717308, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  waterTile: {fileID: 6084907976327452131, guid: c2a0c6db648fd4148a80a24fa7e942e6, type: 3}
+  isPlaneSpawned: 0
+  power: 0.6
+  scale: 0.2
+  timeScale: 1
+  vertices: []
 --- !u!1001 &7566615334161587606
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -567,6 +478,4 @@ SceneRoots:
   - {fileID: 1264167073}
   - {fileID: 119629129}
   - {fileID: 7566615334161587606}
-  - {fileID: 1068872196}
-  - {fileID: 656388299}
   - {fileID: 1594610399}

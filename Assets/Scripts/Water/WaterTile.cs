@@ -2,20 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WaveTile : MonoBehaviour
+public class WaterTile : MonoBehaviour
 {
     private MeshFilter meshFilter;
-    WaveGenerator waveGenerator;
-    public Vector3[] vertices;
+    WaterManager waterManager;
 
     void Start()
     {
         meshFilter = GetComponent<MeshFilter>();
-        waveGenerator = GameObject.Find("WaveGenerator").GetComponent<WaveGenerator>();
+        waterManager = GameObject.Find("WaterManager").GetComponent<WaterManager>();
     }
 
     void FixedUpdate()
     {
-        meshFilter.mesh.vertices = waveGenerator.vertices;
+        meshFilter.mesh.vertices = waterManager.vertices;
     }
 }

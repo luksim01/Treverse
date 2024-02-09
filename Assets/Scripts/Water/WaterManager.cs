@@ -2,11 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WaveGenerator : MonoBehaviour
+public class WaterManager : MonoBehaviour
 {
-    [SerializeField] private float power = 3;
-    [SerializeField] private float scale = 1;
-    [SerializeField] private float timeScale = 1;
+    private GameObject kayak;
+    public GameObject waterTile;
+    public bool isPlaneSpawned = false;
+
+    [SerializeField] private float power = 0.6f;
+    [SerializeField] private float scale = 0.2f;
+    [SerializeField] private float timeScale = 1f;
 
     private float offsetX;
     private float offsetZ;
@@ -14,15 +18,23 @@ public class WaveGenerator : MonoBehaviour
     public Vector3[] vertices;
     private Mesh mesh;
 
-    public GameObject waterPlane;
-
     void Start()
     {
-        mesh = waterPlane.GetComponent<MeshFilter>().sharedMesh;
+        kayak = GameObject.Find("Kayak");
+        mesh = waterTile.GetComponent<MeshFilter>().sharedMesh;
         MakeNoise();
     }
 
-    private void FixedUpdate()
+    void Update()
+    {
+        if (kayak.transform.position.z > 5 && !isPlaneSpawned)
+        {
+            isPlaneSpawned = true;
+            Instantiate(waterTile, new Vector3(0, 0, 10), waterTile.transform.rotation);
+        }
+    }
+
+    void FixedUpdate()
     {
         MakeNoise();
         offsetX += Time.deltaTime * timeScale;
