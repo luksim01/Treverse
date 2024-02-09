@@ -8,7 +8,7 @@ public class KayakController : MonoBehaviour
     private float waterLevel;
 
     private GameObject waterPlane;
-    private Vector3[] waterVertices;
+    [SerializeField] private Vector3[] waterVertices;
 
     // inputs
     private float forwardInput;
@@ -76,8 +76,8 @@ public class KayakController : MonoBehaviour
         return waterLevel;
     }
 
-    // update the water level dependind on water area kayak is in
-    private void OnTriggerEnter(Collider other)
+    // update the water level depending on the water area kayak is in
+    private void OnTriggerStay(Collider other)
     {
         waterPlane = other.gameObject;
     }
