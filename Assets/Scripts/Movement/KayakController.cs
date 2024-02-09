@@ -20,7 +20,7 @@ public class KayakController : MonoBehaviour
 
     void Start()
     {
-        waterPlane = GameObject.Find("Water Plane");
+        waterPlane = GameObject.Find("Water Tile");
     }
 
     void Update()
@@ -58,7 +58,7 @@ public class KayakController : MonoBehaviour
     float GetKayakWaterLevel()
     {
         // get the water level at the kayak position
-        waterVertices = waterPlane.GetComponent<MakeSomeNoise>().vertices;
+        waterVertices = waterPlane.GetComponent<WaveTile>().vertices;
         float waterLevel = 1.5f;
         for (int i = 0; i < waterVertices.Length; i++)
         {
