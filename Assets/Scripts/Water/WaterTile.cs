@@ -15,6 +15,7 @@ public class WaterTile : MonoBehaviour
 
     void FixedUpdate()
     {
-        meshFilter.mesh.vertices = waterManager.vertices;
+        // update water tile wave render
+        meshFilter.mesh.vertices = waterManager.GetVertices();
     }
 }

@@ -7,6 +7,7 @@ public class KayakController : MonoBehaviour
     public Rigidbody rigidBody;
     private float waterLevel;
 
+    // water 
     private GameObject waterTile;
     [SerializeField] private Vector3[] waterVertices;
 
@@ -17,11 +18,6 @@ public class KayakController : MonoBehaviour
     // movement settings : kayak
     [SerializeField] private float forwardSpeed;
     [SerializeField] private float rotationSpeed;
-
-    void Start()
-    {
-        waterTile = GameObject.Find("Water Tile");
-    }
 
     void Update()
     {
@@ -58,19 +54,24 @@ public class KayakController : MonoBehaviour
     float GetKayakWaterLevel()
     {
         // get the water level at the kayak position
-        waterVertices = waterTile.GetComponent<MeshFilter>().sharedMesh.vertices;
         float waterLevel = 1.5f;
-        for (int i = 0; i < waterVertices.Length; i++)
+
+        if (waterTile != null)
         {
-            // vertices transformed from local to world coordinates
-            waterVertices[i] = waterTile.transform.TransformPoint(waterVertices[i]);
-            // allow for overlap between water areas based on water area scaling 
-            if (transform.position.x < waterVertices[i].x + (waterTile.transform.localScale.x) &&
-               transform.position.x > waterVertices[i].x - (waterTile.transform.localScale.x) &&
-               transform.position.z < waterVertices[i].z + (waterTile.transform.localScale.z) &&
-               transform.position.z > waterVertices[i].z - (waterTile.transform.localScale.z))
+            waterVertices = waterTile.GetComponent<MeshFilter>().sharedMesh.vertices;
+
+            for (int i = 0; i < waterVertices.Length; i++)
             {
-                waterLevel = waterVertices[i].y + 1.0f;
+                // vertices transformed from local to world coordinates
+                waterVertices[i] = waterTile.transform.TransformPoint(waterVertices[i]);
+                // allow for overlap between water tile based on water tile scale and 
+                if (transform.position.x < waterVertices[i].x + (waterVertices[i].x * waterTile.transform.localScale.x * 1.1f) &&
+                    transform.position.x > waterVertices[i].x - (waterVertices[i].x * waterTile.transform.localScale.x * 1.1f) &&
+                    transform.position.z < waterVertices[i].z + (waterVertices[i].z * waterTile.transform.localScale.z * 1.1f) &&
+                    transform.position.z > waterVertices[i].z - (waterVertices[i].z * waterTile.transform.localScale.z * 1.1f))
+                {
+                    waterLevel = waterVertices[i].y + 1.0f;
+                }
             }
         }
         return waterLevel;
