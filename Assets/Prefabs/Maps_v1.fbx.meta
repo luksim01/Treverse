@@ -3,7 +3,67 @@ guid: 45f328cf4da11204eb954a43594a8476
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 81e4e4
+    second: {fileID: 2100000, guid: b56841ff5b80fea458061ffa05c7feef, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.002
+    second: {fileID: 2100000, guid: 0eb3a05ca27d58f4ebaca21d38b003a7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Terrian
+    second: {fileID: 2100000, guid: ed3d284f0e7d7b947bdbe7e932997cc4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: f0f0db
+    second: {fileID: 2100000, guid: b68d920285e91c448b90f4c0af0b0968, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: fffcdc
+    second: {fileID: 2100000, guid: b73b5e520b5842c4aa5c516dcc2db020, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: grey
+    second: {fileID: 2100000, guid: 8b819f71ce6973c418b83ee27a0efd20, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lightgrey
+    second: {fileID: 2100000, guid: 782bb4dbe795f134b8774765529960da, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: purple
+    second: {fileID: 2100000, guid: 86d5f0c17c477c54a8ac6eab1af3d894, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: roof
+    second: {fileID: 2100000, guid: f2766dfdaa36a6a4aa589e68a8c0f141, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: wall
+    second: {fileID: 2100000, guid: 642a617a6c2196546afbab70e71e88fc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: white
+    second: {fileID: 2100000, guid: 2fd09eb870c20894292311f0a8ce0955, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: yellow
+    second: {fileID: 2100000, guid: 82c6394a8c423b442b5d288769cd85da, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
