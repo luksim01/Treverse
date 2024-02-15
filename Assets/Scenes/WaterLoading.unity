@@ -120,63 +120,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1001 &119629129
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 7568584747480118827, guid: 818a6452f2609429ab46c518b6fd6a73, type: 3}
-      propertyPath: m_Name
-      value: Kayak
-      objectReference: {fileID: 0}
-    - target: {fileID: 8651223273553569282, guid: 818a6452f2609429ab46c518b6fd6a73, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8651223273553569282, guid: 818a6452f2609429ab46c518b6fd6a73, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8651223273553569282, guid: 818a6452f2609429ab46c518b6fd6a73, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8651223273553569282, guid: 818a6452f2609429ab46c518b6fd6a73, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8651223273553569282, guid: 818a6452f2609429ab46c518b6fd6a73, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8651223273553569282, guid: 818a6452f2609429ab46c518b6fd6a73, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8651223273553569282, guid: 818a6452f2609429ab46c518b6fd6a73, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8651223273553569282, guid: 818a6452f2609429ab46c518b6fd6a73, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8651223273553569282, guid: 818a6452f2609429ab46c518b6fd6a73, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8651223273553569282, guid: 818a6452f2609429ab46c518b6fd6a73, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 818a6452f2609429ab46c518b6fd6a73, type: 3}
 --- !u!1 &487337508
 GameObject:
   m_ObjectHideFlags: 0
@@ -409,10 +352,69 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waterTile: {fileID: 6084907976327452131, guid: c2a0c6db648fd4148a80a24fa7e942e6, type: 3}
   isPlaneSpawned: 0
-  power: 0.6
-  scale: 0.2
-  timeScale: 1
+  power: 2
+  scale: 0.5
+  timeScale: 0.5
   waterTileGridSize: 5
+  waterTileLengthX: 0
+  waterTileLengthZ: 0
+--- !u!1001 &1489217111984033167
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1945365817538561996, guid: 818a6452f2609429ab46c518b6fd6a73, type: 3}
+      propertyPath: m_Name
+      value: Kayak
+      objectReference: {fileID: 0}
+    - target: {fileID: 3666537713854896889, guid: 818a6452f2609429ab46c518b6fd6a73, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3666537713854896889, guid: 818a6452f2609429ab46c518b6fd6a73, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3666537713854896889, guid: 818a6452f2609429ab46c518b6fd6a73, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 4.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3666537713854896889, guid: 818a6452f2609429ab46c518b6fd6a73, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3666537713854896889, guid: 818a6452f2609429ab46c518b6fd6a73, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3666537713854896889, guid: 818a6452f2609429ab46c518b6fd6a73, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3666537713854896889, guid: 818a6452f2609429ab46c518b6fd6a73, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3666537713854896889, guid: 818a6452f2609429ab46c518b6fd6a73, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3666537713854896889, guid: 818a6452f2609429ab46c518b6fd6a73, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3666537713854896889, guid: 818a6452f2609429ab46c518b6fd6a73, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 818a6452f2609429ab46c518b6fd6a73, type: 3}
 --- !u!1001 &8795712472541059600
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -476,6 +478,6 @@ SceneRoots:
   m_Roots:
   - {fileID: 487337511}
   - {fileID: 1264167073}
-  - {fileID: 119629129}
   - {fileID: 1594610399}
   - {fileID: 8795712472541059600}
+  - {fileID: 1489217111984033167}

@@ -18,4 +18,9 @@ public class WaterTile : MonoBehaviour
         // update water tile wave render
         meshFilter.mesh.vertices = waterManager.GetVertices();
     }
+
+    public Vector3 GetCenterPosition()
+    {
+        return transform.position;
+    }
 }
