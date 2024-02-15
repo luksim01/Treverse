@@ -54,8 +54,8 @@ public class WaterManager : MonoBehaviour
     }
     public TilePosition centerWaterTile = new TilePosition(new Vector3(0, 0, 0));
     [SerializeField] private int waterTileGridSize;
-    private int waterTileLengthX;
-    private int waterTileLengthZ;
+    [SerializeField] private int waterTileLengthX;
+    [SerializeField] private int waterTileLengthZ;
     private List<GameObject> waterTilePool;
     private int amountToPool;
     private bool[,] waterTileEmptyStatus;
@@ -69,8 +69,8 @@ public class WaterManager : MonoBehaviour
         GameObject.Find("WaterLevelIndicator").SetActive(false);
 
         waterTileMesh = waterTile.GetComponent<MeshFilter>().sharedMesh;
-        waterTileLengthX = (int)waterTile.transform.localScale.x * (int)waterTileMesh.bounds.size.x;
-        waterTileLengthZ = (int)waterTile.transform.localScale.z * (int)waterTileMesh.bounds.size.z;
+        waterTileLengthX = (int)GetTileScale().x * (int)waterTileMesh.bounds.size.x;
+        waterTileLengthZ = (int)GetTileScale().z * (int)waterTileMesh.bounds.size.z;
 
         // initialising grid of water tile empty statuses
         waterTileEmptyStatus = new bool[waterTileGridSize, waterTileGridSize];
@@ -249,5 +249,15 @@ public class WaterManager : MonoBehaviour
     public Vector3[] GetVertices()
     {
         return vertices;
+    }
+
+    public Vector3 GetTileScale()
+    {
+        return waterTile.transform.localScale;
+    }
+
+    public Vector3 GetTileLength()
+    {
+        return new Vector3(waterTileLengthX, 0 , waterTileLengthZ);
     }
 }
