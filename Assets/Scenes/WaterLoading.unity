@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028331, g: 0.2257133, b: 0.3069217, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -358,6 +358,19 @@ MonoBehaviour:
   waterTileGridSize: 5
   waterTileLengthX: 0
   waterTileLengthZ: 0
+  waterTilePool: []
+  currentWaterColour: {r: 0, g: 0, b: 0, a: 0}
+  changeWaterColor: 0
+  shallowWaterColor: {r: 0, g: 0.85, b: 1, a: 0.6}
+  deepWaterColor: {r: 0, g: 0.15, b: 0.5, a: 0.9}
+  pollutedWaterColor: {r: 0.2, g: 0.5, b: 0.35, a: 0.9}
+  apocalypticWaterColor: {r: 0.75, g: 0, b: 0, a: 0.95}
+  blackWaterColor: {r: 0, g: 0, b: 0, a: 0.97}
+  isShallowWater: 0
+  isDeepWater: 0
+  isPollutedWater: 0
+  isApocalypticWater: 0
+  isBlackWater: 0
 --- !u!1001 &1489217111984033167
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -11,9 +11,9 @@ public class WaterManager : MonoBehaviour
     public bool isPlaneSpawned = false;
 
     // wave parameters
-    [SerializeField] private float power = 0.6f;
-    [SerializeField] private float scale = 0.2f;
-    [SerializeField] private float timeScale = 1f;
+    [SerializeField] private float power = 2f;
+    [SerializeField] private float scale = 0.5f;
+    [SerializeField] private float timeScale = 0.5f;
 
     // wave generation
     private float offsetX;
@@ -53,7 +53,7 @@ public class WaterManager : MonoBehaviour
         }
     }
     public TilePosition centerWaterTile = new TilePosition(new Vector3(0, 0, 0));
-    [SerializeField] private int waterTileGridSize;
+    [SerializeField] private int waterTileGridSize = 5;
     [SerializeField] private int waterTileLengthX;
     [SerializeField] private int waterTileLengthZ;
     private List<GameObject> waterTilePool;
@@ -62,12 +62,30 @@ public class WaterManager : MonoBehaviour
     private Vector3[,] waterTileOffset;
     private Vector3[,] waterTilePosition;
 
+    // water colour
+    public Renderer waterTileRenderer;
+    public bool changeWaterColor = false;
+    public Color currentWaterColor = new Color();
+
+    public Color shallowWaterColor = new Color(0.0f, 0.85f, 1.0f, 0.6f);
+    public Color deepWaterColor = new Color(0.0f, 0.15f, 0.5f, 0.9f);
+    public Color pollutedWaterColor = new Color(0.2f, 0.5f, 0.35f, 0.9f);
+    public Color apocalypticWaterColor = new Color(0.75f, 0.0f, 0.0f, 0.95f);
+    public Color blackWaterColor = new Color(0.0f, 0.0f, 0.0f, 0.97f);
+
+    public bool isShallowWater = false;
+    public bool isDeepWater = false;
+    public bool isPollutedWater = false;
+    public bool isApocalypticWater = false;
+    public bool isBlackWater = false;
+
     void Start()
     {
         kayak = GameObject.Find("Kayak");
 
         GameObject.Find("WaterLevelIndicator").SetActive(false);
 
+        waterTileRenderer = waterTile.GetComponent<Renderer>();
         waterTileMesh = waterTile.GetComponent<MeshFilter>().sharedMesh;
         waterTileLengthX = (int)GetTileScale().x * (int)waterTileMesh.bounds.size.x;
         waterTileLengthZ = (int)GetTileScale().z * (int)waterTileMesh.bounds.size.z;
@@ -113,6 +131,9 @@ public class WaterManager : MonoBehaviour
         // coordinate water tiles around the player from the pool
         PopulateWaterTilesFromPool(amountToPool, new Vector3(0, 0, 0));
 
+        // water colour
+        currentWaterColor = waterTileRenderer.sharedMaterial.GetColor("_Color");
+
         // create waves
         MakeNoise();
     }
@@ -130,6 +151,51 @@ public class WaterManager : MonoBehaviour
 
             // then reissue the water tiles from the pool ahead of player movement direction past the furthest water tiles
             PopulateWaterTilesFromPool(amountInPool, centerWaterTile.GetPosition());
+        }
+
+        if (changeWaterColor)
+        {
+            if (currentWaterColor != deepWaterColor)
+            {
+                Debug.Log(deepWaterColor - currentWaterColor);
+                float vectorLength = Mathf.Sqrt((deepWaterColor[0]*currentWaterColor[0]) + 
+                                                (deepWaterColor[1]*currentWaterColor[1]) + 
+                                                (deepWaterColor[2]*currentWaterColor[2]) + 
+                                                (deepWaterColor[3]*currentWaterColor[3]));
+                float rNormalized = (deepWaterColor[0] - currentWaterColor[0]) / vectorLength;
+                float bNormalized = (deepWaterColor[1] - currentWaterColor[1]) / vectorLength;
+                float gNormalized = (deepWaterColor[2] - currentWaterColor[2]) / vectorLength;
+                float aNormalized = (deepWaterColor[3] - currentWaterColor[3]) / vectorLength;
+                currentWaterColor = UpdateWaterTileColourSlowly(new Color(rNormalized, bNormalized, gNormalized, aNormalized), 1f);
+                UpdateWaterTileColour(currentWaterColor);
+            }
+            else
+            {
+                changeWaterColor = false;
+            }
+        }
+
+        if (changeWaterColor && false)
+        {
+            Color currentWaterColour = new Color();
+
+            if (isShallowWater){
+                currentWaterColour = shallowWaterColor;
+            }
+            if (isDeepWater){
+                currentWaterColour = deepWaterColor;
+            }
+            if (isPollutedWater){
+                currentWaterColour = pollutedWaterColor;
+            }
+            if (isApocalypticWater){
+                currentWaterColour = apocalypticWaterColor;
+            }
+            if (isBlackWater){
+                currentWaterColour = blackWaterColor;
+            }
+            UpdateWaterTileColour(currentWaterColour);
+            changeWaterColor = false;
         }
     }
 
@@ -259,5 +325,16 @@ public class WaterManager : MonoBehaviour
     public Vector3 GetTileLength()
     {
         return new Vector3(waterTileLengthX, 0 , waterTileLengthZ);
+    }
+
+    public void UpdateWaterTileColour(Color waterColour){
+        for(int i = 0; i < amountToPool; i++){
+            waterTilePool[i].GetComponent<Renderer>().material.SetColor("_Color", waterColour);
+        }
+    }
+
+     private Color UpdateWaterTileColourSlowly(Color colourDifference, float speed)
+    {
+        return colourDifference * speed * Time.deltaTime;
     }
 }

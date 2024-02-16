@@ -3,7 +3,8 @@ guid: 06f1e3d0092ed42f68df2c9f8b717308
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - waterTile: {fileID: 6084907976327452131, guid: c2a0c6db648fd4148a80a24fa7e942e6, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
