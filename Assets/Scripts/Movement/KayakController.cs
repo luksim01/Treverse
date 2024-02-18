@@ -19,6 +19,9 @@ public class KayakController : MonoBehaviour
     public float waterTileCenterToSideLengthX;
     public float waterTileCenterToSideLengthZ;
 
+    // Player Object
+    public bool hasPlayer;
+
     void Start()
     {
         WaterManager waterManager;
@@ -34,13 +37,16 @@ public class KayakController : MonoBehaviour
 
     private void MovementControl(float forwardSpeed, float rotationSpeed)
     {
-        // forwards movement
-        forwardInput = Input.GetAxis("Vertical");
-        transform.Translate(Vector3.forward * forwardInput * Time.deltaTime * forwardSpeed);
+        if (hasPlayer)
+        {
+            // forwards movement
+            forwardInput = Input.GetAxis("Vertical");
+            transform.Translate(Vector3.forward * forwardInput * Time.deltaTime * forwardSpeed);
 
-        // horizontal rotation
-        horizontalInput = Input.GetAxis("Horizontal");
-        transform.Rotate(Vector3.up, horizontalInput * Time.deltaTime * rotationSpeed);
+            // horizontal rotation
+            horizontalInput = Input.GetAxis("Horizontal");
+            transform.Rotate(Vector3.up, horizontalInput * Time.deltaTime * rotationSpeed);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
