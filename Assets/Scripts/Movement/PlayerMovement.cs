@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public bool inKayak = false;
+    public GameObject kayakObject;
+    public GameObject cameraPos;
+
     [Header("Movement")]
     public float moveSpeed;
 
@@ -22,10 +26,14 @@ public class PlayerMovement : MonoBehaviour
     Vector3 moveDirection;
     Rigidbody rb;
 
+    private float kayakHeightBoost = 0.5f;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
+
+        kayakObject = GameObject.Find("Kayak");
     }
 
     void Update()
@@ -36,12 +44,28 @@ public class PlayerMovement : MonoBehaviour
         MyInput();
 
         rb.drag = grounded ? groundDrag : 0;
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            EnterExitKayak();
+        }
     }
 
     void FixedUpdate()
     {
-        MovePlayer();
-        SpeedControl();
+        if (!inKayak) {
+            MovePlayer();
+            SpeedControl();
+        }
+    }
+
+    private void LateUpdate()
+    {
+        if (inKayak)
+        {
+            transform.position = kayakObject.transform.position;
+            orientation.rotation = kayakObject.transform.rotation;
+        }
     }
 
     private void MyInput()
@@ -65,6 +89,31 @@ public class PlayerMovement : MonoBehaviour
         {
             Vector3 limitedVelocity = flatVelocity.normalized * moveSpeed;
             rb.velocity = new Vector3(limitedVelocity.x, rb.velocity.y, limitedVelocity.z);
+        }
+    }
+
+    private void EnterExitKayak ()
+    {
+        if (inKayak)
+        {
+            inKayak = false;
+            GetComponentInChildren<CapsuleCollider>().enabled = true;
+            kayakObject.GetComponent<KayakController>().hasPlayer = false;
+            cameraPos.transform.position = new Vector3(cameraPos.transform.position.x, cameraPos.transform.position.y - kayakHeightBoost, cameraPos.transform.position.z);
+
+        } else
+        {
+            float distanceToKayak = Vector3.Distance(transform.position, kayakObject.transform.position);
+            if (distanceToKayak < 4)
+            {
+                inKayak = true;
+                transform.position = kayakObject.transform.position;
+                orientation.rotation = kayakObject.transform.rotation;
+                GetComponentInChildren<CapsuleCollider>().enabled = false;
+
+                kayakObject.GetComponent<KayakController>().hasPlayer = true;
+                cameraPos.transform.position = new Vector3(cameraPos.transform.position.x, cameraPos.transform.position.y + kayakHeightBoost, cameraPos.transform.position.z);
+            }
         }
     }
 }
