@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028305, g: 0.22571313, b: 0.3069213, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -205,13 +205,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 487337508}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.08715578, y: 0, z: 0, w: 0.9961947}
-  m_LocalPosition: {x: 0, y: 1.5, z: -1.5}
+  m_LocalRotation: {x: 0.18672612, y: -0, z: -0, w: 0.982412}
+  m_LocalPosition: {x: 0, y: 3.44, z: -6.33}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 10, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 21.524, y: 0, z: 0}
 --- !u!1 &1264167071
 GameObject:
   m_ObjectHideFlags: 0
@@ -306,6 +306,58 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &1594610398
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1594610399}
+  - component: {fileID: 1594610400}
+  m_Layer: 0
+  m_Name: WaterManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1594610399
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1594610398}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1594610400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1594610398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06f1e3d0092ed42f68df2c9f8b717308, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waterTile: {fileID: 6084907976327452131, guid: c2a0c6db648fd4148a80a24fa7e942e6, type: 3}
+  isPlaneSpawned: 0
+  power: 2
+  scale: 0.5
+  timeScale: 0.5
+  waterTileGridSize: 5
+  waterTileLengthX: 0
+  waterTileLengthZ: 0
 --- !u!1001 &1489217111984033167
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -317,6 +369,10 @@ PrefabInstance:
     - target: {fileID: 1945365817538561996, guid: 818a6452f2609429ab46c518b6fd6a73, type: 3}
       propertyPath: m_Name
       value: Kayak
+      objectReference: {fileID: 0}
+    - target: {fileID: 1945365817538561996, guid: 818a6452f2609429ab46c518b6fd6a73, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3666537713854896889, guid: 818a6452f2609429ab46c518b6fd6a73, type: 3}
       propertyPath: m_LocalPosition.x
@@ -363,7 +419,7 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 818a6452f2609429ab46c518b6fd6a73, type: 3}
---- !u!1001 &4181850942324954494
+--- !u!1001 &2502869040677113050
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -371,55 +427,55 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 5592182749902639869, guid: 29651a980dc446449ae672f11d3e7295, type: 3}
+    - target: {fileID: 5801908950459380960, guid: 3b70808b21f6740a690a5426671169d7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 5592182749902639869, guid: 29651a980dc446449ae672f11d3e7295, type: 3}
+    - target: {fileID: 5801908950459380960, guid: 3b70808b21f6740a690a5426671169d7, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5592182749902639869, guid: 29651a980dc446449ae672f11d3e7295, type: 3}
+    - target: {fileID: 5801908950459380960, guid: 3b70808b21f6740a690a5426671169d7, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5592182749902639869, guid: 29651a980dc446449ae672f11d3e7295, type: 3}
+    - target: {fileID: 5801908950459380960, guid: 3b70808b21f6740a690a5426671169d7, type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 5592182749902639869, guid: 29651a980dc446449ae672f11d3e7295, type: 3}
+    - target: {fileID: 5801908950459380960, guid: 3b70808b21f6740a690a5426671169d7, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5592182749902639869, guid: 29651a980dc446449ae672f11d3e7295, type: 3}
+    - target: {fileID: 5801908950459380960, guid: 3b70808b21f6740a690a5426671169d7, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 5592182749902639869, guid: 29651a980dc446449ae672f11d3e7295, type: 3}
+    - target: {fileID: 5801908950459380960, guid: 3b70808b21f6740a690a5426671169d7, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 5592182749902639869, guid: 29651a980dc446449ae672f11d3e7295, type: 3}
+    - target: {fileID: 5801908950459380960, guid: 3b70808b21f6740a690a5426671169d7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5592182749902639869, guid: 29651a980dc446449ae672f11d3e7295, type: 3}
+    - target: {fileID: 5801908950459380960, guid: 3b70808b21f6740a690a5426671169d7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5592182749902639869, guid: 29651a980dc446449ae672f11d3e7295, type: 3}
+    - target: {fileID: 5801908950459380960, guid: 3b70808b21f6740a690a5426671169d7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8276206338006381342, guid: 29651a980dc446449ae672f11d3e7295, type: 3}
+    - target: {fileID: 6615600797151014490, guid: 3b70808b21f6740a690a5426671169d7, type: 3}
       propertyPath: m_Name
-      value: WaterManager
+      value: Kayak
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 29651a980dc446449ae672f11d3e7295, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: 3b70808b21f6740a690a5426671169d7, type: 3}
 --- !u!1001 &8795712472541059600
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -483,6 +539,7 @@ SceneRoots:
   m_Roots:
   - {fileID: 487337511}
   - {fileID: 1264167073}
-  - {fileID: 4181850942324954494}
+  - {fileID: 1594610399}
   - {fileID: 8795712472541059600}
   - {fileID: 1489217111984033167}
+  - {fileID: 2502869040677113050}
