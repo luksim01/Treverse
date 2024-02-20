@@ -26,7 +26,7 @@ public class PlayerMovement : MonoBehaviour
     Vector3 moveDirection;
     Rigidbody rb;
 
-    private float kayakHeightBoost = 0.5f;
+    private float kayakHeightBoost = 0.9f;
 
     private void Start()
     {
