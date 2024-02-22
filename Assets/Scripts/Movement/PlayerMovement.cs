@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public bool inKayak = false;
+    public bool startInKayak = false;
     public GameObject kayakObject;
     public GameObject cameraPos;
 
@@ -34,6 +35,12 @@ public class PlayerMovement : MonoBehaviour
         rb.freezeRotation = true;
 
         kayakObject = GameObject.Find("Kayak");
+
+        if (startInKayak)
+        {
+            inKayak = false;
+            EnterExitKayak();
+        }
     }
 
     void Update()
@@ -48,6 +55,12 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E))
         {
             EnterExitKayak();
+        }
+
+        if (inKayak)
+        {
+            transform.position = kayakObject.transform.position;
+            orientation.rotation = kayakObject.transform.rotation;
         }
     }
 
@@ -98,6 +111,7 @@ public class PlayerMovement : MonoBehaviour
         {
             inKayak = false;
             GetComponentInChildren<CapsuleCollider>().enabled = true;
+            GetComponent<Rigidbody>().mass = 1f;
             kayakObject.GetComponent<KayakController>().hasPlayer = false;
             cameraPos.transform.position = new Vector3(cameraPos.transform.position.x, cameraPos.transform.position.y - kayakHeightBoost, cameraPos.transform.position.z);
 
@@ -110,6 +124,7 @@ public class PlayerMovement : MonoBehaviour
                 transform.position = kayakObject.transform.position;
                 orientation.rotation = kayakObject.transform.rotation;
                 GetComponentInChildren<CapsuleCollider>().enabled = false;
+                GetComponent<Rigidbody>().mass = 0f;
 
                 kayakObject.GetComponent<KayakController>().hasPlayer = true;
                 cameraPos.transform.position = new Vector3(cameraPos.transform.position.x, cameraPos.transform.position.y + kayakHeightBoost, cameraPos.transform.position.z);
