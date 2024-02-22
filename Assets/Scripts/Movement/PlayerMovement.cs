@@ -104,7 +104,7 @@ public class PlayerMovement : MonoBehaviour
         } else
         {
             float distanceToKayak = Vector3.Distance(transform.position, kayakObject.transform.position);
-            if (distanceToKayak < 4)
+            if (distanceToKayak < 7)
             {
                 inKayak = true;
                 transform.position = kayakObject.transform.position;
