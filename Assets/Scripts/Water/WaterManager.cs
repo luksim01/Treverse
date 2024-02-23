@@ -64,8 +64,7 @@ public class WaterManager : MonoBehaviour
 
     // water colour
     public Renderer waterTileRenderer;
-    public bool changeWaterColor = false;
-    public Color currentWaterColor = new Color();
+    public Color waterColourCurrent = new Color();
 
     public Color shallowWaterColor = new Color(0.0f, 0.85f, 1.0f, 0.6f);
     public Color deepWaterColor = new Color(0.0f, 0.15f, 0.5f, 0.9f);
@@ -78,6 +77,8 @@ public class WaterManager : MonoBehaviour
     public bool isPollutedWater = false;
     public bool isApocalypticWater = false;
     public bool isBlackWater = false;
+
+    public float changeSpeed;
 
     void Start()
     {
@@ -132,7 +133,7 @@ public class WaterManager : MonoBehaviour
         PopulateWaterTilesFromPool(amountToPool, new Vector3(0, 0, 0));
 
         // water colour
-        currentWaterColor = waterTileRenderer.sharedMaterial.GetColor("_Color");
+        waterColourCurrent = waterTileRenderer.sharedMaterial.GetColor("_Color");
 
         // create waves
         MakeNoise();
@@ -153,49 +154,25 @@ public class WaterManager : MonoBehaviour
             PopulateWaterTilesFromPool(amountInPool, centerWaterTile.GetPosition());
         }
 
-        if (changeWaterColor)
+        if (isShallowWater)
         {
-            if (currentWaterColor != deepWaterColor)
-            {
-                Debug.Log(deepWaterColor - currentWaterColor);
-                float vectorLength = Mathf.Sqrt((deepWaterColor[0]*currentWaterColor[0]) + 
-                                                (deepWaterColor[1]*currentWaterColor[1]) + 
-                                                (deepWaterColor[2]*currentWaterColor[2]) + 
-                                                (deepWaterColor[3]*currentWaterColor[3]));
-                float rNormalized = (deepWaterColor[0] - currentWaterColor[0]) / vectorLength;
-                float bNormalized = (deepWaterColor[1] - currentWaterColor[1]) / vectorLength;
-                float gNormalized = (deepWaterColor[2] - currentWaterColor[2]) / vectorLength;
-                float aNormalized = (deepWaterColor[3] - currentWaterColor[3]) / vectorLength;
-                currentWaterColor = UpdateWaterTileColourSlowly(new Color(rNormalized, bNormalized, gNormalized, aNormalized), 1f);
-                UpdateWaterTileColour(currentWaterColor);
-            }
-            else
-            {
-                changeWaterColor = false;
-            }
+            isShallowWater = InitiateWaterTileColourChangeTo(shallowWaterColor, changeSpeed);
         }
-
-        if (changeWaterColor && false)
+        else if (isDeepWater)
         {
-            Color currentWaterColour = new Color();
-
-            if (isShallowWater){
-                currentWaterColour = shallowWaterColor;
-            }
-            if (isDeepWater){
-                currentWaterColour = deepWaterColor;
-            }
-            if (isPollutedWater){
-                currentWaterColour = pollutedWaterColor;
-            }
-            if (isApocalypticWater){
-                currentWaterColour = apocalypticWaterColor;
-            }
-            if (isBlackWater){
-                currentWaterColour = blackWaterColor;
-            }
-            UpdateWaterTileColour(currentWaterColour);
-            changeWaterColor = false;
+            isDeepWater = InitiateWaterTileColourChangeTo(deepWaterColor, changeSpeed);
+        }
+        else if (isPollutedWater)
+        {
+            isPollutedWater = InitiateWaterTileColourChangeTo(pollutedWaterColor, changeSpeed);
+        }
+        else if (isApocalypticWater)
+        {
+            isApocalypticWater = InitiateWaterTileColourChangeTo(apocalypticWaterColor, changeSpeed);
+        }
+        else if (isBlackWater)
+        {
+            isBlackWater = InitiateWaterTileColourChangeTo(blackWaterColor, changeSpeed);
         }
     }
 
@@ -333,8 +310,28 @@ public class WaterManager : MonoBehaviour
         }
     }
 
-     private Color UpdateWaterTileColourSlowly(Color colourDifference, float speed)
+    public bool InitiateWaterTileColourChangeTo(Color waterColourTarget, float changeSpeed)
     {
-        return colourDifference * speed * Time.deltaTime;
+        if (waterColourCurrent != waterColourTarget)
+        {
+            float vectorLength = Mathf.Sqrt((waterColourTarget[0] * waterColourCurrent[0]) +
+                                            (waterColourTarget[1] * waterColourCurrent[1]) +
+                                            (waterColourTarget[2] * waterColourCurrent[2]) +
+                                            (waterColourTarget[3] * waterColourCurrent[3]));
+
+            float rNormalized = (waterColourTarget[0] - waterColourCurrent[0]) / vectorLength;
+            float bNormalized = (waterColourTarget[1] - waterColourCurrent[1]) / vectorLength;
+            float gNormalized = (waterColourTarget[2] - waterColourCurrent[2]) / vectorLength;
+            float aNormalized = (waterColourTarget[3] - waterColourCurrent[3]) / vectorLength;
+
+            Color waterColourDelta = new Color(rNormalized, bNormalized, gNormalized, aNormalized) * changeSpeed * Time.deltaTime;
+            waterColourCurrent += waterColourDelta;
+            UpdateWaterTileColour(waterColourCurrent);
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 }
