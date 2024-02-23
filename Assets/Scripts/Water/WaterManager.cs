@@ -4,16 +4,14 @@ using UnityEngine;
 
 public class WaterManager : MonoBehaviour
 {
-    // REVISIT luksim: update if the kayak starts somewhere else besides (0, 0, 0) coordinates
-
     private GameObject kayak;
     public GameObject waterTile;
     public bool isPlaneSpawned = false;
 
     // wave parameters
-    [SerializeField] private float power = 0.6f;
-    [SerializeField] private float scale = 0.2f;
-    [SerializeField] private float timeScale = 1f;
+    [SerializeField] private float power = 2f;
+    [SerializeField] private float scale = 0.5f;
+    [SerializeField] private float timeScale = 0.5f;
 
     // wave generation
     private float offsetX;
@@ -53,7 +51,7 @@ public class WaterManager : MonoBehaviour
         }
     }
     public TilePosition centerWaterTile = new TilePosition(new Vector3(0, 0, 0));
-    [SerializeField] private int waterTileGridSize;
+    [SerializeField] private int waterTileGridSize = 5;
     [SerializeField] private int waterTileLengthX;
     [SerializeField] private int waterTileLengthZ;
     private List<GameObject> waterTilePool;
@@ -62,12 +60,17 @@ public class WaterManager : MonoBehaviour
     private Vector3[,] waterTileOffset;
     private Vector3[,] waterTilePosition;
 
+    // water colour
+    private Renderer waterTileRenderer;
+    [SerializeField] private Color waterColourCurrent = new Color();
+
     void Start()
     {
         kayak = GameObject.Find("Kayak");
 
         GameObject.Find("WaterLevelIndicator").SetActive(false);
 
+        waterTileRenderer = waterTile.GetComponent<Renderer>();
         waterTileMesh = waterTile.GetComponent<MeshFilter>().sharedMesh;
         waterTileLengthX = (int)GetTileScale().x * (int)waterTileMesh.bounds.size.x;
         waterTileLengthZ = (int)GetTileScale().z * (int)waterTileMesh.bounds.size.z;
@@ -112,6 +115,9 @@ public class WaterManager : MonoBehaviour
         }
         // coordinate water tiles around the player from the pool
         PopulateWaterTilesFromPool(amountToPool, new Vector3(0, 0, 0));
+
+        // water colour
+        waterColourCurrent = waterTileRenderer.sharedMaterial.GetColor("_Color");
 
         // create waves
         MakeNoise();
@@ -259,5 +265,36 @@ public class WaterManager : MonoBehaviour
     public Vector3 GetTileLength()
     {
         return new Vector3(waterTileLengthX, 0 , waterTileLengthZ);
+    }
+
+    public void UpdateWaterTileColour(Color waterColour){
+        for(int i = 0; i < amountToPool; i++){
+            waterTilePool[i].GetComponent<Renderer>().material.SetColor("_Color", waterColour);
+        }
+    }
+
+    public bool InitiateWaterTileColourChangeTo(Color waterColourTarget, float changeSpeed)
+    {
+        if (waterColourCurrent != waterColourTarget)
+        {
+            float vectorLength = Mathf.Sqrt((waterColourTarget[0] * waterColourCurrent[0]) +
+                                            (waterColourTarget[1] * waterColourCurrent[1]) +
+                                            (waterColourTarget[2] * waterColourCurrent[2]) +
+                                            (waterColourTarget[3] * waterColourCurrent[3]));
+
+            float rNormalized = (waterColourTarget[0] - waterColourCurrent[0]) / vectorLength;
+            float bNormalized = (waterColourTarget[1] - waterColourCurrent[1]) / vectorLength;
+            float gNormalized = (waterColourTarget[2] - waterColourCurrent[2]) / vectorLength;
+            float aNormalized = (waterColourTarget[3] - waterColourCurrent[3]) / vectorLength;
+
+            Color waterColourDelta = new Color(rNormalized, bNormalized, gNormalized, aNormalized) * changeSpeed * Time.deltaTime;
+            waterColourCurrent += waterColourDelta;
+            UpdateWaterTileColour(waterColourCurrent);
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 }
