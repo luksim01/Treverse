@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2895364157773988678}
   - component: {fileID: 5157073170882275182}
   m_Layer: 0
-  m_Name: Kayak
+  m_Name: KayakPlaceholder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

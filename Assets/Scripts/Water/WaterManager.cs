@@ -269,7 +269,7 @@ public class WaterManager : MonoBehaviour
 
     public void UpdateWaterTileColour(Color waterColour){
         for(int i = 0; i < amountToPool; i++){
-            waterTilePool[i].GetComponent<Renderer>().material.SetColor("_Color", waterColour);
+            waterTilePool[i].GetComponent<Renderer>().material.SetColor("_BaseColor", waterColour);
         }
     }
 
