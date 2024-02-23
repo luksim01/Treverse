@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class WaterManager : MonoBehaviour
 {
-    // REVISIT luksim: update if the kayak starts somewhere else besides (0, 0, 0) coordinates
-
     private GameObject kayak;
     public GameObject waterTile;
     public bool isPlaneSpawned = false;
@@ -63,22 +61,8 @@ public class WaterManager : MonoBehaviour
     private Vector3[,] waterTilePosition;
 
     // water colour
-    public Renderer waterTileRenderer;
-    public Color waterColourCurrent = new Color();
-
-    public Color shallowWaterColor = new Color(0.0f, 0.85f, 1.0f, 0.6f);
-    public Color deepWaterColor = new Color(0.0f, 0.15f, 0.5f, 0.9f);
-    public Color pollutedWaterColor = new Color(0.2f, 0.5f, 0.35f, 0.9f);
-    public Color apocalypticWaterColor = new Color(0.75f, 0.0f, 0.0f, 0.95f);
-    public Color blackWaterColor = new Color(0.0f, 0.0f, 0.0f, 0.97f);
-
-    public bool isShallowWater = false;
-    public bool isDeepWater = false;
-    public bool isPollutedWater = false;
-    public bool isApocalypticWater = false;
-    public bool isBlackWater = false;
-
-    public float changeSpeed;
+    private Renderer waterTileRenderer;
+    [SerializeField] private Color waterColourCurrent = new Color();
 
     void Start()
     {
@@ -152,27 +136,6 @@ public class WaterManager : MonoBehaviour
 
             // then reissue the water tiles from the pool ahead of player movement direction past the furthest water tiles
             PopulateWaterTilesFromPool(amountInPool, centerWaterTile.GetPosition());
-        }
-
-        if (isShallowWater)
-        {
-            isShallowWater = InitiateWaterTileColourChangeTo(shallowWaterColor, changeSpeed);
-        }
-        else if (isDeepWater)
-        {
-            isDeepWater = InitiateWaterTileColourChangeTo(deepWaterColor, changeSpeed);
-        }
-        else if (isPollutedWater)
-        {
-            isPollutedWater = InitiateWaterTileColourChangeTo(pollutedWaterColor, changeSpeed);
-        }
-        else if (isApocalypticWater)
-        {
-            isApocalypticWater = InitiateWaterTileColourChangeTo(apocalypticWaterColor, changeSpeed);
-        }
-        else if (isBlackWater)
-        {
-            isBlackWater = InitiateWaterTileColourChangeTo(blackWaterColor, changeSpeed);
         }
     }
 

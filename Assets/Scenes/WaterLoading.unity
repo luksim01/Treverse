@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028331, g: 0.2257133, b: 0.3069217, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028305, g: 0.22571313, b: 0.3069213, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -306,71 +306,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!1 &1594610398
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1594610399}
-  - component: {fileID: 1594610400}
-  m_Layer: 0
-  m_Name: WaterManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1594610399
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1594610398}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1594610400
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1594610398}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 06f1e3d0092ed42f68df2c9f8b717308, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  waterTile: {fileID: 6084907976327452131, guid: c2a0c6db648fd4148a80a24fa7e942e6, type: 3}
-  isPlaneSpawned: 0
-  power: 2
-  scale: 0.5
-  timeScale: 0.5
-  waterTileGridSize: 5
-  waterTileLengthX: 0
-  waterTileLengthZ: 0
-  waterTilePool: []
-  currentWaterColour: {r: 0, g: 0, b: 0, a: 0}
-  changeWaterColor: 0
-  shallowWaterColor: {r: 0, g: 0.85, b: 1, a: 0.6}
-  deepWaterColor: {r: 0, g: 0.15, b: 0.5, a: 0.9}
-  pollutedWaterColor: {r: 0.2, g: 0.5, b: 0.35, a: 0.9}
-  apocalypticWaterColor: {r: 0.75, g: 0, b: 0, a: 0.95}
-  blackWaterColor: {r: 0, g: 0, b: 0, a: 0.97}
-  isShallowWater: 0
-  isDeepWater: 0
-  isPollutedWater: 0
-  isApocalypticWater: 0
-  isBlackWater: 0
 --- !u!1001 &1489217111984033167
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -428,7 +363,7 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 818a6452f2609429ab46c518b6fd6a73, type: 3}
---- !u!1001 &8795712472541059600
+--- !u!1001 &4336328976279205803
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -436,47 +371,104 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2301378371729472764, guid: cd233b0668f2d47b194f3a06b952d141, type: 3}
-      propertyPath: m_Name
-      value: WaterLevelIndicator
-      objectReference: {fileID: 0}
-    - target: {fileID: 7778583022253198271, guid: cd233b0668f2d47b194f3a06b952d141, type: 3}
+    - target: {fileID: 1602285659407006866, guid: f6e315e2b1773432d9239f2a42594d13, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7778583022253198271, guid: cd233b0668f2d47b194f3a06b952d141, type: 3}
+    - target: {fileID: 1602285659407006866, guid: f6e315e2b1773432d9239f2a42594d13, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7778583022253198271, guid: cd233b0668f2d47b194f3a06b952d141, type: 3}
+    - target: {fileID: 1602285659407006866, guid: f6e315e2b1773432d9239f2a42594d13, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7778583022253198271, guid: cd233b0668f2d47b194f3a06b952d141, type: 3}
+    - target: {fileID: 1602285659407006866, guid: f6e315e2b1773432d9239f2a42594d13, type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 7778583022253198271, guid: cd233b0668f2d47b194f3a06b952d141, type: 3}
+    - target: {fileID: 1602285659407006866, guid: f6e315e2b1773432d9239f2a42594d13, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7778583022253198271, guid: cd233b0668f2d47b194f3a06b952d141, type: 3}
+    - target: {fileID: 1602285659407006866, guid: f6e315e2b1773432d9239f2a42594d13, type: 3}
       propertyPath: m_LocalRotation.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7778583022253198271, guid: cd233b0668f2d47b194f3a06b952d141, type: 3}
+    - target: {fileID: 1602285659407006866, guid: f6e315e2b1773432d9239f2a42594d13, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7778583022253198271, guid: cd233b0668f2d47b194f3a06b952d141, type: 3}
+    - target: {fileID: 1602285659407006866, guid: f6e315e2b1773432d9239f2a42594d13, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7778583022253198271, guid: cd233b0668f2d47b194f3a06b952d141, type: 3}
+    - target: {fileID: 1602285659407006866, guid: f6e315e2b1773432d9239f2a42594d13, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7778583022253198271, guid: cd233b0668f2d47b194f3a06b952d141, type: 3}
+    - target: {fileID: 1602285659407006866, guid: f6e315e2b1773432d9239f2a42594d13, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1989065217146998499, guid: f6e315e2b1773432d9239f2a42594d13, type: 3}
+      propertyPath: m_Name
+      value: EnvironmentManager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f6e315e2b1773432d9239f2a42594d13, type: 3}
+--- !u!1001 &6664177359222211499
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2643480308660980036, guid: e5548df166bd841d599a732db7ba2ae8, type: 3}
+      propertyPath: m_Name
+      value: WaterManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 4885689425397063212, guid: e5548df166bd841d599a732db7ba2ae8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4885689425397063212, guid: e5548df166bd841d599a732db7ba2ae8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4885689425397063212, guid: e5548df166bd841d599a732db7ba2ae8, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4885689425397063212, guid: e5548df166bd841d599a732db7ba2ae8, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4885689425397063212, guid: e5548df166bd841d599a732db7ba2ae8, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4885689425397063212, guid: e5548df166bd841d599a732db7ba2ae8, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4885689425397063212, guid: e5548df166bd841d599a732db7ba2ae8, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4885689425397063212, guid: e5548df166bd841d599a732db7ba2ae8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4885689425397063212, guid: e5548df166bd841d599a732db7ba2ae8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4885689425397063212, guid: e5548df166bd841d599a732db7ba2ae8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
@@ -484,13 +476,13 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: cd233b0668f2d47b194f3a06b952d141, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: e5548df166bd841d599a732db7ba2ae8, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 487337511}
   - {fileID: 1264167073}
-  - {fileID: 1594610399}
-  - {fileID: 8795712472541059600}
+  - {fileID: 6664177359222211499}
   - {fileID: 1489217111984033167}
+  - {fileID: 4336328976279205803}
