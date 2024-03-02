@@ -6,17 +6,22 @@ public class EnvironmentManager : MonoBehaviour
 {
     WaterManager waterManager;
 
+    public enum WaterColour
+    {
+        shallow,
+        deep,
+        polluted,
+        apocalyptic,
+        black
+    }
+
+    public WaterColour waterColour;
+
     private Color shallowWaterColor = new Color(0.0f, 0.85f, 1.0f, 0.6f);
     private Color deepWaterColor = new Color(0.0f, 0.15f, 0.5f, 0.9f);
     private Color pollutedWaterColor = new Color(0.2f, 0.5f, 0.35f, 0.9f);
     private Color apocalypticWaterColor = new Color(0.75f, 0.0f, 0.0f, 0.95f);
     private Color blackWaterColor = new Color(0.0f, 0.0f, 0.0f, 0.97f);
-
-    [SerializeField] private bool isShallowWater = false;
-    [SerializeField] private bool isDeepWater = false;
-    [SerializeField] private bool isPollutedWater = false;
-    [SerializeField] private bool isApocalypticWater = false;
-    [SerializeField] private bool isBlackWater = false;
 
     [SerializeField] float waterColourChangeSpeed;
 
@@ -27,30 +32,28 @@ public class EnvironmentManager : MonoBehaviour
 
     void Update()
     {
-        CheckForEnvironmentalChanges();
+        ManageWaterColour();
     }
 
-    private void CheckForEnvironmentalChanges()
+    private void ManageWaterColour()
     {
-        if (isShallowWater)
+        switch (waterColour)
         {
-            isShallowWater = waterManager.InitiateWaterTileColourChangeTo(shallowWaterColor, waterColourChangeSpeed);
-        }
-        else if (isDeepWater)
-        {
-            isDeepWater = waterManager.InitiateWaterTileColourChangeTo(deepWaterColor, waterColourChangeSpeed);
-        }
-        else if (isPollutedWater)
-        {
-            isPollutedWater = waterManager.InitiateWaterTileColourChangeTo(pollutedWaterColor, waterColourChangeSpeed);
-        }
-        else if (isApocalypticWater)
-        {
-            isApocalypticWater = waterManager.InitiateWaterTileColourChangeTo(apocalypticWaterColor, waterColourChangeSpeed);
-        }
-        else if (isBlackWater)
-        {
-            isBlackWater = waterManager.InitiateWaterTileColourChangeTo(blackWaterColor, waterColourChangeSpeed);
+            case WaterColour.shallow:
+                waterManager.InitiateWaterTileColourChangeTo(shallowWaterColor, waterColourChangeSpeed);
+                break;
+            case WaterColour.deep:
+                waterManager.InitiateWaterTileColourChangeTo(deepWaterColor, waterColourChangeSpeed);
+                break;
+            case WaterColour.polluted:
+                waterManager.InitiateWaterTileColourChangeTo(pollutedWaterColor, waterColourChangeSpeed);
+                break;
+            case WaterColour.apocalyptic:
+                waterManager.InitiateWaterTileColourChangeTo(apocalypticWaterColor, waterColourChangeSpeed);
+                break;
+            case WaterColour.black:
+                waterManager.InitiateWaterTileColourChangeTo(blackWaterColor, waterColourChangeSpeed);
+                break;
         }
     }
 }
