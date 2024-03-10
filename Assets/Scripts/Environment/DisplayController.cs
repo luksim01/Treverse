@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class DisplayManager : MonoBehaviour
+public class DisplayController : MonoBehaviour
 {
-    // solar battery display
-    public Image solarBatteryDisplay;
-    private Material solarBatteryDisplayMaterial;
+    // display
+    public Image displayImage;
+    private Material displayImageMaterial;
 
     // display glow options
     private enum DisplayGlow
@@ -32,8 +32,8 @@ public class DisplayManager : MonoBehaviour
 
     void Start()
     {
-        // solar battery display material
-        solarBatteryDisplayMaterial = new Material(solarBatteryDisplay.material);
+        // display material
+        displayImageMaterial = new Material(displayImage.material);
 
         // display, flicker mode, stable glow time
         Invoke("StableGlow", 3);
@@ -45,18 +45,18 @@ public class DisplayManager : MonoBehaviour
         {
             case DisplayGlow.pulsing:
                 // gradual pulsing glow
-                pulseGlowSpeed = PulsingGlow(solarBatteryDisplayMaterial, minimumGlowLevel, maximumGlowLevel, pulseGlowSpeed);
+                pulseGlowSpeed = PulsingGlow(displayImageMaterial, minimumGlowLevel, maximumGlowLevel, pulseGlowSpeed);
                 break;
             case DisplayGlow.flickering:
                 if (isFlickering)
                 {
                     // fast pulsing glow creates flicker
-                    flickerGlowSpeed = PulsingGlow(solarBatteryDisplayMaterial, minimumGlowLevel, maximumGlowLevel, flickerGlowSpeed);
+                    flickerGlowSpeed = PulsingGlow(displayImageMaterial, minimumGlowLevel, maximumGlowLevel, flickerGlowSpeed);
                 }
                 else
                 {
                     // slow pulsing glow creates stable glow
-                    stableGlowSpeed = PulsingGlow(solarBatteryDisplayMaterial, minimumStableGlowLevel, maximumStableGlowLevel, stableGlowSpeed);
+                    stableGlowSpeed = PulsingGlow(displayImageMaterial, minimumStableGlowLevel, maximumStableGlowLevel, stableGlowSpeed);
                 }
                 break;
         }
@@ -94,7 +94,7 @@ public class DisplayManager : MonoBehaviour
         }
 
         displayMaterial.SetFloat("_GlowSaturation", glowSaturation);
-        solarBatteryDisplay.material = displayMaterial;
+        displayImage.material = displayMaterial;
 
         return changeSpeed;
     }
