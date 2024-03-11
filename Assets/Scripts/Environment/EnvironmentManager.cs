@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnvironmentManager : MonoBehaviour
 {
     WaterManager waterManager;
+    GameObject waterParent;
 
     public enum WaterColour
     {
@@ -25,14 +27,19 @@ public class EnvironmentManager : MonoBehaviour
 
     [SerializeField] float waterColourChangeSpeed;
 
+    public float desiredWaterLevel;
+    [SerializeField] float waterLevelChangeSpeed = 0.5f;
+
     void Start()
     {
         waterManager = GameObject.Find("WaterManager").GetComponent<WaterManager>();
+        waterParent = GameObject.Find("Water");
     }
 
     void Update()
     {
         ManageWaterColour();
+        ManageWaterLevel();
     }
 
     private void ManageWaterColour()
@@ -54,6 +61,25 @@ public class EnvironmentManager : MonoBehaviour
             case WaterColour.black:
                 waterManager.InitiateWaterTileColourChangeTo(blackWaterColor, waterColourChangeSpeed);
                 break;
+        }
+    }
+
+    private void ManageWaterLevel()
+    {
+        float currentWaterLevel = waterParent.transform.position.y;
+        if (desiredWaterLevel != currentWaterLevel)
+        {
+            float waterLevelDifference = desiredWaterLevel - currentWaterLevel;
+
+            if (Mathf.Abs(waterLevelDifference) < waterLevelChangeSpeed * Time.deltaTime)
+            {
+                currentWaterLevel = desiredWaterLevel;
+            } else
+            {
+                currentWaterLevel += Mathf.Sign(waterLevelDifference) * waterLevelChangeSpeed * Time.deltaTime;
+            }
+
+            waterParent.transform.position = new Vector3(waterParent.transform.position.x, currentWaterLevel, waterParent.transform.position.z);
         }
     }
 }
