@@ -2,12 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering.HighDefinition;
 
 public class EnvironmentManager : MonoBehaviour
 {
-    WaterManager waterManager;
-    GameObject waterParent;
-
     public enum WaterColour
     {
         shallow,
@@ -16,7 +14,11 @@ public class EnvironmentManager : MonoBehaviour
         apocalyptic,
         black
     }
+    WaterManager waterManager;
+    GameObject waterParent;
 
+
+    [Header("Water Colour")]
     public WaterColour waterColour;
 
     private Color shallowWaterColor = new Color(0.0f, 0.85f, 1.0f, 0.6f);
@@ -27,8 +29,17 @@ public class EnvironmentManager : MonoBehaviour
 
     [SerializeField] float waterColourChangeSpeed;
 
+    [Header("Water Level")]
     public float desiredWaterLevel;
     [SerializeField] float waterLevelChangeSpeed = 0.5f;
+
+
+    [Header("Power Station")]
+    public bool powerStationActive = true;
+    [SerializeField] GameObject powerStationSmoke;
+    [SerializeField] GameObject powerStationFog;
+
+    private float shrinkSpeed = 0.05f;
 
     void Start()
     {
@@ -40,6 +51,8 @@ public class EnvironmentManager : MonoBehaviour
     {
         ManageWaterColour();
         ManageWaterLevel();
+
+        ManagePowerStation();
     }
 
     private void ManageWaterColour()
@@ -80,6 +93,45 @@ public class EnvironmentManager : MonoBehaviour
             }
 
             waterParent.transform.position = new Vector3(waterParent.transform.position.x, currentWaterLevel, waterParent.transform.position.z);
+        }
+    }
+
+    private void ManagePowerStation()
+    {
+        Vector3 smokeScale = powerStationSmoke.transform.localScale;
+        if (!powerStationActive)
+        {
+            if (powerStationSmoke.activeSelf)
+            {
+                float shrinkAmount = shrinkSpeed * Time.deltaTime;
+                powerStationSmoke.transform.localScale =
+                    new Vector3(smokeScale.x - shrinkAmount, smokeScale.y - shrinkAmount, smokeScale.z - shrinkAmount);
+
+                if (smokeScale.x < 0)
+                {
+                    powerStationSmoke.SetActive(false);
+                }
+
+            }
+            if (powerStationFog.activeSelf)
+            {
+                LocalVolumetricFog fog = powerStationFog.GetComponent<LocalVolumetricFog>();
+                float fogDistance = fog.parameters.meanFreePath;
+                if (fogDistance < 1000)
+                {
+                    fog.parameters.meanFreePath += 2 * Time.deltaTime;
+                }
+                else
+                {
+                    powerStationFog.SetActive(false);
+                }
+            }
+        } else if (smokeScale.x < 1)
+        {
+            powerStationSmoke.SetActive(true);
+            float growAmount = shrinkSpeed * Time.deltaTime;
+            powerStationSmoke.transform.localScale =
+                new Vector3(smokeScale.x + growAmount, smokeScale.y + growAmount, smokeScale.z + growAmount);
         }
     }
 }
