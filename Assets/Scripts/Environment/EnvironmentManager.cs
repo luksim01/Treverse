@@ -22,7 +22,7 @@ public class EnvironmentManager : MonoBehaviour
 
     void Start()
     {
-        waterManager = GameObject.Find("WaterManager").GetComponent<WaterManager>();
+        //waterManager = GameObject.Find("WaterManager").GetComponent<WaterManager>();
     }
 
     void Update()

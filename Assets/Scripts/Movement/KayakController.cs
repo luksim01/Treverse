@@ -24,10 +24,10 @@ public class KayakController : MonoBehaviour
 
     void Start()
     {
-        WaterManager waterManager;
-        waterManager = GameObject.Find("WaterManager").GetComponent<WaterManager>();
-        waterTileCenterToSideLengthX = (int)waterManager.GetTileLength().x / 2;
-        waterTileCenterToSideLengthZ = (int)waterManager.GetTileLength().z / 2;
+        //WaterManager waterManager;
+        //waterManager = GameObject.Find("WaterManager").GetComponent<WaterManager>();
+        //waterTileCenterToSideLengthX = (int)waterManager.GetTileLength().x / 2;
+        //waterTileCenterToSideLengthZ = (int)waterManager.GetTileLength().z / 2;
     }
 
     void Update()
