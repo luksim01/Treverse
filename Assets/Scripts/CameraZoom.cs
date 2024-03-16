@@ -29,7 +29,7 @@ public class CameraZoom : MonoBehaviour
             {
                 if (cameraDistance < 0)
                 {
-                    (componentBase as CinemachineFramingTransposer).m_CameraDistance -= cameraDistance;
+                    (componentBase as CinemachineFramingTransposer).m_CameraDistance += cameraDistance;
                     if ((componentBase as CinemachineFramingTransposer).m_CameraDistance > maxCameraDistance)
                     {
                         (componentBase as CinemachineFramingTransposer).m_CameraDistance = maxCameraDistance;

@@ -32,7 +32,7 @@ public class PlayerMovement : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
-        rb.freezeRotation = true;
+        //rb.freezeRotation = true;
 
         kayakObject = GameObject.Find("Kayak");
 
