@@ -117,7 +117,7 @@ public class WaterManager : MonoBehaviour
         PopulateWaterTilesFromPool(amountToPool, new Vector3(0, 0, 0));
 
         // water colour
-        waterColourCurrent = waterTileRenderer.sharedMaterial.GetColor("_Color");
+        waterColourCurrent = waterTileRenderer.sharedMaterial.GetColor("_EmissionColor");
 
         // create waves
         MakeNoise();
