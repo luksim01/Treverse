@@ -16,8 +16,8 @@ MonoBehaviour:
   m_LookDevVolumeProfile: {fileID: 11400000, guid: 3cc7a43152b36664c924659607f97e8a, type: 2}
   m_RenderingPathDefaultCameraFrameSettings:
     bitDatas:
-      data1: 5770166122053453
-      data2: 13799030890350739480
+      data1: 5770166122049101
+      data2: 13799030886055772184
     lodBias: 1
     lodBiasMode: 0
     lodBiasQualityLevel: 0
@@ -102,7 +102,7 @@ MonoBehaviour:
     serializedBounds: []
     serializedHasVolumes: []
     bakingSets: []
-    m_LightingScenario: 
+    m_LightingScenario: Default
   m_Version: 8
   m_ShaderVariantLogLevel: 0
   m_SupportRuntimeDebugDisplay: 0

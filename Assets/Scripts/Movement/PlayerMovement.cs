@@ -112,7 +112,7 @@ public class PlayerMovement : MonoBehaviour
             inKayak = false;
             GetComponentInChildren<CapsuleCollider>().enabled = true;
             GetComponent<Rigidbody>().mass = 1f;
-            kayakObject.GetComponent<KayakController>().hasPlayer = false;
+            //kayakObject.GetComponent<KayakController>().hasPlayer = false;
             cameraPos.transform.position = new Vector3(cameraPos.transform.position.x, cameraPos.transform.position.y - kayakHeightBoost, cameraPos.transform.position.z);
 
         } else
@@ -126,7 +126,7 @@ public class PlayerMovement : MonoBehaviour
                 GetComponentInChildren<CapsuleCollider>().enabled = false;
                 GetComponent<Rigidbody>().mass = 0f;
 
-                kayakObject.GetComponent<KayakController>().hasPlayer = true;
+                //kayakObject.GetComponent<KayakController>().hasPlayer = true;
                 cameraPos.transform.position = new Vector3(cameraPos.transform.position.x, cameraPos.transform.position.y + kayakHeightBoost, cameraPos.transform.position.z);
             }
         }

@@ -291,6 +291,7 @@ namespace DentedPixel.LTExamples
             return cube;
         }
 
+        [System.Obsolete]
         IEnumerator timeBasedTesting()
         {
             yield return new WaitForEndOfFrame();

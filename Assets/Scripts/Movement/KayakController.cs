@@ -19,8 +19,10 @@ public class KayakController : MonoBehaviour
     public float waterTileCenterToSideLengthX;
     public float waterTileCenterToSideLengthZ;
 
-    // Player Object
-    public bool hasPlayer;
+    // drone camera
+    CameraManager cameraManager;
+    bool isDroneCameraActive;
+    [SerializeField] private float forwardSpeedDroneCamera;
 
     void Start()
     {
@@ -28,27 +30,29 @@ public class KayakController : MonoBehaviour
         waterManager = GameObject.Find("WaterManager").GetComponent<WaterManager>();
         waterTileCenterToSideLengthX = (int)waterManager.GetTileLength().x / 2;
         waterTileCenterToSideLengthZ = (int)waterManager.GetTileLength().z / 2;
+
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+        cameraManager = GameObject.Find("Camera Manager").GetComponent<CameraManager>();
     }
 
     void FixedUpdate()
     {
-        MovementControl(forwardSpeed, rotationSpeed);
+        isDroneCameraActive = cameraManager.droneCameraStatus;
+
+        MovementControl(forwardSpeed, rotationSpeed, isDroneCameraActive);
     }
 
-    private void MovementControl(float forwardSpeed, float rotationSpeed)
+    private void MovementControl(float forwardSpeed, float rotationSpeed, bool isDroneCameraActive)
     {
-        if (hasPlayer)
-        {
-            // forwards movement
-            forwardInput = Input.GetAxis("Vertical");
-            transform.Translate(Vector3.forward * forwardInput * Time.deltaTime * forwardSpeed);
+        // forwards movement
+        forwardInput = Input.GetAxis("Vertical");
+        transform.Translate(Vector3.forward * forwardInput * Time.deltaTime * (isDroneCameraActive ? forwardSpeedDroneCamera : forwardSpeed));
 
-            // horizontal rotation
-            horizontalInput = Input.GetAxis("Horizontal");
-            transform.Rotate(Vector3.up, horizontalInput * Time.deltaTime * rotationSpeed);
-        }
+        // horizontal rotation
+        horizontalInput = Input.GetAxis("Horizontal");
+        transform.Rotate(Vector3.up, horizontalInput * Time.deltaTime * rotationSpeed);
     }
 
     private void OnTriggerEnter(Collider other)
