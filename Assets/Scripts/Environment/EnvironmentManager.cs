@@ -45,14 +45,24 @@ public class EnvironmentManager : MonoBehaviour
     {
         waterManager = GameObject.Find("WaterManager").GetComponent<WaterManager>();
         waterParent = GameObject.Find("Water");
+        Debug.Assert(waterParent, "Lukas: Nick, line 47, there is no Water parent anymore, can you update the code with the latest scene hierarchy changes");
+
+        Debug.Assert(powerStationSmoke, "Lukas: Nick, line 39, I have deactivate fog while fixing the scene, can you revisit and make sure all is OK with this code");
+        Debug.Assert(powerStationFog, "Lukas: Nick, line 40, I have deactivate fog while fixing the scene, can you revisit and make sure all is OK with this code");
     }
 
     void Update()
     {
         ManageWaterColour();
-        ManageWaterLevel();
+        if(waterParent != null)
+        {
+            ManageWaterLevel();
+        }
 
-        ManagePowerStation();
+        if (powerStationSmoke != null && powerStationFog != null)
+        {
+            ManagePowerStation();
+        }
     }
 
     private void ManageWaterColour()
