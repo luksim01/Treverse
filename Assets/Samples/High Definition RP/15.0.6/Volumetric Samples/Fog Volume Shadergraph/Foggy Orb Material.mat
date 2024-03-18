@@ -66,8 +66,8 @@ Material:
     - _AlphaDstBlend: 0
     - _AlphaSrcBlend: 1
     - _BlendMode: 0
-    - _Center_Color_Fade: 0.693
-    - _Center_Color_Fade_Start: 0.66
+    - _Center_Color_Fade: 0.623
+    - _Center_Color_Fade_Start: 0.021
     - _Color_Intensity: 10
     - _Color_Power: 0.68
     - _ConservativeDepthOffsetEnable: 0
@@ -82,11 +82,11 @@ Material:
     - _Float: 1
     - _Float_1: 8.71
     - _FogVolumeAlphaBlendOp: 0
-    - _FogVolumeBlendMode: 0
+    - _FogVolumeBlendMode: 1
     - _FogVolumeColorBlendOp: 0
-    - _FogVolumeDstAlphaBlend: 0
-    - _FogVolumeDstColorBlend: 0
-    - _FogVolumeFogDistanceProperty: 39.28
+    - _FogVolumeDstAlphaBlend: 1
+    - _FogVolumeDstColorBlend: 1
+    - _FogVolumeFogDistanceProperty: 150
     - _FogVolumeSrcAlphaBlend: 1
     - _FogVolumeSrcColorBlend: 1
     - _Intensity: 10
@@ -96,11 +96,11 @@ Material:
     - _Pulse_Intensity: 0.02
     - _Pulse_Rhythm: 5
     - _RenderQueueType: 1
-    - _Rotation_Speed: 0.1
+    - _Rotation_Speed: 0.5
     - _Speed: 0.25
     - _SrcBlend: 1
     - _SurfaceType: 0
-    - _Tiling: 10
+    - _Tiling: 1
     - _TransparentBackfaceEnable: 0
     - _TransparentCullMode: 2
     - _TransparentDepthPostpassEnable: 0
@@ -108,7 +108,7 @@ Material:
     - _TransparentSortPriority: 0
     - _TransparentWritingMotionVec: 0
     - _TransparentZWrite: 0
-    - _Upward_Speed: 0.1
+    - _Upward_Speed: 10
     - _UseShadowThreshold: 0
     - _Use_Alpha_Channel: 0
     - _ZTestDepthEqualForOpaque: 4
@@ -122,5 +122,5 @@ Material:
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
     - _FogVolumeSingleScatteringAlbedo: {r: 1, g: 1, b: 1, a: 1}
     - _RotationAxis: {r: 0, g: 1, b: 0, a: 0}
-    - _Rotation_Axis: {r: 0, g: 1, b: 0, a: 0}
+    - _Rotation_Axis: {r: 0.2, g: 1, b: -0.2, a: 0}
   m_BuildTextureStacks: []
