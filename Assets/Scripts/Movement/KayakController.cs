@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class KayakController : MonoBehaviour
@@ -24,6 +25,14 @@ public class KayakController : MonoBehaviour
     bool isDroneCameraActive;
     [SerializeField] private float forwardSpeedDroneCamera;
 
+    // Paddle Audio Generator
+    [SerializeField] PaddleGenerator paddleGenerator;
+    [SerializeField] private float paddleTimer;
+   
+  
+    bool isPaddling = false;
+   
+
     void Start()
     {
         WaterManager waterManager;
@@ -35,13 +44,31 @@ public class KayakController : MonoBehaviour
         Cursor.visible = false;
 
         cameraManager = GameObject.Find("Camera Manager").GetComponent<CameraManager>();
+
+        paddleGenerator = GetComponent<PaddleGenerator>();
+
+        Debug.Assert(isPaddling, "Chris: Lukas, Line 116, wondering about a mini speed boost when the sound is played with a cool down time maybe? Thinking about the feeling of being in a kayak, the push & pull, probaly a thing for down the line!");
+
     }
+
 
     void FixedUpdate()
     {
         isDroneCameraActive = cameraManager.droneCameraStatus;
 
         MovementControl(forwardSpeed, rotationSpeed, isDroneCameraActive);
+
+        // Audio Logic
+        if (Input.GetKeyDown(KeyCode.W) && !isPaddling)
+        {
+            isPaddling = true;
+            StartCoroutine(PlayPaddleClip(paddleTimer));
+        }
+        else if (Input.GetKeyUp(KeyCode.W))
+        {
+            isPaddling = false;
+            paddleGenerator.audioSource.Stop();
+        }
     }
 
     private void MovementControl(float forwardSpeed, float rotationSpeed, bool isDroneCameraActive)
@@ -53,6 +80,8 @@ public class KayakController : MonoBehaviour
         // horizontal rotation
         horizontalInput = Input.GetAxis("Horizontal");
         transform.Rotate(Vector3.up, horizontalInput * Time.deltaTime * rotationSpeed);
+
+       
     }
 
     private void OnTriggerEnter(Collider other)
@@ -75,4 +104,28 @@ public class KayakController : MonoBehaviour
             waterTilesInContact.Remove(waterTile);
         }
     }
+
+    void PlayPaddleSound()
+    {
+        StartCoroutine(PlayPaddleClip(paddleTimer));
+    }
+
+    IEnumerator PlayPaddleClip(float timer)
+    {
+        while (isPaddling)
+        {
+            int randomIndex = Random.Range(0, 5);
+            paddleGenerator.audioSource.clip = paddleGenerator.paddleSounds[randomIndex];
+            
+            paddleGenerator.audioSource.Play();
+            
+            yield return new WaitForSeconds(timer);
+
+           
+        }
+    }
+
+  
+    
+
 }
