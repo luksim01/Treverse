@@ -275,7 +275,7 @@ Material:
     - _FoamSpeed: {r: 0.01, g: 0.01, b: 0, a: 0}
     - _InvPrimScale: {r: 1, g: 1, b: 0, a: 0}
     - _IridescenceThicknessRemap: {r: 0, g: 1, b: 0, a: 0}
-    - _RefreactionSpeed: {r: 1, g: 1, b: 0, a: 0}
+    - _RefreactionSpeed: {r: 0.5, g: 1, b: 0, a: 0}
     - _ShallowColor: {r: 0, g: 0.8282523, b: 1, a: 0.4745098}
     - _SpecularColor: {r: 1, g: 0.8110068, b: 0, a: 1}
     - _ThicknessRemap: {r: 0, g: 1, b: 0, a: 0}
