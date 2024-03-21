@@ -213,7 +213,7 @@ Material:
     - _ReceivesSSRTransparent: 1
     - _RefractionModel: 0
     - _RefreactionStrength: 0.919
-    - _RefreactionWaveSize: 1
+    - _RefreactionWaveSize: 10
     - _RenderQueueType: 4
     - _RequireSplitLighting: 0
     - _SecondaryRefractionWaveSize: 10
@@ -271,11 +271,11 @@ Material:
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
     - _EmissiveColor: {r: 0, g: 0, b: 0, a: 1}
     - _EmissiveColorLDR: {r: 0, g: 0, b: 0, a: 1}
-    - _FoamColor: {r: 1, g: 0.6792888, b: 0, a: 1}
+    - _FoamColor: {r: 1, g: 0.9372188, b: 0, a: 0.92941177}
     - _FoamSpeed: {r: 0.01, g: 0.01, b: 0, a: 0}
     - _InvPrimScale: {r: 1, g: 1, b: 0, a: 0}
     - _IridescenceThicknessRemap: {r: 0, g: 1, b: 0, a: 0}
-    - _RefreactionSpeed: {r: 2, g: 2, b: 0, a: 0}
+    - _RefreactionSpeed: {r: 1, g: 1, b: 0, a: 0}
     - _ShallowColor: {r: 0, g: 0.8282523, b: 1, a: 0.4745098}
     - _SpecularColor: {r: 1, g: 0.8110068, b: 0, a: 1}
     - _ThicknessRemap: {r: 0, g: 1, b: 0, a: 0}
