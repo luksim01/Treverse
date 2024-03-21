@@ -71,7 +71,7 @@ Material:
     m_Floats:
     - _AO_Strength: 0
     - _AddPrecomputedVelocity: 0
-    - _Albedo_Intensity: 1
+    - _Albedo_Intensity: 100
     - _AlphaCutoffEnable: 0
     - _AlphaDstBlend: 0
     - _AlphaSrcBlend: 1
@@ -127,10 +127,10 @@ Material:
     - _ZTestTransparent: 4
     - _ZWrite: 1
     m_Colors:
-    - _Albedo_Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Albedo_Color: {r: 0.0016219616, g: 0, b: 0.0625, a: 1}
     - _DoubleSidedConstants: {r: 1, g: 1, b: -1, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Emmision_Color: {r: 0, g: 0, b: 0, a: 0}
+    - _Emmision_Color: {r: 0, g: 0.50425196, b: 1, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &1516333100790422081
 MonoBehaviour:
