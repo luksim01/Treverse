@@ -1,4 +1,5 @@
 using FMODUnity;
+using FMOD.Studio;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -27,11 +28,12 @@ public class KayakController : MonoBehaviour
     [SerializeField] private float forwardSpeedDroneCamera;
 
     // [SerializeField] PaddleGenerator paddleGenerator;
-     [SerializeField] private FMODUnity.EventReference paddleAudio;
-     private FMOD.Studio.EventInstance paddleLoop;
+     [SerializeField] private EventReference paddleAudio;
+     private EventInstance paddleLoop;
 
     bool isPaddling = false;
    
+
 
     void Start()
     {
@@ -82,9 +84,9 @@ public class KayakController : MonoBehaviour
 
         MovementControl(forwardSpeed, rotationSpeed, isDroneCameraActive);
 
-        paddleLoop.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject.transform));
+        paddleLoop.set3DAttributes(RuntimeUtils.To3DAttributes(gameObject.transform));
 
-        FMODUnity.RuntimeManager.AttachInstanceToGameObject(paddleLoop, GetComponent<Transform>(), GetComponent<Rigidbody>());
+        RuntimeManager.AttachInstanceToGameObject(paddleLoop, GetComponent<Transform>(), GetComponent<Rigidbody>());
 
     }
 
