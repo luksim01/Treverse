@@ -1,3 +1,4 @@
+using FMODUnity;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -25,11 +26,10 @@ public class KayakController : MonoBehaviour
     bool isDroneCameraActive;
     [SerializeField] private float forwardSpeedDroneCamera;
 
-    // Paddle Audio Generator
-    [SerializeField] PaddleGenerator paddleGenerator;
-    [SerializeField] private float paddleTimer;
-   
-  
+    // [SerializeField] PaddleGenerator paddleGenerator;
+     [SerializeField] private FMODUnity.EventReference paddleAudio;
+     private FMOD.Studio.EventInstance paddleLoop;
+
     bool isPaddling = false;
    
 
@@ -45,30 +45,47 @@ public class KayakController : MonoBehaviour
 
         cameraManager = GameObject.Find("Camera Manager").GetComponent<CameraManager>();
 
-        paddleGenerator = GetComponent<PaddleGenerator>();
+        // paddleGenerator = GetComponent<PaddleGenerator>();
+
+        paddleLoop = RuntimeManager.CreateInstance(paddleAudio);
+        
 
         Debug.Assert(isPaddling, "Chris: Lukas, Line 116, wondering about a mini speed boost when the sound is played with a cool down time maybe? Thinking about the feeling of being in a kayak, the push & pull, probaly a thing for down the line!");
 
     }
 
-
-    void FixedUpdate()
+    private void Update()
     {
-        isDroneCameraActive = cameraManager.droneCameraStatus;
-
-        MovementControl(forwardSpeed, rotationSpeed, isDroneCameraActive);
-
+  
         // Audio Logic
         if (Input.GetKeyDown(KeyCode.W) && !isPaddling)
         {
             isPaddling = true;
-            StartCoroutine(PlayPaddleClip(paddleTimer));
+            paddleLoop.start();
+            Debug.Log("Playing");
+
+
         }
-        else if (Input.GetKeyUp(KeyCode.W))
+        else if (Input.GetKeyUp(KeyCode.W) && isPaddling)
         {
             isPaddling = false;
-            paddleGenerator.audioSource.Stop();
+            paddleLoop.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+            Debug.Log("Stopping");
         }
+    }
+
+    void FixedUpdate()
+    {
+        // read that FixedUpdate and Input don't play nicely.
+
+        isDroneCameraActive = cameraManager.droneCameraStatus;
+
+        MovementControl(forwardSpeed, rotationSpeed, isDroneCameraActive);
+
+        paddleLoop.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject.transform));
+
+        FMODUnity.RuntimeManager.AttachInstanceToGameObject(paddleLoop, GetComponent<Transform>(), GetComponent<Rigidbody>());
+
     }
 
     private void MovementControl(float forwardSpeed, float rotationSpeed, bool isDroneCameraActive)
@@ -105,27 +122,8 @@ public class KayakController : MonoBehaviour
         }
     }
 
-    void PlayPaddleSound()
-    {
-        StartCoroutine(PlayPaddleClip(paddleTimer));
-    }
-
-    IEnumerator PlayPaddleClip(float timer)
-    {
-        while (isPaddling)
-        {
-            int randomIndex = Random.Range(0, 5);
-            paddleGenerator.audioSource.clip = paddleGenerator.paddleSounds[randomIndex];
-            
-            paddleGenerator.audioSource.Play();
-            
-            yield return new WaitForSeconds(timer);
-
-           
-        }
-    }
-
   
-    
+
+
 
 }
