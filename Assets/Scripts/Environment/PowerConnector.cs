@@ -6,8 +6,14 @@ public class PowerConnector : MonoBehaviour
 {
     public GameObject connectorHolder;
     public GameObject kayak;
+    Rigidbody rigidbody;
 
     public bool connectorEquipped = false;
+
+    private void Start()
+    {
+        rigidbody = gameObject.GetComponent<Rigidbody>();
+    }
 
     void Update()
     {
@@ -24,10 +30,11 @@ public class PowerConnector : MonoBehaviour
 
     void EquipConnector()
     {
-        //for(int i =0; i < transform.childCount; i++)
-        //{
-        //    transform.GetChild(i).gameObject.SetActiveRecursively(false);
-        //}
+        rigidbody.isKinematic = true;
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            transform.GetChild(i).gameObject.SetActive(false);
+        }
         transform.parent = kayak.transform;
         transform.position = connectorHolder.transform.position;
         connectorEquipped = true;
@@ -35,12 +42,13 @@ public class PowerConnector : MonoBehaviour
 
     void DropConnector()
     {
-        //for (int i = 0; i < transform.childCount; i++)
-        //{
-        //    transform.GetChild(i).gameObject.SetActiveRecursively(true);
-        //}
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            transform.GetChild(i).gameObject.SetActive(true);
+        }
+        rigidbody.isKinematic = false;
         transform.parent = null;
-        transform.position = new Vector3(kayak.transform.position.x, kayak.transform.position.y, kayak.transform.position.z - 10);
+        transform.position = new Vector3(kayak.transform.localPosition.x, kayak.transform.localPosition.y, kayak.transform.localPosition.z - 10);
         connectorEquipped = false;
     }
 
