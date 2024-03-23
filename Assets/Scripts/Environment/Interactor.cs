@@ -21,6 +21,7 @@ public class Interactor : MonoBehaviour
     {
         if (previouslyOutlined != seenObject)
         {
+            ClearOutline();
             originalMaterial = seenObject.GetComponent<MeshRenderer>().sharedMaterial;
             seenObject.GetComponent<MeshRenderer>().sharedMaterial = outlineMaterial;
             previouslyOutlined = seenObject;
@@ -47,6 +48,7 @@ public class Interactor : MonoBehaviour
         if (hasSeenObject)
         {
             isInteractiveObject = hitInfo.collider.gameObject.TryGetComponent(out interactiveObject);
+            Debug.Log(hitInfo.collider.gameObject);
         }
 
         //Debug.DrawRay(lineOfSightSource.position, lineOfSightSource.forward * sightRange, Color.red);
@@ -60,7 +62,7 @@ public class Interactor : MonoBehaviour
                 interactiveObject.Interact();
             }
         }
-        else
+        else// if(!hasSeenObject || !isInteractiveObject)
         {
             ClearOutline();
         }
