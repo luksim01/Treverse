@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.23641995, g: 0.1700833, b: 0.126503, a: 1}
+  m_IndirectSpecularColor: {r: 0.23670419, g: 0.1704574, b: 0.12707306, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -143,9 +143,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lineOfSightSource: {fileID: 3514075}
-  sightRadius: 2
-  sightRange: 20
+  sightRadius: 4
+  sightRange: 10
   outlineMaterial: {fileID: 2100000, guid: 8b90760deb9f342cfa47b11c096a0b90, type: 2}
+  glowingOutline: {fileID: 2100000, guid: 216be55f33b174b6183d65f276a1d55d, type: 2}
+  pulseGlowSpeed: 70
+  minimumGlowLevel: 10
+  maximumGlowLevel: 80
 --- !u!1001 &194016431
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -549,6 +553,10 @@ MonoBehaviour:
   sightRadius: 0
   sightRange: 0
   outlineMaterial: {fileID: 0}
+  glowingOutline: {fileID: 0}
+  pulseGlowSpeed: 1200
+  minimumGlowLevel: 200
+  maximumGlowLevel: 1400
 --- !u!1 &754562754
 GameObject:
   m_ObjectHideFlags: 0
@@ -939,7 +947,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1028575355
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1113,6 +1121,7 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: a4e6373438895ea4bb7d8ed213d08cfa, type: 2}
+  - {fileID: 2100000, guid: 216be55f33b174b6183d65f276a1d55d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1151,7 +1160,7 @@ Transform:
   m_GameObject: {fileID: 1040720705}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.85, y: 1.5, z: 10}
+  m_LocalPosition: {x: -4.66, y: 1.5, z: 10}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children: []
