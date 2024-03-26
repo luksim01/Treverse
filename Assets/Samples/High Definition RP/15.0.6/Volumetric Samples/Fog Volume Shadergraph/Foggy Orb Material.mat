@@ -66,8 +66,8 @@ Material:
     - _AlphaDstBlend: 0
     - _AlphaSrcBlend: 1
     - _BlendMode: 0
-    - _Center_Color_Fade: 0.623
-    - _Center_Color_Fade_Start: 0.021
+    - _Center_Color_Fade: 0.496
+    - _Center_Color_Fade_Start: 0.514
     - _Color_Intensity: 10
     - _Color_Power: 0.68
     - _ConservativeDepthOffsetEnable: 0
@@ -86,7 +86,7 @@ Material:
     - _FogVolumeColorBlendOp: 0
     - _FogVolumeDstAlphaBlend: 1
     - _FogVolumeDstColorBlend: 1
-    - _FogVolumeFogDistanceProperty: 150
+    - _FogVolumeFogDistanceProperty: 80
     - _FogVolumeSrcAlphaBlend: 1
     - _FogVolumeSrcColorBlend: 1
     - _Intensity: 10
@@ -108,7 +108,7 @@ Material:
     - _TransparentSortPriority: 0
     - _TransparentWritingMotionVec: 0
     - _TransparentZWrite: 0
-    - _Upward_Speed: 10
+    - _Upward_Speed: 5
     - _UseShadowThreshold: 0
     - _Use_Alpha_Channel: 0
     - _ZTestDepthEqualForOpaque: 4
@@ -122,5 +122,5 @@ Material:
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
     - _FogVolumeSingleScatteringAlbedo: {r: 1, g: 1, b: 1, a: 1}
     - _RotationAxis: {r: 0, g: 1, b: 0, a: 0}
-    - _Rotation_Axis: {r: 0.2, g: 1, b: -0.2, a: 0}
+    - _Rotation_Axis: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
