@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Interactive : MonoBehaviour, IInteractive
+public class InteractiveConnector : MonoBehaviour, IInteractive
 {
     Rigidbody gameObjectsRigidbody;
     [SerializeField] private float upwardForceMultiplier = 1f;

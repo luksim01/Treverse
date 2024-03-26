@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4292928026632890155}
   - component: {fileID: 6886037663940524695}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Water Excluder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -59,7 +59,8 @@ GameObject:
   - component: {fileID: 6692046180152756202}
   - component: {fileID: 7913097905727554600}
   - component: {fileID: 312542708118348824}
-  m_Layer: 0
+  - component: {fileID: 2589753184307901979}
+  m_Layer: 2
   m_Name: POV Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -98,7 +99,7 @@ MonoBehaviour:
   - m_Script
   m_LockStageInInspector: 
   m_StreamingVersion: 20170927
-  m_Priority: 20
+  m_Priority: 10
   m_StandbyUpdate: 2
   m_LookAt: {fileID: 0}
   m_Follow: {fileID: 7301550774983295951}
@@ -143,6 +144,29 @@ MonoBehaviour:
   invertY: 0
   sensX: 0
   sensY: 0
+--- !u!114 &2589753184307901979
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 275355193035601144}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eeee3913537cf4b389899bc665fdbd2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lineOfSightSource: {fileID: 0}
+  sightRadius: 0
+  sightRange: 0
+  outlineMaterial: {fileID: 0}
+  glowingOutline: {fileID: 0}
+  previouslySeen: {fileID: 0}
+  seenObjectList: []
+  outlinedObjectList: []
+  pulseGlowSpeed: 1200
+  minimumGlowLevel: 200
+  maximumGlowLevel: 1400
 --- !u!1 &934044332338812909
 GameObject:
   m_ObjectHideFlags: 0
@@ -155,7 +179,7 @@ GameObject:
   - component: {fileID: 3890066416043530598}
   - component: {fileID: 9207312429585346606}
   - component: {fileID: 1910794356980192199}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: cm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -264,6 +288,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Damping: 0
+--- !u!1 &1511164537065411358
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8220064974490931965}
+  m_Layer: 2
+  m_Name: ConnectorHolder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8220064974490931965
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1511164537065411358}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: -2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5801908950459380960}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2107994318069053675
 GameObject:
   m_ObjectHideFlags: 0
@@ -274,7 +329,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3171032403276171807}
   - component: {fileID: 1557761649745718991}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: BuoyantPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -322,7 +377,7 @@ GameObject:
   - component: {fileID: 5313672540845705383}
   - component: {fileID: 2185849865775061924}
   - component: {fileID: 822002347025099069}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Water Excluder Renderer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -404,7 +459,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7527385983047670268}
   - component: {fileID: 2249503172657505366}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: BuoyantPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -451,7 +506,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7025133244689280730}
   - component: {fileID: 699528084929966109}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: BuoyantPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -501,7 +556,7 @@ GameObject:
   - component: {fileID: 3481413270862298021}
   - component: {fileID: 537794944593361239}
   - component: {fileID: 3887616636818399331}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: FRONT
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -626,7 +681,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4164082471937929197}
   - component: {fileID: 2119653653272383556}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: BuoyantPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -674,7 +729,7 @@ GameObject:
   - component: {fileID: 794923637245766018}
   - component: {fileID: 7176405796148784682}
   - component: {fileID: 7589750777579476687}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Local Volumetric Fog
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -717,19 +772,19 @@ MonoBehaviour:
     volumeMask: {fileID: 0}
     textureScrollingSpeed: {x: 1, y: 2, z: 0}
     textureTiling: {x: 1, y: 1, z: 1}
-    positiveFade: {x: 0.069, y: 0.069, z: 0.069}
-    negativeFade: {x: 0.069, y: 0.069, z: 0.069}
-    m_EditorUniformFade: 69
-    m_EditorPositiveFade: {x: 0.00009999998, y: 0.00009999998, z: 0}
-    m_EditorNegativeFade: {x: 0.00009999998, y: 0.00009999998, z: 0}
+    positiveFade: {x: 0.005, y: 0.005, z: 0.005}
+    negativeFade: {x: 0.005, y: 0.005, z: 0.005}
+    m_EditorUniformFade: 2.5
+    m_EditorPositiveFade: {x: 0.00019999997, y: 0.00019999997, z: 0}
+    m_EditorNegativeFade: {x: 0.00019999997, y: 0.00019999997, z: 0}
     m_EditorAdvancedFade: 0
-    size: {x: 1000, y: 1000, z: 1000}
+    size: {x: 500, y: 500, z: 500}
     invertFade: 0
     distanceFadeStart: 1
-    distanceFadeEnd: 1000
+    distanceFadeEnd: 500
     textureOffset: {x: 0, y: 0, z: 0}
     falloffMode: 0
-    maskMode: 0
+    maskMode: 1
     materialMask: {fileID: 2100000, guid: 0b8c2fad691fbad4cad0175ec71239f7, type: 2}
   m_Version: 3
 --- !u!65 &7589750777579476687
@@ -749,7 +804,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -762,7 +817,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7301550774983295951}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: POVReference
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -799,7 +854,8 @@ GameObject:
   - component: {fileID: 3027046413085856087}
   - component: {fileID: 5442989354517534226}
   - component: {fileID: 7722690311701689655}
-  m_Layer: 0
+  - component: {fileID: 3543596790936622804}
+  m_Layer: 2
   m_Name: Camera Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1158,6 +1214,29 @@ MonoBehaviour:
   droneCameraStatus: 0
   virtualPOVCamera: {fileID: 275355193035601144}
   virtualDroneCamera: {fileID: 0}
+--- !u!114 &3543596790936622804
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8541345875562330092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eeee3913537cf4b389899bc665fdbd2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lineOfSightSource: {fileID: 2827578765284489524}
+  sightRadius: 1
+  sightRange: 10
+  outlineMaterial: {fileID: 2100000, guid: 8b90760deb9f342cfa47b11c096a0b90, type: 2}
+  glowingOutline: {fileID: 2100000, guid: 216be55f33b174b6183d65f276a1d55d, type: 2}
+  previouslySeen: {fileID: 0}
+  seenObjectList: []
+  outlinedObjectList: []
+  pulseGlowSpeed: 70
+  minimumGlowLevel: 10
+  maximumGlowLevel: 80
 --- !u!1001 &6273017362437837579
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1180,7 +1259,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e88dae607c2f941a4af9afd342c1713f, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.17364825
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e88dae607c2f941a4af9afd342c1713f, type: 3}
       propertyPath: m_LocalRotation.x
@@ -1188,7 +1267,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e88dae607c2f941a4af9afd342c1713f, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.9848078
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e88dae607c2f941a4af9afd342c1713f, type: 3}
       propertyPath: m_LocalRotation.z
@@ -1200,7 +1279,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e88dae607c2f941a4af9afd342c1713f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 160
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e88dae607c2f941a4af9afd342c1713f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -1217,6 +1296,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: e88dae607c2f941a4af9afd342c1713f, type: 3}
       propertyPath: m_Name
       value: Kayak
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: e88dae607c2f941a4af9afd342c1713f, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1251,6 +1334,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: e88dae607c2f941a4af9afd342c1713f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6692046180152756202}
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: e88dae607c2f941a4af9afd342c1713f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8220064974490931965}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e88dae607c2f941a4af9afd342c1713f, type: 3}
       insertIndex: -1
@@ -1308,7 +1394,7 @@ Rigidbody:
   m_GameObject: {fileID: 6615600797151014490}
   serializedVersion: 4
   m_Mass: 1
-  m_Drag: 0.1
+  m_Drag: 0.5
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}

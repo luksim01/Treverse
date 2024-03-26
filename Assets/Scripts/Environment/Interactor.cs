@@ -14,10 +14,12 @@ public class Interactor : MonoBehaviour
     public float sightRange;
 
     public Material outlineMaterial;
-    Material originalMaterial;
-    GameObject previouslyOutlined;
-
+    Material objectToOutlineOriginalMaterial;
     public Material glowingOutline;
+    public GameObject previouslySeen = null;
+
+    [SerializeField] List<GameObject> seenObjectList = new List<GameObject>();
+    [SerializeField] List<GameObject> outlinedObjectList = new List<GameObject>();
 
     // pulsing glow
     [SerializeField] private float pulseGlowSpeed = 70f;
@@ -28,85 +30,107 @@ public class Interactor : MonoBehaviour
     {
     }
 
-    void Outline(GameObject seenObject)
+    void AddOutline(List<GameObject> seenObjectList)
     {
-        if (previouslyOutlined != seenObject)
+        for (int i = 0; i < seenObjectList.Count; i++)
         {
-            ClearOutline();
-            originalMaterial = seenObject.GetComponent<MeshRenderer>().sharedMaterial;
-            seenObject.GetComponent<MeshRenderer>().sharedMaterial = outlineMaterial;
-            previouslyOutlined = seenObject;
-        }
+            GameObject objectToOutline = seenObjectList[i];
 
-    }
+            if (!outlinedObjectList.Contains(objectToOutline))
+            {
+                List<Material> objectToOutlineMaterials = new List<Material>();
+                objectToOutline.GetComponent<MeshRenderer>().GetMaterials(objectToOutlineMaterials);
 
-    void ClearOutline()
-    {
-        if (previouslyOutlined != null)
-        {
-            previouslyOutlined.GetComponent<MeshRenderer>().sharedMaterial = originalMaterial;
-            previouslyOutlined = null;
-        }
-    }
+                objectToOutlineOriginalMaterial = objectToOutlineMaterials[0];
 
-    void AddOutline(GameObject seenObject)
-    {
-        if (previouslyOutlined != seenObject)
-        {
-            RemoveOutline();
-            List<Material> seenObjectMaterials = new List<Material>();
-            seenObject.GetComponent<MeshRenderer>().GetMaterials(seenObjectMaterials);
+                objectToOutlineMaterials.Add(glowingOutline);
+                objectToOutline.GetComponent<MeshRenderer>().SetMaterials(objectToOutlineMaterials);
 
-            originalMaterial = seenObjectMaterials[0];
-
-            seenObjectMaterials.Add(glowingOutline);
-            seenObject.GetComponent<MeshRenderer>().SetMaterials(seenObjectMaterials);
-            previouslyOutlined = seenObject;
+                outlinedObjectList.Add(objectToOutline);
+            }
         }
     }
 
-    void PrintMaterials(List<Material> materialsList)
+    void RemoveOutline(List<GameObject> outlineObjectList)
     {
-        for (int i = 0; i < materialsList.Count; i++)
+        for (int i = 0; i < outlineObjectList.Count; i++)
         {
-            Debug.Log("materialsList[" + i + "]: " + materialsList[i]);
+            GameObject objectToClear = outlineObjectList[i];
+
+            if (outlineObjectList.Contains(objectToClear))
+            {
+                objectToClear.GetComponent<MeshRenderer>().SetMaterials(new List<Material>() { objectToOutlineOriginalMaterial });
+            }
+        }
+
+        outlineObjectList.Clear();
+    }
+
+    void CheckHierarchyForSiblings(GameObject seenObject, out bool hasSiblings, out GameObject parentObject)
+    {
+        parentObject = seenObject.transform.parent.gameObject;
+        if (seenObject.name != parentObject.name)
+        {
+            hasSiblings = true;
+        }
+        else
+        {
+            hasSiblings = false;
         }
     }
 
-    void RemoveOutline()
-    {
-        if (previouslyOutlined != null)
-        {
-            previouslyOutlined.GetComponent<MeshRenderer>().SetMaterials(new List<Material>() { originalMaterial });
-            previouslyOutlined = null;
-        }
-    }
-
-    void FixedUpdate()
+    void Update()
     {
         Ray lineOfSight = new Ray(lineOfSightSource.position, lineOfSightSource.forward);
         bool hasSeenObject = Physics.SphereCast(lineOfSight, sightRadius, out RaycastHit hitInfo, sightRange);
         bool isInteractiveObject = false;
+        bool hasSiblings = false;
+
         IInteractive interactiveObject = null;
+        GameObject parentObject = null;
 
         if (hasSeenObject)
         {
             isInteractiveObject = hitInfo.collider.gameObject.TryGetComponent(out interactiveObject);
+            GameObject seenObject = hitInfo.collider.gameObject;
+
+            previouslySeen = seenObject;
+
+            if (!seenObjectList.Contains(previouslySeen))
+            {
+                RemoveOutline(outlinedObjectList);
+                seenObjectList.Clear();
+            }
+
+            if (!seenObjectList.Contains(seenObject))
+            {
+                seenObjectList.Add(seenObject);
+                if (seenObject.transform.parent != null)
+                {
+                    CheckHierarchyForSiblings(seenObject, out hasSiblings, out parentObject);
+                }
+            }
+        }
+
+        if (hasSiblings)
+        {
+            for (int i = 0; i < parentObject.transform.childCount; i++)
+            {
+                GameObject siblingObject = parentObject.transform.GetChild(i).gameObject;
+
+                if (!seenObjectList.Contains(siblingObject))
+                {
+                    seenObjectList.Add(siblingObject);
+                }
+            }
         }
 
         //Debug.DrawRay(lineOfSightSource.position, lineOfSightSource.forward * sightRange, Color.red);
 
         if (hasSeenObject && isInteractiveObject)
         {
-            GameObject seenObject = hitInfo.collider.gameObject;
-            AddOutline(seenObject);
-
-
-            // glowwing outline pulse
-            List<Material> seenObjectMaterials = new List<Material>();
-            seenObject.GetComponent<MeshRenderer>().GetMaterials(seenObjectMaterials);
-            Material glowingOutlineMaterial = seenObjectMaterials[seenObjectMaterials.Count-1];
-            pulseGlowSpeed = PulsingGlow(glowingOutlineMaterial, minimumGlowLevel, maximumGlowLevel, pulseGlowSpeed);
+            AddOutline(seenObjectList);
+            OutlineGlowSettings(outlinedObjectList);
 
             if (Input.GetKeyDown(KeyCode.I))
             {
@@ -115,8 +139,23 @@ public class Interactor : MonoBehaviour
         }
         else
         {
-            RemoveOutline();
-        }        
+            RemoveOutline(outlinedObjectList);
+            seenObjectList.Clear();
+        }
+    }
+
+    private void OutlineGlowSettings(List<GameObject> outlineObjectList)
+    {
+        // glowing outline pulse
+        for (int i = 0; i < outlineObjectList.Count; i++)
+        {
+            GameObject objectOutlined = outlineObjectList[i];
+
+            List<Material> glowingObjectMaterials = new List<Material>();
+            objectOutlined.GetComponent<MeshRenderer>().GetMaterials(glowingObjectMaterials);
+            Material glowingOutlineMaterial = glowingObjectMaterials[glowingObjectMaterials.Count - 1];
+            pulseGlowSpeed = PulsingGlow(glowingOutlineMaterial, minimumGlowLevel, maximumGlowLevel, pulseGlowSpeed);
+        }
     }
 
     private float PulsingGlow(Material displayMaterial, float minimumGlowLevel, float maximumGlowLevel, float changeSpeed)
@@ -137,5 +176,14 @@ public class Interactor : MonoBehaviour
         displayMaterial.SetFloat("_GlowSaturation", glowSaturation);
 
         return changeSpeed;
+    }
+
+    // debug methods
+    void PrintMaterials(List<Material> materialsList)
+    {
+        for (int i = 0; i < materialsList.Count; i++)
+        {
+            Debug.Log("materialsList[" + i + "]: " + materialsList[i]);
+        }
     }
 }
