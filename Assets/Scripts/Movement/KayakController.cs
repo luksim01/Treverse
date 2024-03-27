@@ -1,5 +1,8 @@
+using FMODUnity;
+using FMOD.Studio;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class KayakController : MonoBehaviour
@@ -24,6 +27,14 @@ public class KayakController : MonoBehaviour
     bool isDroneCameraActive;
     [SerializeField] private float forwardSpeedDroneCamera;
 
+    // [SerializeField] PaddleGenerator paddleGenerator;
+     [SerializeField] private EventReference paddleAudio;
+     private EventInstance paddleLoop;
+
+    bool isPaddling = false;
+   
+
+
     void Start()
     {
         WaterManager waterManager;
@@ -35,13 +46,48 @@ public class KayakController : MonoBehaviour
         Cursor.visible = false;
 
         cameraManager = GameObject.Find("Camera Manager").GetComponent<CameraManager>();
+
+        // paddleGenerator = GetComponent<PaddleGenerator>();
+
+        paddleLoop = RuntimeManager.CreateInstance(paddleAudio);
+        
+
+        Debug.Assert(isPaddling, "Chris: Lukas, Line 116, wondering about a mini speed boost when the sound is played with a cool down time maybe? Thinking about the feeling of being in a kayak, the push & pull, probaly a thing for down the line!");
+
+    }
+
+    private void Update()
+    {
+  
+        // Audio Logic
+        if (Input.GetKeyDown(KeyCode.W) && !isPaddling)
+        {
+            isPaddling = true;
+            paddleLoop.start();
+            Debug.Log("Playing");
+
+
+        }
+        else if (Input.GetKeyUp(KeyCode.W) && isPaddling)
+        {
+            isPaddling = false;
+            paddleLoop.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+            Debug.Log("Stopping");
+        }
     }
 
     void FixedUpdate()
     {
+        // read that FixedUpdate and Input don't play nicely.
+
         isDroneCameraActive = cameraManager.droneCameraStatus;
 
         MovementControl(forwardSpeed, rotationSpeed, isDroneCameraActive);
+
+        paddleLoop.set3DAttributes(RuntimeUtils.To3DAttributes(gameObject.transform));
+
+        RuntimeManager.AttachInstanceToGameObject(paddleLoop, GetComponent<Transform>(), GetComponent<Rigidbody>());
+
     }
 
     private void MovementControl(float forwardSpeed, float rotationSpeed, bool isDroneCameraActive)
@@ -53,6 +99,8 @@ public class KayakController : MonoBehaviour
         // horizontal rotation
         horizontalInput = Input.GetAxis("Horizontal");
         transform.Rotate(Vector3.up, horizontalInput * Time.deltaTime * rotationSpeed);
+
+       
     }
 
     private void OnTriggerEnter(Collider other)
@@ -75,4 +123,9 @@ public class KayakController : MonoBehaviour
             waterTilesInContact.Remove(waterTile);
         }
     }
+
+  
+
+
+
 }

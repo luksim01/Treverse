@@ -21,7 +21,7 @@ MonoBehaviour:
     m_Value: {fileID: 0}
   intensity:
     m_OverrideState: 1
-    m_Value: 0.08
+    m_Value: 0.2
   m_MaxSamples:
     m_OverrideState: 0
     m_Value: 6
@@ -110,13 +110,13 @@ MonoBehaviour:
   active: 1
   intensity:
     m_OverrideState: 1
-    m_Value: 0.5
+    m_Value: 0.05
   tintColor:
     m_OverrideState: 0
     m_Value: {r: 1, g: 1, b: 1, a: 1}
   bloomMip:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 2
   firstFlareIntensity:
     m_OverrideState: 1
     m_Value: 5.67
@@ -201,8 +201,8 @@ MonoBehaviour:
           inWeight: 0
           outWeight: 0
         - serializedVersion: 3
-          time: 0.22171254
-          value: 0.28391165
+          time: 0.26807228
+          value: 0.26451612
           inSlope: 1.2807895
           outSlope: 1.2807895
           tangentMode: 0
@@ -210,8 +210,8 @@ MonoBehaviour:
           inWeight: 0
           outWeight: 0
         - serializedVersion: 3
-          time: 0.71712536
-          value: 0.8801262
+          time: 0.686747
+          value: 0.78064513
           inSlope: 1
           outSlope: 1
           tangentMode: 0
@@ -457,7 +457,7 @@ MonoBehaviour:
     m_Value: 1
   focusDistance:
     m_OverrideState: 1
-    m_Value: 5
+    m_Value: 4
   focusDistanceMode:
     m_OverrideState: 0
     m_Value: 0
