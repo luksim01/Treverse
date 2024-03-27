@@ -4,22 +4,13 @@ using UnityEngine;
 
 public class PaddleGenerator : MonoBehaviour
 {
-    [SerializeField] private FMODUnity.EventReference paddleAudio;
-    private FMOD.Studio.EventInstance paddleLoop;
 
+    public List<AudioClip> paddleSounds = new List<AudioClip>();
+
+    public AudioSource audioSource;
     private void Awake()
     {
-        if(!paddleAudio.IsNull)
-        {
-            FMODUnity.RuntimeManager.AttachInstanceToGameObject(paddleLoop, GetComponent<Transform>(), GetComponent<Rigidbody>());
-            
-        }
+        audioSource = GetComponent<AudioSource>();
     }
-    public void PlayPaddleSounds()
-    {
-        if (paddleLoop.isValid())
-        {
-            paddleLoop.start();
-        }
-    }
+  
 }
