@@ -563,6 +563,7 @@ MonoBehaviour:
   Banks:
   - Ambience
   - Music
+  - SFX
   - Voice
   BanksToLoad: []
   LiveUpdatePort: 9264
