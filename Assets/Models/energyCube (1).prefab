@@ -171,7 +171,6 @@ GameObject:
   - component: {fileID: 8367716043305900402}
   - component: {fileID: 2206129548783982658}
   - component: {fileID: 2836335427968480219}
-  - component: {fileID: 4358764995626364782}
   m_Layer: 0
   m_Name: Narration
   m_TagString: Untagged
@@ -324,37 +323,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timer: 120
---- !u!114 &4358764995626364782
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1205327112807510487}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CollisionTag: Player
-  EventReference:
-    Guid:
-      Data1: -1795764155
-      Data2: 1340957531
-      Data3: 20903831
-      Data4: 907164578
-    Path: event:/Narration/Narration
-  Event: 
-  PlayEvent: 3
-  StopEvent: 0
-  AllowFadeout: 1
-  TriggerOnce: 1
-  Preload: 0
-  AllowNonRigidbodyDoppler: 0
-  Params: []
-  OverrideAttenuation: 0
-  OverrideMinDistance: 1
-  OverrideMaxDistance: 20
 --- !u!1 &1775397654342947889
 GameObject:
   m_ObjectHideFlags: 0
