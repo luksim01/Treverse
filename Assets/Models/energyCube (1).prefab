@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3594600948515910282}
   - component: {fileID: 1587063453661677120}
   - component: {fileID: 3375740465188255739}
+  - component: {fileID: 6841635224380901587}
   m_Layer: 0
   m_Name: energyCube (1)
   m_TagString: Untagged
@@ -107,6 +108,37 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.010640034, y: 0.010290781, z: 0.01052564}
   m_Center: {x: 0.00004869909, y: -0.00014539063, z: -0.000040099025}
+--- !u!114 &6841635224380901587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 938611008923887509}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -233894782
+      Data2: 1177243225
+      Data3: -170074994
+      Data4: -1872501699
+    Path: event:/SFX/Cube
+  Event: 
+  PlayEvent: 1
+  StopEvent: 2
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &5732378394692874782
 GameObject:
   m_ObjectHideFlags: 0
