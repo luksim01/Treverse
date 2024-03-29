@@ -27,6 +27,26 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 12552
+--- !u!114 &-7868210620900163776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Test.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/Audio/Fmod/kayak/Build/Desktop/Test.bank
+  Name: Test
+  StudioPath: bank:/Test
+  lastModified: 638473122990263678
+  FileSizes:
+  - Name: Desktop
+    Value: 1073056
+  Exists: 1
 --- !u!114 &-5401219954652211069
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -96,10 +116,10 @@ MonoBehaviour:
   Path: Assets/Audio/Fmod/kayak/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638473014372304023
+  lastModified: 638473122989811553
   FileSizes:
   - Name: Desktop
-    Value: 1270
+    Value: 1352
   Exists: 1
 --- !u!114 &-4269996189676486987
 MonoBehaviour:
@@ -143,7 +163,7 @@ MonoBehaviour:
   Path: Assets/Audio/Fmod/kayak/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638473014372288974
+  lastModified: 638473122989779781
   FileSizes:
   - Name: Desktop
     Value: 1036
@@ -214,6 +234,7 @@ MonoBehaviour:
   - {fileID: 8952519299714101501}
   - {fileID: 371660948741988509}
   - {fileID: 1030094487550758936}
+  - {fileID: -7868210620900163776}
   EditorEvents:
   - {fileID: 795369225012420569}
   - {fileID: -5230759048230103216}
@@ -224,12 +245,13 @@ MonoBehaviour:
   - {fileID: 22637902999472741}
   - {fileID: -969173637124848464}
   - {fileID: -5401219954652211069}
+  - {fileID: 9102529369346384342}
   EditorParameters: []
   MasterBanks:
   - {fileID: -3793696425352921973}
   StringsBanks:
   - {fileID: -5133428505895016790}
-  cacheTime: 638473018886537302
+  cacheTime: 638473122990263678
   cacheVersion: 131617
 --- !u!114 &22637902999472741
 MonoBehaviour:
@@ -399,3 +421,30 @@ MonoBehaviour:
   - Name: Desktop
     Value: 748736
   Exists: 1
+--- !u!114 &9102529369346384342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Test/Merge_test
+  m_EditorClassIdentifier: 
+  Path: event:/Test/Merge_test
+  Guid:
+    Data1: 1664754538
+    Data2: 1310128289
+    Data3: -1675012163
+    Data4: 1959130317
+  Banks:
+  - {fileID: -7868210620900163776}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 105875

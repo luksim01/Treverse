@@ -564,6 +564,7 @@ MonoBehaviour:
   - Ambience
   - Music
   - SFX
+  - Test
   - Voice
   BanksToLoad: []
   LiveUpdatePort: 9264
