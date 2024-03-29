@@ -26,13 +26,13 @@ public class KayakController : MonoBehaviour
     [SerializeField] private float forwardSpeedDroneCamera;
 
 
-    // Paddle Audio Generator
+ /*   // Paddle Audio Generator
     [SerializeField] PaddleGenerator paddleGenerator;
     [SerializeField] private float paddleTimer;
    
   
     bool isPaddling = false;
-   
+   */
 
 
     void Start()
@@ -47,10 +47,10 @@ public class KayakController : MonoBehaviour
 
         cameraManager = GameObject.Find("Camera Manager").GetComponent<CameraManager>();
 
-        paddleGenerator = GetComponent<PaddleGenerator>();
+      /*  paddleGenerator = GetComponent<PaddleGenerator>();
 
         Debug.Assert(isPaddling, "Chris: Lukas, Line 116, wondering about a mini speed boost when the sound is played with a cool down time maybe? Thinking about the feeling of being in a kayak, the push & pull, probaly a thing for down the line!");
-
+*/
     }
 
 
@@ -61,7 +61,7 @@ public class KayakController : MonoBehaviour
         MovementControl(forwardSpeed, rotationSpeed, isDroneCameraActive);
 
 
-        // Audio Logic
+      /*  // Audio Logic
         if (Input.GetKeyDown(KeyCode.W) && !isPaddling)
         {
             isPaddling = true;
@@ -71,7 +71,7 @@ public class KayakController : MonoBehaviour
         {
             isPaddling = false;
             paddleGenerator.audioSource.Stop();
-        }
+        }*/
     }
 
     private void MovementControl(float forwardSpeed, float rotationSpeed, bool isDroneCameraActive)
@@ -108,7 +108,7 @@ public class KayakController : MonoBehaviour
         }
     }
 
-    void PlayPaddleSound()
+   /* void PlayPaddleSound()
     {
         StartCoroutine(PlayPaddleClip(paddleTimer));
     }
@@ -127,7 +127,7 @@ public class KayakController : MonoBehaviour
            
         }
     }
-
+*/
   
     
 
