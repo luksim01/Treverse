@@ -1571,6 +1571,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e88dae607c2f941a4af9afd342c1713f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6358918690791239767}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e88dae607c2f941a4af9afd342c1713f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2498990537025555237}
   m_SourcePrefab: {fileID: 100100000, guid: e88dae607c2f941a4af9afd342c1713f, type: 3}
 --- !u!4 &5801908950459380960 stripped
 Transform:
@@ -1709,6 +1712,37 @@ MonoBehaviour:
     Path: event:/Wind
   Event: 
   PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
+--- !u!114 &2498990537025555237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6615600797151014490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -1530775910
+      Data2: 1156082373
+      Data3: -1933676904
+      Data4: -228444256
+    Path: event:/Ambeince/Beach
+  Event: 
+  PlayEvent: 1
   StopEvent: 0
   AllowFadeout: 1
   TriggerOnce: 0
