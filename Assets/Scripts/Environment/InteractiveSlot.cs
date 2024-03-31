@@ -4,10 +4,20 @@ using UnityEngine;
 
 public class InteractiveSlot : MonoBehaviour, IInteractive
 {
-    public bool isConnectorAdded = false;
+    public ObjectStatus slotStatus;
 
     public void Interact()
     {
-        isConnectorAdded = true;
+        slotStatus = ObjectStatus.inactive;
+    }
+
+    public ObjectStatus GetObjectStatus()
+    {
+        return slotStatus;
+    }
+
+    public void SetObjectStatus(ObjectStatus objectStatus)
+    {
+        slotStatus = objectStatus;
     }
 }

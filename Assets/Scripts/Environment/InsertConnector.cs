@@ -12,7 +12,10 @@ public class InsertConnector : MonoBehaviour
         for (int i = 0; i < transform.childCount; i++)
         {
             GameObject connectorContact =  transform.GetChild(i).gameObject;
-            isConnectorAdded |= connectorContact.GetComponent<InteractiveSlot>().isConnectorAdded;
+            if (connectorContact.GetComponent<InteractiveSlot>().GetObjectStatus() == ObjectStatus.inactive)
+            {
+                isConnectorAdded = true;
+            }
         }
 
         if (isConnectorAdded)
@@ -24,7 +27,7 @@ public class InsertConnector : MonoBehaviour
         for (int i = 0; i < transform.childCount; i++)
         {
             GameObject connectorContact = transform.GetChild(i).gameObject;
-            connectorContact.GetComponent<InteractiveSlot>().isConnectorAdded = false;
+            connectorContact.GetComponent<InteractiveSlot>().SetObjectStatus(ObjectStatus.active);
         }
     }
 

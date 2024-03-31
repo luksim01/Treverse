@@ -5,9 +5,19 @@ using UnityEngine;
 interface IInteractive
 {
     public void Interact();
+    public ObjectStatus GetObjectStatus();
+    public void SetObjectStatus(ObjectStatus objectStatus);
 }
 
-public class Interactor : MonoBehaviour
+public enum ObjectStatus
+{
+    active,
+    inactive,
+    marked,
+    destroyed
+}
+
+public class Interactor : MonoBehaviour, IDestruct
 {
     public Transform lineOfSightSource;
     public float sightRadius;
@@ -18,17 +28,14 @@ public class Interactor : MonoBehaviour
     public Material glowingOutline;
     public GameObject previouslySeen = null;
 
-    [SerializeField] List<GameObject> seenObjectList = new List<GameObject>();
-    [SerializeField] List<GameObject> outlinedObjectList = new List<GameObject>();
+    List<GameObject> seenObjectList = new List<GameObject>();
+    List<GameObject> outlinedObjectList = new List<GameObject>();
+    List<GameObject> destroyObjectList = new List<GameObject>();
 
     // pulsing glow
     [SerializeField] private float pulseGlowSpeed = 70f;
     [SerializeField] private float minimumGlowLevel = 10f;
     [SerializeField] private float maximumGlowLevel = 80f;
-
-    private void Start()
-    {
-    }
 
     void AddOutline(List<GameObject> seenObjectList)
     {
@@ -79,69 +86,101 @@ public class Interactor : MonoBehaviour
         }
     }
 
-    void Update()
+    public void AddObjectToDestroy(GameObject objectToDestroy)
+    {
+        destroyObjectList.Add(objectToDestroy);
+    }
+
+    void ManageInteractorVision()
     {
         Ray lineOfSight = new Ray(lineOfSightSource.position, lineOfSightSource.forward);
         bool hasSeenObject = Physics.SphereCast(lineOfSight, sightRadius, out RaycastHit hitInfo, sightRange);
+        GameObject seenObject = null;
         bool isInteractiveObject = false;
         bool hasSiblings = false;
 
         IInteractive interactiveObject = null;
         GameObject parentObject = null;
 
+        ObjectStatus objectStatus = new ObjectStatus();
+
         if (hasSeenObject)
         {
             isInteractiveObject = hitInfo.collider.gameObject.TryGetComponent(out interactiveObject);
-            GameObject seenObject = hitInfo.collider.gameObject;
+            seenObject = hitInfo.collider.gameObject;
 
-            previouslySeen = seenObject;
+            objectStatus = interactiveObject.GetObjectStatus();
+        }
 
-            if (!seenObjectList.Contains(previouslySeen))
+        if (objectStatus == ObjectStatus.active)
+        {
+            if (hasSeenObject)
+            {
+                previouslySeen = seenObject;
+
+                if (!seenObjectList.Contains(previouslySeen))
+                {
+                    RemoveOutline(outlinedObjectList);
+                    seenObjectList.Clear();
+                }
+
+                if (!seenObjectList.Contains(seenObject))
+                {
+                    seenObjectList.Add(seenObject);
+                    if (seenObject.transform.parent != null)
+                    {
+                        CheckHierarchyForSiblings(seenObject, out hasSiblings, out parentObject);
+                    }
+                }
+            }
+
+            if (hasSiblings)
+            {
+                for (int i = 0; i < parentObject.transform.childCount; i++)
+                {
+                    GameObject siblingObject = parentObject.transform.GetChild(i).gameObject;
+
+                    if (!seenObjectList.Contains(siblingObject))
+                    {
+                        seenObjectList.Add(siblingObject);
+                    }
+                }
+            }
+
+            //Debug.DrawRay(lineOfSightSource.position, lineOfSightSource.forward * sightRange, Color.red);
+
+            if (hasSeenObject && isInteractiveObject)
+            {
+                AddOutline(seenObjectList);
+                OutlineGlowSettings(outlinedObjectList);
+
+                if (Input.GetKeyDown(KeyCode.I))
+                {
+                    interactiveObject.Interact();
+                }
+            }
+            else
             {
                 RemoveOutline(outlinedObjectList);
                 seenObjectList.Clear();
             }
-
-            if (!seenObjectList.Contains(seenObject))
-            {
-                seenObjectList.Add(seenObject);
-                if (seenObject.transform.parent != null)
-                {
-                    CheckHierarchyForSiblings(seenObject, out hasSiblings, out parentObject);
-                }
-            }
         }
-
-        if (hasSiblings)
-        {
-            for (int i = 0; i < parentObject.transform.childCount; i++)
-            {
-                GameObject siblingObject = parentObject.transform.GetChild(i).gameObject;
-
-                if (!seenObjectList.Contains(siblingObject))
-                {
-                    seenObjectList.Add(siblingObject);
-                }
-            }
-        }
-
-        //Debug.DrawRay(lineOfSightSource.position, lineOfSightSource.forward * sightRange, Color.red);
-
-        if (hasSeenObject && isInteractiveObject)
-        {
-            AddOutline(seenObjectList);
-            OutlineGlowSettings(outlinedObjectList);
-
-            if (Input.GetKeyDown(KeyCode.I))
-            {
-                interactiveObject.Interact();
-            }
-        }
-        else
+        else if (objectStatus == ObjectStatus.destroyed)
         {
             RemoveOutline(outlinedObjectList);
+            outlinedObjectList.Clear();
             seenObjectList.Clear();
         }
+    }
+
+    void Update()
+    {
+        foreach(GameObject objectToDestroy in destroyObjectList)
+        {
+            Destroy(objectToDestroy);
+        }
+
+        ManageInteractorVision();
     }
 
     private void OutlineGlowSettings(List<GameObject> outlineObjectList)

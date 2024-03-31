@@ -2,6 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+interface IDestruct
+{
+    public void AddObjectToDestroy(GameObject objectToDestroy);
+}
+
 public class InteractiveConnector : MonoBehaviour, IInteractive
 {
     Rigidbody gameObjectsRigidbody;
@@ -9,6 +14,8 @@ public class InteractiveConnector : MonoBehaviour, IInteractive
     [SerializeField] private float rotationalForceMultiplier = 1f;
     [SerializeField] private float upwardOffset = 1f;
     GameObject kayak;
+
+    public ObjectStatus connectorStatus;
 
     private void Start()
     {
@@ -38,11 +45,23 @@ public class InteractiveConnector : MonoBehaviour, IInteractive
         }
     }
 
+    public ObjectStatus GetObjectStatus()
+    {
+        return connectorStatus;
+    }
+
+    public void SetObjectStatus(ObjectStatus objectStatus)
+    {
+        connectorStatus = objectStatus;
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         if(collision.gameObject == kayak)
         {
-            Destroy(gameObject);
+            connectorStatus = ObjectStatus.destroyed;
+            kayak.GetComponentInChildren<Interactor>().AddObjectToDestroy(gameObject);
+            //Destroy(gameObject);
         }
     }
 }
