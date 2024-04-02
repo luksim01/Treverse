@@ -2,37 +2,68 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InsertConnector : MonoBehaviour
+interface IInteractor
 {
+    public void AddConnectorSlotPair(GameObject connector, GameObject slot);
+    public void RemoveConnectorSlotPair(List<GameObject> connectorSlotPairRemoveList);
+    public Dictionary<GameObject, GameObject> GetConnectorSlotPairs();
+}
+
+public class InsertConnector : MonoBehaviour, ISlot
+{
+    public bool isConnectorTriggered = false;
     public bool isConnectorAdded = false;
     public GameObject connector;
+    public GameObject cameraManager;
+    public Interactor interactor;
+
+    private void Start()
+    {
+        cameraManager = GameObject.Find("Camera Manager");
+        interactor = cameraManager.GetComponent<Interactor>();
+    }
 
     private void FixedUpdate()
     {
-        for (int i = 0; i < transform.childCount; i++)
+        if (!isConnectorAdded)
         {
-            GameObject connectorContact =  transform.GetChild(i).gameObject;
-            if (connectorContact.GetComponent<InteractiveSlot>().GetObjectStatus() == ObjectStatus.inactive)
+            for (int i = 0; i < transform.childCount; i++)
             {
-                isConnectorAdded = true;
+                GameObject connectorContact = transform.GetChild(i).gameObject;
+                if (connectorContact.GetComponent<InteractiveSlot>().GetObjectStatus() == ObjectStatus.inactive)
+                {
+                    isConnectorTriggered = true;
+                }
             }
-        }
 
-        if (isConnectorAdded)
-        {
-            AddConnector();
-            isConnectorAdded = false;
-        }
+            if (isConnectorTriggered)
+            {                
+                for (int i = 0; i < transform.childCount; i++)
+                {
+                    GameObject connectorContact = transform.GetChild(i).gameObject;
+                    connectorContact.GetComponent<InteractiveSlot>().SetObjectStatus(ObjectStatus.inactive);
+                }
 
-        for (int i = 0; i < transform.childCount; i++)
-        {
-            GameObject connectorContact = transform.GetChild(i).gameObject;
-            connectorContact.GetComponent<InteractiveSlot>().SetObjectStatus(ObjectStatus.active);
+                isConnectorAdded = true;
+                AddConnector();
+                isConnectorTriggered = false;
+            }
         }
     }
 
     void AddConnector()
     {
-        Instantiate(connector, transform.position, transform.rotation);
+        GameObject connectorObjectInSlot = Instantiate(connector, transform.position, transform.rotation);
+        interactor.AddConnectorSlotPair(connectorObjectInSlot, gameObject);
+    }
+
+    public void ActivateSlot()
+    {
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            GameObject connectorContact = transform.GetChild(i).gameObject;
+            connectorContact.GetComponent<InteractiveSlot>().SetObjectStatus(ObjectStatus.active);
+            isConnectorAdded = false;
+        }
     }
 }

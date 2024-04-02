@@ -13,11 +13,10 @@ public enum ObjectStatus
 {
     active,
     inactive,
-    marked,
     destroyed
 }
 
-public class Interactor : MonoBehaviour, IDestruct
+public class Interactor : MonoBehaviour, IDestruct, IInteractor
 {
     public Transform lineOfSightSource;
     public float sightRadius;
@@ -31,6 +30,8 @@ public class Interactor : MonoBehaviour, IDestruct
     List<GameObject> seenObjectList = new List<GameObject>();
     List<GameObject> outlinedObjectList = new List<GameObject>();
     List<GameObject> destroyObjectList = new List<GameObject>();
+
+    Dictionary<GameObject, GameObject> connectorSlotPairs = new Dictionary<GameObject, GameObject>();
 
     // pulsing glow
     [SerializeField] private float pulseGlowSpeed = 70f;
@@ -89,6 +90,29 @@ public class Interactor : MonoBehaviour, IDestruct
     public void AddObjectToDestroy(GameObject objectToDestroy)
     {
         destroyObjectList.Add(objectToDestroy);
+    }
+
+    public void AddConnectorSlotPair(GameObject connector, GameObject slot)
+    {
+        connectorSlotPairs.Add(connector, slot);
+        Debug.Log("AddConnectorSlotPair");
+        PrintDictionaryPairs(connectorSlotPairs);
+    }
+
+    public void RemoveConnectorSlotPair(List<GameObject> connectorSlotPairRemoveList)
+    {
+        foreach (GameObject connector in connectorSlotPairRemoveList)
+        {
+            connectorSlotPairs.Remove(connector);
+        }
+
+        Debug.Log("RemoveConnectorSlotPair");
+        PrintDictionaryPairs(connectorSlotPairs);
+    }
+
+    public Dictionary<GameObject, GameObject> GetConnectorSlotPairs()
+    {
+        return connectorSlotPairs;
     }
 
     void ManageInteractorVision()
@@ -165,7 +189,7 @@ public class Interactor : MonoBehaviour, IDestruct
                 seenObjectList.Clear();
             }
         }
-        else if (objectStatus == ObjectStatus.destroyed)
+        else if (objectStatus == ObjectStatus.destroyed || objectStatus == ObjectStatus.inactive)
         {
             RemoveOutline(outlinedObjectList);
             outlinedObjectList.Clear();
@@ -223,6 +247,14 @@ public class Interactor : MonoBehaviour, IDestruct
         for (int i = 0; i < materialsList.Count; i++)
         {
             Debug.Log("materialsList[" + i + "]: " + materialsList[i]);
+        }
+    }
+
+    void PrintDictionaryPairs(Dictionary<GameObject, GameObject> keyValuePairs)
+    {
+        foreach (KeyValuePair<GameObject, GameObject> keyValuePair in keyValuePairs)
+        {
+            Debug.LogFormat("Slot: {0} Connector: {1}", keyValuePair.Key, keyValuePair.Value);
         }
     }
 }
