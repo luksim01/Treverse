@@ -64,7 +64,7 @@ public class BuoyantPoint : MonoBehaviour
     private float GetWaterLevelOf(GameObject waterTile)
     {
         // get the water level at the buoyant point position
-        float waterLevel = 0.5f;
+        float waterLevel = 0.7f;
 
         if (waterTile != null)
         {
@@ -83,7 +83,7 @@ public class BuoyantPoint : MonoBehaviour
                     transform.position.z < waterVertices[i].z + (waterTile.transform.localScale.z) &&
                     transform.position.z > waterVertices[i].z - (waterTile.transform.localScale.z))
                 {
-                    waterLevel = waterVertices[i].y + 0.5f;
+                    waterLevel = waterVertices[i].y + 0.7f;
                 }
             }
         }

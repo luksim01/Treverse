@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6201485738775089695}
   - component: {fileID: 4336133428752232465}
   - component: {fileID: 5158886063690573340}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Water Tile
   m_TagString: WaterTile
   m_Icon: {fileID: 0}
