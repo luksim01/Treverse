@@ -292,11 +292,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6552ffa7e9c9a4071bea00c721eb8f1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upwardForceMultiplier: 0.5
+  directionalForceMultiplier: 2
   rotationalForceMultiplier: 100
-  upwardOffset: 10
-  cameraManager: {fileID: 0}
-  connectorStatus: 0
+  directionOffset: {x: 0, y: 5, z: 0}
+  rotationOffset: {x: 0.25, y: 0.5, z: 1}
 --- !u!1 &3434884558700014736
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,41 +2,154 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-interface IInteractive
+interface IInteractiveObject
 {
     public void Interact();
-    public ObjectStatus GetObjectStatus();
-    public void SetObjectStatus(ObjectStatus objectStatus);
+    public InteractiveObjectStatus GetObjectStatus();
+    public void SetObjectStatus(InteractiveObjectStatus interactiveObjectStatus);
 }
 
-public enum ObjectStatus
+public enum InteractiveObjectStatus
 {
     active,
     inactive,
     destroyed
 }
 
-public class Interactor : MonoBehaviour, IDestruct, IInteractor
+interface IInteractor
 {
+    public void AddObjectToDestroy(GameObject objectToDestroy);
+    public void AddConnectorSlotPair(GameObject connector, GameObject slot);
+    public void RemoveConnectorSlotPair(List<GameObject> connectorSlotPairRemoveList);
+    public Dictionary<GameObject, GameObject> GetConnectorSlotPairs();
+}
+
+public class Interactor : MonoBehaviour, IInteractor
+{
+    // interactivity sight
     public Transform lineOfSightSource;
     public float sightRadius;
     public float sightRange;
 
-    public Material outlineMaterial;
-    Material objectToOutlineOriginalMaterial;
+    // glowing outline
+    private Material objectToOutlineOriginalMaterial;
     public Material glowingOutline;
-    public GameObject previouslySeen = null;
+    private GameObject previouslySeen = null;
 
     List<GameObject> seenObjectList = new List<GameObject>();
     List<GameObject> outlinedObjectList = new List<GameObject>();
     List<GameObject> destroyObjectList = new List<GameObject>();
 
-    Dictionary<GameObject, GameObject> connectorSlotPairs = new Dictionary<GameObject, GameObject>();
-
     // pulsing glow
     [SerializeField] private float pulseGlowSpeed = 70f;
     [SerializeField] private float minimumGlowLevel = 10f;
     [SerializeField] private float maximumGlowLevel = 80f;
+
+    // connector and slot link
+    Dictionary<GameObject, GameObject> connectorSlotPairs = new Dictionary<GameObject, GameObject>();
+
+    void Update()
+    {
+        DestroyMarkedObjects();
+        ManageInteractorVision();
+    }
+
+    void DestroyMarkedObjects()
+    {
+        foreach (GameObject objectToDestroy in destroyObjectList)
+        {
+            Destroy(objectToDestroy);
+        }
+    }
+
+    void ManageInteractorVision()
+    {
+        // vision
+        Ray lineOfSight = new Ray(lineOfSightSource.position, lineOfSightSource.forward);
+        bool hasSeenObject = Physics.SphereCast(lineOfSight, sightRadius, out RaycastHit hitInfo, sightRange);
+
+        // interactivity
+        bool isInteractiveObject = false;
+        IInteractiveObject interactiveObject = null;
+
+        // object info
+        GameObject seenObject = null;
+        InteractiveObjectStatus objectStatus = InteractiveObjectStatus.inactive;
+
+        if (hasSeenObject)
+        {
+            isInteractiveObject = hitInfo.collider.gameObject.TryGetComponent(out interactiveObject);
+            seenObject = hitInfo.collider.gameObject;
+
+            objectStatus = interactiveObject.GetObjectStatus();
+        }
+
+        if (objectStatus == InteractiveObjectStatus.active)
+        {
+            // object hierarchy info
+            bool hasSiblings = false;
+            GameObject parentObject = null;
+
+            if (hasSeenObject)
+            {
+                previouslySeen = seenObject;
+
+                // seen new interactive object, remove currently outlined objects
+                if (!seenObjectList.Contains(previouslySeen))
+                {
+                    RemoveOutline(outlinedObjectList);
+                    seenObjectList.Clear();
+                }
+
+                // seen new interactive object, find hierarchy
+                if (!seenObjectList.Contains(seenObject))
+                {
+                    seenObjectList.Add(seenObject);
+                    if (seenObject.transform.parent != null)
+                    {
+                        CheckHierarchyForSiblings(seenObject, out hasSiblings, out parentObject);
+                    }
+                }
+            }
+
+            // use hierarchy to identify objects to outline
+            if (hasSiblings)
+            {
+                for (int i = 0; i < parentObject.transform.childCount; i++)
+                {
+                    GameObject siblingObject = parentObject.transform.GetChild(i).gameObject;
+
+                    if (!seenObjectList.Contains(siblingObject))
+                    {
+                        seenObjectList.Add(siblingObject);
+                    }
+                }
+            }
+
+            // active interactive objects in vision are outlined
+            if (hasSeenObject && isInteractiveObject)
+            {
+                AddOutline(seenObjectList);
+                OutlineGlowSettings(outlinedObjectList);
+
+                if (Input.GetKeyDown(KeyCode.I))
+                {
+                    interactiveObject.Interact();
+                }
+            }
+            else
+            {
+                RemoveOutline(outlinedObjectList);
+                seenObjectList.Clear();
+            }
+        }
+        else if (objectStatus == InteractiveObjectStatus.destroyed || objectStatus == InteractiveObjectStatus.inactive)
+        {
+            RemoveOutline(outlinedObjectList);
+            outlinedObjectList.Clear();
+            seenObjectList.Clear();
+        }
+    }
 
     void AddOutline(List<GameObject> seenObjectList)
     {
@@ -44,14 +157,20 @@ public class Interactor : MonoBehaviour, IDestruct, IInteractor
         {
             GameObject objectToOutline = seenObjectList[i];
 
+            // objects that haven't been outlined
             if (!outlinedObjectList.Contains(objectToOutline))
             {
                 List<Material> objectToOutlineMaterials = new List<Material>();
+                // get current materials list
                 objectToOutline.GetComponent<MeshRenderer>().GetMaterials(objectToOutlineMaterials);
 
+                // retain original material, note: only uses first material of object
                 objectToOutlineOriginalMaterial = objectToOutlineMaterials[0];
 
+                // add glowing outline to materials list
                 objectToOutlineMaterials.Add(glowingOutline);
+
+                // set object materials list
                 objectToOutline.GetComponent<MeshRenderer>().SetMaterials(objectToOutlineMaterials);
 
                 outlinedObjectList.Add(objectToOutline);
@@ -85,126 +204,6 @@ public class Interactor : MonoBehaviour, IDestruct, IInteractor
         {
             hasSiblings = false;
         }
-    }
-
-    public void AddObjectToDestroy(GameObject objectToDestroy)
-    {
-        destroyObjectList.Add(objectToDestroy);
-    }
-
-    public void AddConnectorSlotPair(GameObject connector, GameObject slot)
-    {
-        connectorSlotPairs.Add(connector, slot);
-        Debug.Log("AddConnectorSlotPair");
-        PrintDictionaryPairs(connectorSlotPairs);
-    }
-
-    public void RemoveConnectorSlotPair(List<GameObject> connectorSlotPairRemoveList)
-    {
-        foreach (GameObject connector in connectorSlotPairRemoveList)
-        {
-            connectorSlotPairs.Remove(connector);
-        }
-
-        Debug.Log("RemoveConnectorSlotPair");
-        PrintDictionaryPairs(connectorSlotPairs);
-    }
-
-    public Dictionary<GameObject, GameObject> GetConnectorSlotPairs()
-    {
-        return connectorSlotPairs;
-    }
-
-    void ManageInteractorVision()
-    {
-        Ray lineOfSight = new Ray(lineOfSightSource.position, lineOfSightSource.forward);
-        bool hasSeenObject = Physics.SphereCast(lineOfSight, sightRadius, out RaycastHit hitInfo, sightRange);
-        GameObject seenObject = null;
-        bool isInteractiveObject = false;
-        bool hasSiblings = false;
-
-        IInteractive interactiveObject = null;
-        GameObject parentObject = null;
-
-        ObjectStatus objectStatus = new ObjectStatus();
-
-        if (hasSeenObject)
-        {
-            isInteractiveObject = hitInfo.collider.gameObject.TryGetComponent(out interactiveObject);
-            seenObject = hitInfo.collider.gameObject;
-
-            objectStatus = interactiveObject.GetObjectStatus();
-        }
-
-        if (objectStatus == ObjectStatus.active)
-        {
-            if (hasSeenObject)
-            {
-                previouslySeen = seenObject;
-
-                if (!seenObjectList.Contains(previouslySeen))
-                {
-                    RemoveOutline(outlinedObjectList);
-                    seenObjectList.Clear();
-                }
-
-                if (!seenObjectList.Contains(seenObject))
-                {
-                    seenObjectList.Add(seenObject);
-                    if (seenObject.transform.parent != null)
-                    {
-                        CheckHierarchyForSiblings(seenObject, out hasSiblings, out parentObject);
-                    }
-                }
-            }
-
-            if (hasSiblings)
-            {
-                for (int i = 0; i < parentObject.transform.childCount; i++)
-                {
-                    GameObject siblingObject = parentObject.transform.GetChild(i).gameObject;
-
-                    if (!seenObjectList.Contains(siblingObject))
-                    {
-                        seenObjectList.Add(siblingObject);
-                    }
-                }
-            }
-
-            //Debug.DrawRay(lineOfSightSource.position, lineOfSightSource.forward * sightRange, Color.red);
-
-            if (hasSeenObject && isInteractiveObject)
-            {
-                AddOutline(seenObjectList);
-                OutlineGlowSettings(outlinedObjectList);
-
-                if (Input.GetKeyDown(KeyCode.I))
-                {
-                    interactiveObject.Interact();
-                }
-            }
-            else
-            {
-                RemoveOutline(outlinedObjectList);
-                seenObjectList.Clear();
-            }
-        }
-        else if (objectStatus == ObjectStatus.destroyed || objectStatus == ObjectStatus.inactive)
-        {
-            RemoveOutline(outlinedObjectList);
-            outlinedObjectList.Clear();
-            seenObjectList.Clear();
-        }
-    }
-
-    void Update()
-    {
-        foreach(GameObject objectToDestroy in destroyObjectList)
-        {
-            Destroy(objectToDestroy);
-        }
-
-        ManageInteractorVision();
     }
 
     private void OutlineGlowSettings(List<GameObject> outlineObjectList)
@@ -241,6 +240,30 @@ public class Interactor : MonoBehaviour, IDestruct, IInteractor
         return changeSpeed;
     }
 
+    // interface methods
+    public void AddObjectToDestroy(GameObject objectToDestroy)
+    {
+        destroyObjectList.Add(objectToDestroy);
+    }
+
+    public void AddConnectorSlotPair(GameObject connector, GameObject slot)
+    {
+        connectorSlotPairs.Add(connector, slot);
+    }
+
+    public void RemoveConnectorSlotPair(List<GameObject> connectorSlotPairRemoveList)
+    {
+        foreach (GameObject connector in connectorSlotPairRemoveList)
+        {
+            connectorSlotPairs.Remove(connector);
+        }
+    }
+
+    public Dictionary<GameObject, GameObject> GetConnectorSlotPairs()
+    {
+        return connectorSlotPairs;
+    }
+
     // debug methods
     void PrintMaterials(List<Material> materialsList)
     {
@@ -256,5 +279,10 @@ public class Interactor : MonoBehaviour, IDestruct, IInteractor
         {
             Debug.LogFormat("Slot: {0} Connector: {1}", keyValuePair.Key, keyValuePair.Value);
         }
+    }
+
+    void DrawSightLine()
+    {
+        Debug.DrawRay(lineOfSightSource.position, lineOfSightSource.forward * sightRange, Color.red);
     }
 }

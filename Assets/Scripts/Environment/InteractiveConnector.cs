@@ -2,28 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-interface IDestruct
+public class InteractiveConnector : MonoBehaviour, IInteractiveObject
 {
-    public void AddObjectToDestroy(GameObject objectToDestroy);
-}
+    private Rigidbody gameObjectsRigidbody;
+    [SerializeField] private float directionalForceMultiplier;
+    [SerializeField] private float rotationalForceMultiplier;
+    [SerializeField] private Vector3 directionOffset;
+    [SerializeField] private Vector3 rotationOffset;
 
-interface ISlot
-{
-    public void ActivateSlot();
-}
-
-public class InteractiveConnector : MonoBehaviour, IInteractive
-{
-    Rigidbody gameObjectsRigidbody;
-    [SerializeField] private float upwardForceMultiplier = 1f;
-    [SerializeField] private float rotationalForceMultiplier = 1f;
-    [SerializeField] private float upwardOffset = 1f;
-    GameObject kayak;
-
-    public GameObject cameraManager;
+    private GameObject kayak;
+    private GameObject cameraManager;
     private Interactor interactor;
 
-    public ObjectStatus connectorStatus;
+    private InteractiveObjectStatus connectorStatus;
 
     private void Start()
     {
@@ -34,6 +25,7 @@ public class InteractiveConnector : MonoBehaviour, IInteractive
 
     public void Interact()
     {
+        // activate gravity
         if (gameObject.GetComponent<Rigidbody>() != null)
         {
             gameObjectsRigidbody = gameObject.GetComponent<Rigidbody>();
@@ -42,15 +34,12 @@ public class InteractiveConnector : MonoBehaviour, IInteractive
         {
             gameObjectsRigidbody = gameObject.AddComponent<Rigidbody>();
         }
-
-        // activate gravity
         gameObjectsRigidbody.isKinematic = false;
 
         // launch towards kayak
         Vector3 direction = kayak.transform.position - gameObject.transform.position;
-        gameObjectsRigidbody.AddForce(new Vector3(direction.x, direction.y + upwardOffset, direction.z) * upwardForceMultiplier, ForceMode.Impulse);
-        gameObjectsRigidbody.AddRelativeTorque(new Vector3(0.25f, 0.5f, 1f) * rotationalForceMultiplier);
-
+        gameObjectsRigidbody.AddForce((new Vector3(direction.x, direction.y, direction.z) + directionOffset) * directionalForceMultiplier, ForceMode.Impulse);
+        gameObjectsRigidbody.AddRelativeTorque(rotationOffset * rotationalForceMultiplier);
 
         // activate buoyancy points
         for (int i = 0; i < transform.childCount; i++)
@@ -58,8 +47,7 @@ public class InteractiveConnector : MonoBehaviour, IInteractive
             transform.GetChild(i).gameObject.SetActive(true);
         }
 
-        // InsertConnector ActivateSlot HERE
-        // need parent reference to activate slot
+        // check if interactive connector has an associated interactive slot to reactivate
         Dictionary<GameObject, GameObject> connectorSlotPairs = interactor.GetConnectorSlotPairs();
         List<GameObject> connectorSlotPairRemoveList = new List<GameObject>();
 
@@ -70,7 +58,7 @@ public class InteractiveConnector : MonoBehaviour, IInteractive
 
             if (gameObject == connector)
             {
-                slot.GetComponent<InsertConnector>().ActivateSlot();
+                slot.GetComponent<Slot>().Reactivate();
                 connectorSlotPairRemoveList.Add(connector);
             }
         }
@@ -83,12 +71,12 @@ public class InteractiveConnector : MonoBehaviour, IInteractive
         connectorSlotPairRemoveList.Clear();
     }
 
-    public ObjectStatus GetObjectStatus()
+    public InteractiveObjectStatus GetObjectStatus()
     {
         return connectorStatus;
     }
 
-    public void SetObjectStatus(ObjectStatus objectStatus)
+    public void SetObjectStatus(InteractiveObjectStatus objectStatus)
     {
         connectorStatus = objectStatus;
     }
@@ -97,16 +85,8 @@ public class InteractiveConnector : MonoBehaviour, IInteractive
     {
         if(collision.gameObject == kayak)
         {
-            connectorStatus = ObjectStatus.destroyed;
-            kayak.GetComponentInChildren<Interactor>().AddObjectToDestroy(gameObject);
-        }
-    }
-
-    void PrintDictionaryPairs(Dictionary<GameObject, GameObject> keyValuePairs)
-    {
-        foreach (KeyValuePair<GameObject, GameObject> keyValuePair in keyValuePairs)
-        {
-            Debug.LogFormat("Connector: {0} Slot: {1}", keyValuePair.Key, keyValuePair.Value);
+            connectorStatus = InteractiveObjectStatus.destroyed;
+            interactor.AddObjectToDestroy(gameObject);
         }
     }
 }
