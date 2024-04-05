@@ -14,6 +14,9 @@ public class KayakController : MonoBehaviour
     // movement settings : kayak
     [SerializeField] private float forwardSpeed;
     [SerializeField] private float rotationSpeed;
+    [SerializeField] private float boostMultiplier = 1f;
+    [SerializeField] private bool isBoostActive = false;
+    [SerializeField] private float boostDuration = 1f;
 
     // movement : floating
     public List<GameObject> waterTilesInContact;
@@ -25,6 +28,7 @@ public class KayakController : MonoBehaviour
     bool isDroneCameraActive;
     [SerializeField] private float forwardSpeedDroneCamera;
 
+    GameManager gameManager;
 
  /*   // Paddle Audio Generator
     [SerializeField] PaddleGenerator paddleGenerator;
@@ -47,16 +51,20 @@ public class KayakController : MonoBehaviour
 
         cameraManager = GameObject.Find("Camera Manager").GetComponent<CameraManager>();
 
-      /*  paddleGenerator = GetComponent<PaddleGenerator>();
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
 
-        Debug.Assert(isPaddling, "Chris: Lukas, Line 116, wondering about a mini speed boost when the sound is played with a cool down time maybe? Thinking about the feeling of being in a kayak, the push & pull, probaly a thing for down the line!");
-*/
+        /*  paddleGenerator = GetComponent<PaddleGenerator>();
+
+          Debug.Assert(isPaddling, "Chris: Lukas, Line 116, wondering about a mini speed boost when the sound is played with a cool down time maybe? Thinking about the feeling of being in a kayak, the push & pull, probaly a thing for down the line!");
+  */
     }
 
 
     void FixedUpdate()
     {
         isDroneCameraActive = cameraManager.droneCameraStatus;
+
+        CheckForSpeedBoost();
 
         MovementControl(forwardSpeed, rotationSpeed, isDroneCameraActive);
 
@@ -74,15 +82,40 @@ public class KayakController : MonoBehaviour
         }*/
     }
 
+    private void CheckForSpeedBoost()
+    {
+        if (gameManager.isHoldingBottle() && !isBoostActive)
+        {
+            isBoostActive = true;
+            StartCoroutine(BoostDurationCountdown());
+        }
+    }
+
+    IEnumerator BoostDurationCountdown()
+    {
+        boostMultiplier = 2f;
+        yield return new WaitForSeconds(boostDuration);
+        gameManager.ChangeBottleCollectedBy(-1);
+        if(gameManager.GetBottlesHeld() > 0)
+        {
+            StartCoroutine(BoostDurationCountdown());
+        }
+        else
+        {
+            isBoostActive = false;
+            boostMultiplier = 1f;
+        }
+    }
+
     private void MovementControl(float forwardSpeed, float rotationSpeed, bool isDroneCameraActive)
     {
         // forwards movement
         forwardInput = Input.GetAxis("Vertical");
-        transform.Translate(Vector3.forward * forwardInput * Time.deltaTime * (isDroneCameraActive ? forwardSpeedDroneCamera : forwardSpeed));
+        transform.Translate(Vector3.forward * forwardInput * Time.deltaTime * (isDroneCameraActive ? forwardSpeedDroneCamera : forwardSpeed) * boostMultiplier);
 
         // horizontal rotation
         horizontalInput = Input.GetAxis("Horizontal");
-        transform.Rotate(Vector3.up, horizontalInput * Time.deltaTime * rotationSpeed);
+        transform.Rotate(Vector3.up, horizontalInput * Time.deltaTime * rotationSpeed * boostMultiplier);
 
        
     }

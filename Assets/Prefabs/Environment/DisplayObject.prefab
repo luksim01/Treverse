@@ -279,6 +279,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   displayImage: {fileID: 2802237854270484877}
+  displayImageMaterial: {fileID: 0}
   displayGlow: 1
 --- !u!114 &8860965382314318856
 MonoBehaviour:
