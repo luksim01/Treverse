@@ -18,10 +18,13 @@ public class InteractiveBottle : MonoBehaviour, IInteractiveObject
 
     GameObject parentObject;
 
+    GameManager gameManager;
+
     private void Start()
     {
         kayak = GameObject.Find("Kayak");
         cameraManager = GameObject.Find("Camera Manager");
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         interactor = cameraManager.GetComponent<Interactor>();
         parentObject = gameObject.transform.parent.gameObject;
     }
@@ -53,6 +56,7 @@ public class InteractiveBottle : MonoBehaviour, IInteractiveObject
         {
             connectorStatus = InteractiveObjectStatus.destroyed;
             interactor.AddObjectToDestroy(parentObject);
+            gameManager.ChangeBottleCollectedBy(1);
         }
     }
 }

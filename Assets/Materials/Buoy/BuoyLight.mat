@@ -73,7 +73,7 @@ Material:
     - _DstBlend: 0
     - _EnableBlendModePreserveSpecularLighting: 0
     - _EnableFogOnTransparent: 1
-    - _GlowEmission: 50
+    - _GlowEmission: 100
     - _GlowOpacity: 100
     - _GlowSaturation: 1
     - _OpaqueCullMode: 2

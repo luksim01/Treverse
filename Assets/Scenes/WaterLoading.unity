@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.23641995, g: 0.1700833, b: 0.126503, a: 1}
+  m_IndirectSpecularColor: {r: 0.22198144, g: 0.1537601, b: 0.099997535, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -307,14 +307,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1367915675}
     m_Modifications:
-    - target: {fileID: 2827578765284489524, guid: 3b70808b21f6740a690a5426671169d7, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2827578765284489524, guid: 3b70808b21f6740a690a5426671169d7, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5801908950459380960, guid: 3b70808b21f6740a690a5426671169d7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -359,14 +351,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Kayak
       objectReference: {fileID: 0}
-    - target: {fileID: 6692046180152756202, guid: 3b70808b21f6740a690a5426671169d7, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6692046180152756202, guid: 3b70808b21f6740a690a5426671169d7, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7722690311701689655, guid: 3b70808b21f6740a690a5426671169d7, type: 3}
       propertyPath: virtualDroneCamera
       value: 
@@ -381,6 +365,51 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5801908950459380960, guid: 3b70808b21f6740a690a5426671169d7, type: 3}
   m_PrefabInstance: {fileID: 450594227}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &685292750
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 685292752}
+  - component: {fileID: 685292751}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &685292751
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 685292750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89c1013dc31a94d0fa3b6c0ccdb0cdab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bottlesCollected: 0
+--- !u!4 &685292752
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 685292750}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 4.9192877, y: 0.9901516, z: -8.480106}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &807951202
 GameObject:
   m_ObjectHideFlags: 0
@@ -1360,14 +1389,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: BuoyBottles
       objectReference: {fileID: 0}
-    - target: {fileID: 5798459484523121629, guid: 5acf716c2e95d482da70ef0d9b074544, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 5401561c4aef240d2af6e5a1df8d37a4, type: 2}
-    - target: {fileID: 7793007322423053476, guid: 5acf716c2e95d482da70ef0d9b074544, type: 3}
-      propertyPath: maximumGlowLevel
-      value: 2000
-      objectReference: {fileID: 0}
     - target: {fileID: 8953280063184139214, guid: 5acf716c2e95d482da70ef0d9b074544, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1424,3 +1445,4 @@ SceneRoots:
   - {fileID: 1017630776}
   - {fileID: 1218616734}
   - {fileID: 2505134907835216368}
+  - {fileID: 685292752}
