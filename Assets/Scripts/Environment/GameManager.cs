@@ -6,6 +6,13 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] private int bottlesCollected = 0;
 
+    [Header("Environment")]
+    [SerializeField] private GameObject environmentManager;
+
+    [Header("Energy Connectors")]
+    [SerializeField] private GameObject[] coalPlantConnectors;
+    [SerializeField] private GameObject[] windFarmConnectors;
+
     void Start()
     {
         

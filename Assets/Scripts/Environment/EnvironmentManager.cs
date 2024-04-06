@@ -47,9 +47,6 @@ public class EnvironmentManager : MonoBehaviour
     void Start()
     {
         waterManager = GameObject.Find("WaterManager").GetComponent<WaterManager>();
-        
-        Debug.Assert(powerStationSmoke, "Lukas: Nick, line 39, I have deactivate fog while fixing the scene, can you revisit and make sure all is OK with this code");
-        Debug.Assert(powerStationFog, "Lukas: Nick, line 40, I have deactivate fog while fixing the scene, can you revisit and make sure all is OK with this code");
     }
 
     void Update()
