@@ -32,7 +32,7 @@ public class Interactor : MonoBehaviour, IInteractor
     public float sightRange;
 
     // glowing outline
-    private Material objectToOutlineOriginalMaterial;
+    [SerializeField] List<Material> objectToOutlineOriginalMaterial;
     public Material glowingOutline;
     private GameObject previouslySeen = null;
 
@@ -173,7 +173,7 @@ public class Interactor : MonoBehaviour, IInteractor
                 objectToOutline.GetComponent<MeshRenderer>().GetMaterials(objectToOutlineMaterials);
 
                 // retain original material, note: only uses first material of object
-                objectToOutlineOriginalMaterial = objectToOutlineMaterials[0];
+                objectToOutlineOriginalMaterial = new List<Material>(objectToOutlineMaterials);
 
                 // add glowing outline to materials list
                 objectToOutlineMaterials.Add(glowingOutline);
@@ -194,7 +194,7 @@ public class Interactor : MonoBehaviour, IInteractor
 
             if (outlineObjectList.Contains(objectToClear))
             {
-                objectToClear.GetComponent<MeshRenderer>().SetMaterials(new List<Material>() { objectToOutlineOriginalMaterial });
+                objectToClear.GetComponent<MeshRenderer>().SetMaterials(objectToOutlineOriginalMaterial);
             }
         }
 
