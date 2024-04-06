@@ -20,6 +20,11 @@ public class Slot : MonoBehaviour, IInsertConnector
     {
         cameraManager = GameObject.Find("Camera Manager");
         interactor = cameraManager.GetComponent<Interactor>();
+
+        if (isConnectorInSlot)
+        {
+            DeactivateSlotAddConnector();
+        }
     }
 
     private void FixedUpdate()
@@ -37,18 +42,23 @@ public class Slot : MonoBehaviour, IInsertConnector
             }
 
             if (isSlotTriggered)
-            {                
-                for (int i = 0; i < transform.childCount; i++)
-                {
-                    GameObject connectorContact = transform.GetChild(i).gameObject;
-                    connectorContact.GetComponent<InteractiveSlotElement>().SetObjectStatus(InteractiveObjectStatus.inactive);
-                }
-
-                isConnectorInSlot = true;
-                AddConnectorInSlot();
-                isSlotTriggered = false;
+            {
+                DeactivateSlotAddConnector();
             }
         }
+    }
+
+    void DeactivateSlotAddConnector()
+    {
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            GameObject connectorContact = transform.GetChild(i).gameObject;
+            connectorContact.GetComponent<InteractiveSlotElement>().SetObjectStatus(InteractiveObjectStatus.inactive);
+        }
+
+        isConnectorInSlot = true;
+        AddConnectorInSlot();
+        isSlotTriggered = false;
     }
 
     void AddConnectorInSlot()
