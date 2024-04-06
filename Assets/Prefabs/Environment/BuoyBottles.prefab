@@ -47,7 +47,6 @@ MonoBehaviour:
   rigidBody: {fileID: 5022298999132740256}
   waterDrag: 18
   waterAngularDrag: 18
-  waterLevel: 0
 --- !u!1 &1274131270212232462
 GameObject:
   m_ObjectHideFlags: 0
@@ -95,7 +94,6 @@ MonoBehaviour:
   rigidBody: {fileID: 5022298999132740256}
   waterDrag: 18
   waterAngularDrag: 18
-  waterLevel: 0
 --- !u!1 &1559317215280831466
 GameObject:
   m_ObjectHideFlags: 0
@@ -208,7 +206,6 @@ MonoBehaviour:
   rigidBody: {fileID: 1668373931361509381}
   waterDrag: 18
   waterAngularDrag: 18
-  waterLevel: 0
 --- !u!1 &2038735148696861635
 GameObject:
   m_ObjectHideFlags: 0
@@ -331,9 +328,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   directionalForceMultiplier: 2
-  rotationalForceMultiplier: 100
+  rotationalForceMultiplier: 200
   directionOffset: {x: 0, y: 5, z: 0}
-  rotationOffset: {x: 0.25, y: 0.5, z: 1}
+  rotationOffset: {x: 3, y: 2, z: 1}
 --- !u!54 &8914602170859946056
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -408,7 +405,6 @@ MonoBehaviour:
   rigidBody: {fileID: 5213047958688266849}
   waterDrag: 18
   waterAngularDrag: 18
-  waterLevel: 0
 --- !u!1 &2647406044822411103
 GameObject:
   m_ObjectHideFlags: 0
@@ -531,9 +527,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   directionalForceMultiplier: 2
-  rotationalForceMultiplier: 100
+  rotationalForceMultiplier: 200
   directionOffset: {x: 0, y: 5, z: 0}
-  rotationOffset: {x: 0.25, y: 0.5, z: 1}
+  rotationOffset: {x: 3, y: 2, z: 1}
 --- !u!54 &560230559805482690
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -608,7 +604,6 @@ MonoBehaviour:
   rigidBody: {fileID: 1668373931361509381}
   waterDrag: 18
   waterAngularDrag: 18
-  waterLevel: 0
 --- !u!1 &3251976290425583535
 GameObject:
   m_ObjectHideFlags: 0
@@ -656,7 +651,6 @@ MonoBehaviour:
   rigidBody: {fileID: 5121770785681370059}
   waterDrag: 18
   waterAngularDrag: 18
-  waterLevel: 0
 --- !u!1 &3443784434521858706
 GameObject:
   m_ObjectHideFlags: 0
@@ -739,7 +733,6 @@ MonoBehaviour:
   rigidBody: {fileID: 5121770785681370059}
   waterDrag: 18
   waterAngularDrag: 18
-  waterLevel: 0
 --- !u!1 &3499403662906893085
 GameObject:
   m_ObjectHideFlags: 0
@@ -787,7 +780,6 @@ MonoBehaviour:
   rigidBody: {fileID: 5213047958688266849}
   waterDrag: 18
   waterAngularDrag: 18
-  waterLevel: 0
 --- !u!1 &4374108593216490405
 GameObject:
   m_ObjectHideFlags: 0
@@ -835,7 +827,6 @@ MonoBehaviour:
   rigidBody: {fileID: 5213047958688266849}
   waterDrag: 18
   waterAngularDrag: 18
-  waterLevel: 0
 --- !u!1 &4453238472372399778
 GameObject:
   m_ObjectHideFlags: 0
@@ -883,7 +874,6 @@ MonoBehaviour:
   rigidBody: {fileID: 5022298999132740256}
   waterDrag: 18
   waterAngularDrag: 18
-  waterLevel: 0
 --- !u!1 &4469399466328444778
 GameObject:
   m_ObjectHideFlags: 0
@@ -1072,7 +1062,6 @@ MonoBehaviour:
   rigidBody: {fileID: 5121770785681370059}
   waterDrag: 18
   waterAngularDrag: 18
-  waterLevel: 0
 --- !u!1 &5189259062314748013
 GameObject:
   m_ObjectHideFlags: 0
@@ -1260,9 +1249,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   directionalForceMultiplier: 2
-  rotationalForceMultiplier: 100
+  rotationalForceMultiplier: 200
   directionOffset: {x: 0, y: 5, z: 0}
-  rotationOffset: {x: 0.25, y: 0.5, z: 1}
+  rotationOffset: {x: 3, y: 2, z: 1}
 --- !u!54 &1997678713538946252
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1337,7 +1326,6 @@ MonoBehaviour:
   rigidBody: {fileID: 5213047958688266849}
   waterDrag: 18
   waterAngularDrag: 18
-  waterLevel: 0
 --- !u!1 &6437130966894859794
 GameObject:
   m_ObjectHideFlags: 0
@@ -1567,9 +1555,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   directionalForceMultiplier: 2
-  rotationalForceMultiplier: 100
+  rotationalForceMultiplier: 200
   directionOffset: {x: 0, y: 5, z: 0}
-  rotationOffset: {x: 0.25, y: 0.5, z: 1}
+  rotationOffset: {x: 3, y: 2, z: 1}
 --- !u!54 &7734331230838826961
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1770,7 +1758,6 @@ MonoBehaviour:
   rigidBody: {fileID: 1668373931361509381}
   waterDrag: 18
   waterAngularDrag: 18
-  waterLevel: 0
 --- !u!1 &7356094332738403121
 GameObject:
   m_ObjectHideFlags: 0
@@ -1958,9 +1945,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   directionalForceMultiplier: 2
-  rotationalForceMultiplier: 100
+  rotationalForceMultiplier: 200
   directionOffset: {x: 0, y: 5, z: 0}
-  rotationOffset: {x: 0.25, y: 0.5, z: 1}
+  rotationOffset: {x: 3, y: 2, z: 1}
 --- !u!54 &1780578437635016622
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2035,7 +2022,6 @@ MonoBehaviour:
   rigidBody: {fileID: 1668373931361509381}
   waterDrag: 18
   waterAngularDrag: 18
-  waterLevel: 0
 --- !u!1 &7773270508690389239
 GameObject:
   m_ObjectHideFlags: 0
@@ -2083,7 +2069,6 @@ MonoBehaviour:
   rigidBody: {fileID: 5022298999132740256}
   waterDrag: 18
   waterAngularDrag: 18
-  waterLevel: 0
 --- !u!1 &8562237903912373632
 GameObject:
   m_ObjectHideFlags: 0
@@ -2131,7 +2116,6 @@ MonoBehaviour:
   rigidBody: {fileID: 5121770785681370059}
   waterDrag: 18
   waterAngularDrag: 18
-  waterLevel: 0
 --- !u!1 &9165249684044108159
 GameObject:
   m_ObjectHideFlags: 0
@@ -2254,9 +2238,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   directionalForceMultiplier: 2
-  rotationalForceMultiplier: 100
+  rotationalForceMultiplier: 200
   directionOffset: {x: 0, y: 5, z: 0}
-  rotationOffset: {x: 0.25, y: 0.5, z: 1}
+  rotationOffset: {x: 3, y: 2, z: 1}
 --- !u!54 &8296294068695588956
 Rigidbody:
   m_ObjectHideFlags: 0
