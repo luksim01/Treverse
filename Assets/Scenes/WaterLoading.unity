@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.22198144, g: 0.1537601, b: 0.099997535, a: 1}
+  m_IndirectSpecularColor: {r: 0.23640142, g: 0.17005542, b: 0.1264955, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1107,7 +1107,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-74606
+  m_Name: pb_Mesh-261008
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -1515,33 +1515,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnergyConnector
       objectReference: {fileID: 0}
-    - target: {fileID: 2841538752055678901, guid: e7a17f93c882840688646fa11abc3f9f, type: 3}
-      propertyPath: VelocityModule.radial.scalar
-      value: -11
-      objectReference: {fileID: 0}
-    - target: {fileID: 2841538752055678901, guid: e7a17f93c882840688646fa11abc3f9f, type: 3}
-      propertyPath: InitialModule.maxNumParticles
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 2841538752055678901, guid: e7a17f93c882840688646fa11abc3f9f, type: 3}
-      propertyPath: EmissionModule.rateOverTime.scalar
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 2841538752055678901, guid: e7a17f93c882840688646fa11abc3f9f, type: 3}
-      propertyPath: InitialModule.startLifetime.scalar
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 3092713045995797702, guid: e7a17f93c882840688646fa11abc3f9f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3092713045995797702, guid: e7a17f93c882840688646fa11abc3f9f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3092713045995797702, guid: e7a17f93c882840688646fa11abc3f9f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3092713045995797702, guid: e7a17f93c882840688646fa11abc3f9f, type: 3}
       propertyPath: m_LocalRotation.w

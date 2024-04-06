@@ -45,8 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigidBody: {fileID: 5022298999132740256}
-  waterDrag: 18
-  waterAngularDrag: 18
+  waterDrag: 6
+  waterAngularDrag: 6
 --- !u!1 &1274131270212232462
 GameObject:
   m_ObjectHideFlags: 0
@@ -92,8 +92,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigidBody: {fileID: 5022298999132740256}
-  waterDrag: 18
-  waterAngularDrag: 18
+  waterDrag: 6
+  waterAngularDrag: 6
 --- !u!1 &1559317215280831466
 GameObject:
   m_ObjectHideFlags: 0
@@ -204,8 +204,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigidBody: {fileID: 1668373931361509381}
-  waterDrag: 18
-  waterAngularDrag: 18
+  waterDrag: 6
+  waterAngularDrag: 6
 --- !u!1 &2038735148696861635
 GameObject:
   m_ObjectHideFlags: 0
@@ -602,8 +602,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigidBody: {fileID: 1668373931361509381}
-  waterDrag: 18
-  waterAngularDrag: 18
+  waterDrag: 6
+  waterAngularDrag: 6
 --- !u!1 &3251976290425583535
 GameObject:
   m_ObjectHideFlags: 0
@@ -649,8 +649,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigidBody: {fileID: 5121770785681370059}
-  waterDrag: 18
-  waterAngularDrag: 18
+  waterDrag: 6
+  waterAngularDrag: 6
 --- !u!1 &3443784434521858706
 GameObject:
   m_ObjectHideFlags: 0
@@ -731,8 +731,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigidBody: {fileID: 5121770785681370059}
-  waterDrag: 18
-  waterAngularDrag: 18
+  waterDrag: 6
+  waterAngularDrag: 6
 --- !u!1 &3499403662906893085
 GameObject:
   m_ObjectHideFlags: 0
@@ -872,8 +872,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigidBody: {fileID: 5022298999132740256}
-  waterDrag: 18
-  waterAngularDrag: 18
+  waterDrag: 6
+  waterAngularDrag: 6
 --- !u!1 &4469399466328444778
 GameObject:
   m_ObjectHideFlags: 0
@@ -1060,8 +1060,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigidBody: {fileID: 5121770785681370059}
-  waterDrag: 18
-  waterAngularDrag: 18
+  waterDrag: 6
+  waterAngularDrag: 6
 --- !u!1 &5189259062314748013
 GameObject:
   m_ObjectHideFlags: 0
@@ -1756,8 +1756,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigidBody: {fileID: 1668373931361509381}
-  waterDrag: 18
-  waterAngularDrag: 18
+  waterDrag: 6
+  waterAngularDrag: 6
 --- !u!1 &7356094332738403121
 GameObject:
   m_ObjectHideFlags: 0
@@ -2020,8 +2020,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigidBody: {fileID: 1668373931361509381}
-  waterDrag: 18
-  waterAngularDrag: 18
+  waterDrag: 6
+  waterAngularDrag: 6
 --- !u!1 &7773270508690389239
 GameObject:
   m_ObjectHideFlags: 0
@@ -2067,8 +2067,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigidBody: {fileID: 5022298999132740256}
-  waterDrag: 18
-  waterAngularDrag: 18
+  waterDrag: 6
+  waterAngularDrag: 6
 --- !u!1 &8562237903912373632
 GameObject:
   m_ObjectHideFlags: 0
@@ -2114,8 +2114,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigidBody: {fileID: 5121770785681370059}
-  waterDrag: 18
-  waterAngularDrag: 18
+  waterDrag: 6
+  waterAngularDrag: 6
 --- !u!1 &9165249684044108159
 GameObject:
   m_ObjectHideFlags: 0
