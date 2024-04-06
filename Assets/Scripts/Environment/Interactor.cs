@@ -32,7 +32,7 @@ public class Interactor : MonoBehaviour, IInteractor
     public float sightRange;
 
     // glowing outline
-    private Material objectToOutlineOriginalMaterial;
+    [SerializeField] List<Material> objectToOutlineOriginalMaterial;
     public Material glowingOutline;
     private GameObject previouslySeen = null;
 
@@ -50,15 +50,20 @@ public class Interactor : MonoBehaviour, IInteractor
 
     void Update()
     {
-        DestroyMarkedObjects();
         ManageInteractorVision();
+        DestroyMarkedObjects();
     }
 
     void DestroyMarkedObjects()
     {
-        foreach (GameObject objectToDestroy in destroyObjectList)
+        if(destroyObjectList.Count > 0)
         {
-            Destroy(objectToDestroy);
+            RemoveOutline(outlinedObjectList);
+            foreach (GameObject objectToDestroy in destroyObjectList)
+            {
+                Destroy(objectToDestroy);
+            }
+            destroyObjectList.Clear();
         }
     }
 
@@ -161,14 +166,14 @@ public class Interactor : MonoBehaviour, IInteractor
             GameObject objectToOutline = seenObjectList[i];
 
             // objects that haven't been outlined
-            if (!outlinedObjectList.Contains(objectToOutline))
+            if (!outlinedObjectList.Contains(objectToOutline) && objectToOutline.name != "BuoyantPoint")
             {
                 List<Material> objectToOutlineMaterials = new List<Material>();
                 // get current materials list
                 objectToOutline.GetComponent<MeshRenderer>().GetMaterials(objectToOutlineMaterials);
 
                 // retain original material, note: only uses first material of object
-                objectToOutlineOriginalMaterial = objectToOutlineMaterials[0];
+                objectToOutlineOriginalMaterial = new List<Material>(objectToOutlineMaterials);
 
                 // add glowing outline to materials list
                 objectToOutlineMaterials.Add(glowingOutline);
@@ -189,7 +194,7 @@ public class Interactor : MonoBehaviour, IInteractor
 
             if (outlineObjectList.Contains(objectToClear))
             {
-                objectToClear.GetComponent<MeshRenderer>().SetMaterials(new List<Material>() { objectToOutlineOriginalMaterial });
+                objectToClear.GetComponent<MeshRenderer>().SetMaterials(objectToOutlineOriginalMaterial);
             }
         }
 
