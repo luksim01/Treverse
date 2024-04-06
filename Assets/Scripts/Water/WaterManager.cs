@@ -269,7 +269,11 @@ public class WaterManager : MonoBehaviour
 
     public void UpdateWaterTileColour(Color waterColour){
         for(int i = 0; i < amountToPool; i++){
-            waterTilePool[i].GetComponent<Renderer>().material.SetColor("_BaseColor", waterColour);
+            waterTilePool[i].GetComponent<Renderer>().material.SetColor("_ShallowColor", waterColour);
+            Color darkColour = convertToDeepColour(waterColour);
+            waterTilePool[i].GetComponent<Renderer>().material.SetColor("_DeepColor", darkColour);
+            Color foamColour = convertToFoamColour(waterColour);
+            waterTilePool[i].GetComponent<Renderer>().material.SetColor("_FoamColor", foamColour);
         }
     }
 
@@ -296,5 +300,18 @@ public class WaterManager : MonoBehaviour
         {
             return false;
         }
+    }
+
+    private Color convertToFoamColour(Color color)
+    {
+        float H, S, V;
+        Color.RGBToHSV(color, out H, out S, out V);
+        return Color.HSVToRGB(H, 0.1f * S, V);
+    }
+    private Color convertToDeepColour(Color color)
+    {
+        float H, S, V;
+        Color.RGBToHSV(color, out H, out S, out V);
+        return Color.HSVToRGB(H, S, V * 0.5f);
     }
 }

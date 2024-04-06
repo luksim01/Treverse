@@ -6,6 +6,10 @@ using UnityEngine.Rendering.HighDefinition;
 
 public class EnvironmentManager : MonoBehaviour
 {
+    [Header("Lighting")]
+    [SerializeField] Light directionalLight;
+    [SerializeField] LocalVolumetricFog localFog;
+
     public enum WaterColour
     {
         shallow,
@@ -15,7 +19,6 @@ public class EnvironmentManager : MonoBehaviour
         black
     }
     WaterManager waterManager;
-    GameObject waterParent;
 
 
     [Header("Water Colour")]
@@ -44,19 +47,17 @@ public class EnvironmentManager : MonoBehaviour
     void Start()
     {
         waterManager = GameObject.Find("WaterManager").GetComponent<WaterManager>();
-        waterParent = GameObject.Find("Water");
-        Debug.Assert(waterParent, "Lukas: Nick, line 47, there is no Water parent anymore, can you update the code with the latest scene hierarchy changes");
-
+        
         Debug.Assert(powerStationSmoke, "Lukas: Nick, line 39, I have deactivate fog while fixing the scene, can you revisit and make sure all is OK with this code");
         Debug.Assert(powerStationFog, "Lukas: Nick, line 40, I have deactivate fog while fixing the scene, can you revisit and make sure all is OK with this code");
     }
 
     void Update()
     {
-        ManageWaterColour();
-        if(waterParent != null)
+        if(waterManager != null)
         {
             ManageWaterLevel();
+            ManageWaterColour();
         }
 
         if (powerStationSmoke != null && powerStationFog != null)
@@ -71,25 +72,30 @@ public class EnvironmentManager : MonoBehaviour
         {
             case WaterColour.shallow:
                 waterManager.InitiateWaterTileColourChangeTo(shallowWaterColor, waterColourChangeSpeed);
+                directionalLight.GetComponent<Light>().color = convertToFilterColour(shallowWaterColor);
                 break;
             case WaterColour.deep:
                 waterManager.InitiateWaterTileColourChangeTo(deepWaterColor, waterColourChangeSpeed);
+                directionalLight.GetComponent<Light>().color = convertToFilterColour(deepWaterColor);
                 break;
             case WaterColour.polluted:
                 waterManager.InitiateWaterTileColourChangeTo(pollutedWaterColor, waterColourChangeSpeed);
+                directionalLight.GetComponent<Light>().color = convertToFilterColour(pollutedWaterColor);
                 break;
             case WaterColour.apocalyptic:
                 waterManager.InitiateWaterTileColourChangeTo(apocalypticWaterColor, waterColourChangeSpeed);
+                directionalLight.GetComponent<Light>().color = convertToFilterColour(apocalypticWaterColor);
                 break;
             case WaterColour.black:
                 waterManager.InitiateWaterTileColourChangeTo(blackWaterColor, waterColourChangeSpeed);
+                directionalLight.GetComponent<Light>().color = convertToFilterColour(blackWaterColor);
                 break;
         }
     }
 
     private void ManageWaterLevel()
     {
-        float currentWaterLevel = waterParent.transform.position.y;
+        float currentWaterLevel = waterManager.transform.position.y;
         if (desiredWaterLevel != currentWaterLevel)
         {
             float waterLevelDifference = desiredWaterLevel - currentWaterLevel;
@@ -102,7 +108,7 @@ public class EnvironmentManager : MonoBehaviour
                 currentWaterLevel += Mathf.Sign(waterLevelDifference) * waterLevelChangeSpeed * Time.deltaTime;
             }
 
-            waterParent.transform.position = new Vector3(waterParent.transform.position.x, currentWaterLevel, waterParent.transform.position.z);
+            waterManager.transform.position = new Vector3(waterManager.transform.position.x, currentWaterLevel, waterManager.transform.position.z);
         }
     }
 
@@ -143,5 +149,12 @@ public class EnvironmentManager : MonoBehaviour
             powerStationSmoke.transform.localScale =
                 new Vector3(smokeScale.x + growAmount, smokeScale.y + growAmount, smokeScale.z + growAmount);
         }
+    }
+
+    private Color convertToFilterColour(Color color)
+    {
+        float H, S, V;
+        Color.RGBToHSV(color, out H, out S, out V);
+        return Color.HSVToRGB(H, 0.1f, V);
     }
 }
