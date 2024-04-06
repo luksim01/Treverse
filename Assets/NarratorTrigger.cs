@@ -56,6 +56,10 @@ public class NarratorTrigger : MonoBehaviour
                 SecondNarrationCue();
             }
         }
+        if( sustainingCount == 3)
+        {
+            Destroy(droneInpurtUI);
+        }
         // I GOT IT WORKING OMGOMGOMGOMGOMGOMGOMGOMGOMGOMGOMGOMGOMGOMGOMG
     }
 
@@ -93,6 +97,7 @@ public class NarratorTrigger : MonoBehaviour
             {
                 Narrator.keyOff();
                 Debug.Log("Cue 2");
+            sustainingCount++;
             }
         
     }
