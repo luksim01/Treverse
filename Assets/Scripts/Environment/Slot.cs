@@ -14,11 +14,13 @@ public class Slot : MonoBehaviour, IInsertConnector
 
     public GameObject connector;
     private GameObject cameraManager;
+    private GameManager gameManager;
     private Interactor interactor;
 
     private void Start()
     {
         cameraManager = GameObject.Find("Camera Manager");
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         interactor = cameraManager.GetComponent<Interactor>();
 
         if (isConnectorInSlot)
@@ -57,6 +59,7 @@ public class Slot : MonoBehaviour, IInsertConnector
         }
 
         isConnectorInSlot = true;
+        gameManager.UpdateEnvironment();
         AddConnectorInSlot();
         isSlotTriggered = false;
     }
@@ -75,6 +78,7 @@ public class Slot : MonoBehaviour, IInsertConnector
             GameObject connectorContact = transform.GetChild(i).gameObject;
             connectorContact.GetComponent<InteractiveSlotElement>().SetObjectStatus(InteractiveObjectStatus.active);
             isConnectorInSlot = false;
+            gameManager.UpdateEnvironment();
         }
     }
 }
