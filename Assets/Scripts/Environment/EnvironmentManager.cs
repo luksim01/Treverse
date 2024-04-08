@@ -16,6 +16,7 @@ public class EnvironmentManager : MonoBehaviour
         deep,
         polluted,
         apocalyptic,
+        purpleApocalypse,
         black
     }
     WaterManager waterManager;
@@ -28,6 +29,7 @@ public class EnvironmentManager : MonoBehaviour
     private Color deepWaterColor = new Color(0.0f, 0.15f, 0.5f, 0.9f);
     private Color pollutedWaterColor = new Color(0.2f, 0.5f, 0.35f, 0.9f);
     private Color apocalypticWaterColor = new Color(0.75f, 0.0f, 0.0f, 0.95f);
+    private Color purpleApocalypseColor = new Color(1, 0.57f, 0.96f);
     private Color blackWaterColor = new Color(0.0f, 0.0f, 0.0f, 0.97f);
 
     [SerializeField] float waterColourChangeSpeed;
@@ -82,6 +84,10 @@ public class EnvironmentManager : MonoBehaviour
             case WaterColour.apocalyptic:
                 waterManager.InitiateWaterTileColourChangeTo(apocalypticWaterColor, waterColourChangeSpeed);
                 directionalLight.GetComponent<Light>().color = convertToFilterColour(apocalypticWaterColor);
+                break;
+            case WaterColour.purpleApocalypse:
+                waterManager.InitiateWaterTileColourChangeTo(new Color(0, 0.83f, 1, 0.47f), waterColourChangeSpeed);
+                directionalLight.GetComponent<Light>().color = purpleApocalypseColor;
                 break;
             case WaterColour.black:
                 waterManager.InitiateWaterTileColourChangeTo(blackWaterColor, waterColourChangeSpeed);

@@ -68,7 +68,7 @@ public class GameManager : MonoBehaviour
         if (activeCoalConnectors != 0)
         {
             // set environment to 100% pollution
-            environmentManager.waterColour = EnvironmentManager.WaterColour.apocalyptic;
+            environmentManager.waterColour = EnvironmentManager.WaterColour.purpleApocalypse;
         }
         else if (activeWindConnectors != windFarmConnectors.Length)
         {

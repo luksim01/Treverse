@@ -272,8 +272,8 @@ public class WaterManager : MonoBehaviour
             waterTilePool[i].GetComponent<Renderer>().material.SetColor("_ShallowColor", waterColour);
             Color darkColour = convertToDeepColour(waterColour);
             waterTilePool[i].GetComponent<Renderer>().material.SetColor("_DeepColor", darkColour);
-            Color foamColour = convertToFoamColour(waterColour);
-            waterTilePool[i].GetComponent<Renderer>().material.SetColor("_FoamColor", foamColour);
+            //Color foamColour = convertToFoamColour(waterColour);
+            //waterTilePool[i].GetComponent<Renderer>().material.SetColor("_FoamColor", foamColour);
         }
     }
 
