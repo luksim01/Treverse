@@ -56,6 +56,7 @@ public class Slot : MonoBehaviour, IInsertConnector
         {
             GameObject connectorContact = transform.GetChild(i).gameObject;
             connectorContact.GetComponent<InteractiveSlotElement>().SetObjectStatus(InteractiveObjectStatus.inactive);
+            connectorContact.layer = LayerMask.NameToLayer("Ignore Raycast");
         }
 
         isConnectorInSlot = true;
