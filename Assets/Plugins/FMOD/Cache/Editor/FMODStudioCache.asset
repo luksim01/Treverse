@@ -123,7 +123,7 @@ MonoBehaviour:
   Path: Assets/Audio/Fmod/kayak/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638478510013868545
+  lastModified: 638481885874500793
   FileSizes:
   - Name: Desktop
     Value: 1306
@@ -170,7 +170,7 @@ MonoBehaviour:
   Path: Assets/Audio/Fmod/kayak/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638478510013853711
+  lastModified: 638481885874447087
   FileSizes:
   - Name: Desktop
     Value: 1073568
@@ -257,7 +257,7 @@ MonoBehaviour:
   - {fileID: -3793696425352921973}
   StringsBanks:
   - {fileID: -5133428505895016790}
-  cacheTime: 638478510013893360
+  cacheTime: 638481885874783958
   cacheVersion: 131617
 --- !u!114 &22637902999472741
 MonoBehaviour:
@@ -301,7 +301,7 @@ MonoBehaviour:
   Path: Assets/Audio/Fmod/kayak/Build/Desktop/Voice.bank
   Name: Voice
   StudioPath: bank:/Voice
-  lastModified: 638473260736615538
+  lastModified: 638481885874783958
   FileSizes:
   - Name: Desktop
     Value: 1072672
@@ -348,7 +348,7 @@ MonoBehaviour:
   Path: Assets/Audio/Fmod/kayak/Build/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 638478510013893360
+  lastModified: 638481885874602705
   FileSizes:
   - Name: Desktop
     Value: 443360
