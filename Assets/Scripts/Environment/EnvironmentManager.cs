@@ -53,7 +53,8 @@ public class EnvironmentManager : MonoBehaviour
     {
         if(waterManager != null)
         {
-            ManageWaterLevel();
+            // ManageWaterLevel();
+            // Temporarily removing until water tile bug is fixed
             ManageWaterColour();
         }
 
