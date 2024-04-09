@@ -14,7 +14,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: a4e6373438895ea4bb7d8ed213d08cfa, type: 2}
     - target: {fileID: -8679921383154817045, guid: 3b8b09cd3e7644b4280acac7cf68fa69, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.7
+      value: 0.5000002
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3b8b09cd3e7644b4280acac7cf68fa69, type: 3}
       propertyPath: m_LocalScale.y
@@ -22,19 +22,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3b8b09cd3e7644b4280acac7cf68fa69, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.5
+      value: 0.5000002
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3b8b09cd3e7644b4280acac7cf68fa69, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -8
+      value: -1668.319
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3b8b09cd3e7644b4280acac7cf68fa69, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3b8b09cd3e7644b4280acac7cf68fa69, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 5
+      value: -1081.275
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3b8b09cd3e7644b4280acac7cf68fa69, type: 3}
       propertyPath: m_LocalRotation.w
@@ -68,9 +68,21 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: a4e6373438895ea4bb7d8ed213d08cfa, type: 2}
+    - target: {fileID: -2338648224389737963, guid: 3b8b09cd3e7644b4280acac7cf68fa69, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: -840777845830954692, guid: 3b8b09cd3e7644b4280acac7cf68fa69, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 3b8b09cd3e7644b4280acac7cf68fa69, type: 3}
       propertyPath: m_Name
       value: ConnectorSlot
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3b8b09cd3e7644b4280acac7cf68fa69, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -109,7 +121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34e8877f97e83427aacdc7ec370b3a4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isConnectorInSlot: 0
+  isConnectorInSlot: 1
   connector: {fileID: 1133140760455510127, guid: e7a17f93c882840688646fa11abc3f9f, type: 3}
 --- !u!1 &4771828537807390183 stripped
 GameObject:

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5766040513633486343}
   - component: {fileID: 117867519403701621}
   - component: {fileID: 1214547334357307135}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Long Blue Pipe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4195,7 +4195,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 1031
+  m_VersionIndex: 1037
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []

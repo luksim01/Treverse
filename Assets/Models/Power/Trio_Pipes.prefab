@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2255305322833954663}
   - component: {fileID: 1435061216359076685}
   - component: {fileID: 5518234372249680358}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: New Game Object (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4195,7 +4195,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 1025
+  m_VersionIndex: 1046
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -4308,7 +4308,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1555971967704373347}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Trio_Pipes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4347,7 +4347,7 @@ GameObject:
   - component: {fileID: 3008003870431416412}
   - component: {fileID: 8010883638178581757}
   - component: {fileID: 7737328748473773248}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: New Game Object
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8528,7 +8528,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 1022
+  m_VersionIndex: 1043
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -8646,7 +8646,7 @@ GameObject:
   - component: {fileID: 6707405794138952644}
   - component: {fileID: 3764091192423394120}
   - component: {fileID: 7818657064199868363}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: New Game Object (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12827,7 +12827,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 1028
+  m_VersionIndex: 1049
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []

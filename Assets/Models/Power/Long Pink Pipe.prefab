@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 308553700282977525}
   - component: {fileID: 3616096561832180357}
   - component: {fileID: 4942417821563067089}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Long Pink Pipe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4195,7 +4195,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 1034
+  m_VersionIndex: 1040
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []

@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5730535375690959045}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: TrioPipes_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24,16 +24,16 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 514158330831394933}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.48511374, y: 0.48511368, z: -0.51445574, w: 0.5144557}
+  m_LocalRotation: {x: -0.485113, y: 0.485113, z: -0.51445645, w: 0.51445645}
   m_LocalPosition: {x: 67.81287, y: -2.0890503, z: 1716.6655}
-  m_LocalScale: {x: 0.5, y: 1, z: 0.5}
+  m_LocalScale: {x: 0.5, y: 1.31, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7750590812725154899}
   - {fileID: 2960508686397014149}
   - {fileID: 4830324888121995790}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 86.637, z: -90}
 --- !u!1 &1309553574181460681
 GameObject:
   m_ObjectHideFlags: 0
@@ -48,7 +48,7 @@ GameObject:
   - component: {fileID: 1898238525884029270}
   - component: {fileID: 1458971718792766190}
   - component: {fileID: 9126118711061321718}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Pipe (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -820,7 +820,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 313
+  m_VersionIndex: 331
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -943,7 +943,7 @@ GameObject:
   - component: {fileID: 2250121640540796625}
   - component: {fileID: 5583712901434745171}
   - component: {fileID: 2193373406732418207}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Pipe (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1715,7 +1715,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 322
+  m_VersionIndex: 337
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -1838,7 +1838,7 @@ GameObject:
   - component: {fileID: 4912179607012894434}
   - component: {fileID: 7907036180343596366}
   - component: {fileID: 6571602215299195927}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Pipe (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2610,7 +2610,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 316
+  m_VersionIndex: 331
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
