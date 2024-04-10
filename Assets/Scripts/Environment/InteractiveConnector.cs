@@ -16,11 +16,28 @@ public class InteractiveConnector : MonoBehaviour, IInteractiveObject
 
     private InteractiveObjectStatus connectorStatus;
 
+    // Audio
+
+    public FMOD.Studio.EventInstance NarratorCube;
+    private int cubeSustainingCount = 0;
+
+    void Awake()
+    {
+        NarratorCube = FMODUnity.RuntimeManager.CreateInstance("event:/Narration/Narration_3");
+    }
+
+
     private void Start()
     {
         kayak = GameObject.Find("Kayak");
         cameraManager = GameObject.Find("Camera Manager");
         interactor = cameraManager.GetComponent<Interactor>();
+    }
+
+    private void Update()
+    {
+        // To play audio
+       
     }
 
     public void Interact()
@@ -83,10 +100,35 @@ public class InteractiveConnector : MonoBehaviour, IInteractiveObject
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject == kayak)
+
+        connectorStatus = InteractiveObjectStatus.destroyed;
+        interactor.AddObjectToDestroy(gameObject);
+        // play audio
+        FMOD.Studio.PLAYBACK_STATE PbState;
+        NarratorCube.getPlaybackState(out PbState);
+
+        if (cubeSustainingCount == 0)
         {
-            connectorStatus = InteractiveObjectStatus.destroyed;
-            interactor.AddObjectToDestroy(gameObject);
+            NarratorCube.start();
+            Debug.Log("1");
+            cubeSustainingCount++;
+            Debug.Log("Plus 1");
         }
+
+        if (cubeSustainingCount == 1)
+        {
+
+            NarratorCube.keyOff();
+            cubeSustainingCount++;
+            
+        }
+
+
+       
     }
+
+    
+
+
+  
 }

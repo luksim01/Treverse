@@ -72,7 +72,6 @@ public class NarratorTrigger : MonoBehaviour
             GetComponent<BoxCollider>().enabled = false;
             Narrator.start();
            // Debug.Log("Play");
-        
         }
 
         
