@@ -97,8 +97,7 @@ public class InteractiveConnector : MonoBehaviour, IInteractiveObject
             // Destroy(gameObject);
 
             cubeAudioScript.AudioSustainPlayback();
-            Debug.Log("oce");
-            print("Collision Out: " + gameObject.name);
+            
         }
     }
 
