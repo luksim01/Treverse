@@ -33,7 +33,7 @@ public class NarratorTrigger : MonoBehaviour
         { 
             if (PbState == FMOD.Studio.PLAYBACK_STATE.SUSTAINING)
             {
-                Debug.Log("Voice is currently paused");
+                // Debug.Log("Voice is currently paused");
                 FirstNarrationCue();
 
 
@@ -71,7 +71,7 @@ public class NarratorTrigger : MonoBehaviour
         {
             GetComponent<BoxCollider>().enabled = false;
             Narrator.start();
-            Debug.Log("Play");
+           // Debug.Log("Play");
         
         }
 
@@ -83,7 +83,7 @@ public class NarratorTrigger : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.D))
         {
             Narrator.keyOff();
-            Debug.Log("Cue 1");
+          //  Debug.Log("Cue 1");
             sustainingCount++;
         }
     }
@@ -96,7 +96,7 @@ public class NarratorTrigger : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.P))
             {
                 Narrator.keyOff();
-                Debug.Log("Cue 2");
+            //    Debug.Log("Cue 2");
             sustainingCount++;
             }
         
