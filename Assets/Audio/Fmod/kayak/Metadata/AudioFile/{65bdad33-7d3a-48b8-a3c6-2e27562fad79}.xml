@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{65bdad33-7d3a-48b8-a3c6-2e27562fad79}">
+		<property name="assetPath">
+			<value>Music/Saturation-4-mastered.wav</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>232</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{cecb84a5-319a-4c59-8ec2-ec2db4fb3ca9}</destination>
+		</relationship>
+	</object>
+</objects>

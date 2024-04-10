@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{58f10650-1865-4df1-83a6-125ab3c5c476}">
+		<property name="assetPath">
+			<value>Music/ThatsOurSummer-5-mastered.wav</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>200</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{cecb84a5-319a-4c59-8ec2-ec2db4fb3ca9}</destination>
+		</relationship>
+	</object>
+</objects>
