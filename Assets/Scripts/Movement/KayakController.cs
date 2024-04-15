@@ -28,6 +28,9 @@ public class KayakController : MonoBehaviour
     bool isDroneCameraActive;
     [SerializeField] private float forwardSpeedDroneCamera;
 
+    // Inventory
+    public int energyCubeCount = 0;
+
     GameManager gameManager;
 
  /*   // Paddle Audio Generator

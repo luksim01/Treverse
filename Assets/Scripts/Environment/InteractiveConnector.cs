@@ -91,6 +91,8 @@ public class InteractiveConnector : MonoBehaviour, IInteractiveObject
     {
         if (collision.gameObject == kayak && connectorStatus != InteractiveObjectStatus.destroyed)
         {
+            kayak.GetComponent<KayakController>().energyCubeCount++;
+
             connectorStatus = InteractiveObjectStatus.destroyed;
             interactor.AddObjectToDestroy(gameObject);
             

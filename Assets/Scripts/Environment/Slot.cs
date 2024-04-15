@@ -45,7 +45,15 @@ public class Slot : MonoBehaviour, IInsertConnector
 
             if (isSlotTriggered)
             {
-                DeactivateSlotAddConnector();
+                GameObject kayak = GameObject.Find("Kayak");
+                if (kayak != null)
+                {
+                    if (kayak.GetComponent<KayakController>().energyCubeCount > 0)
+                    {
+                        kayak.GetComponent<KayakController>().energyCubeCount--;
+                        DeactivateSlotAddConnector();
+                    }
+                }
             }
         }
     }

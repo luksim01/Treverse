@@ -8,7 +8,10 @@ public class EnvironmentManager : MonoBehaviour
 {
     [Header("Lighting")]
     [SerializeField] Light directionalLight;
-    [SerializeField] LocalVolumetricFog localFog;
+    public float fogIntensity = 0.7f; // 0 -> 1
+    [SerializeField] GameObject localFogParent;
+    [SerializeField] private float fogChangeSpeed = 15.0f;
+    private LocalVolumetricFog localFog;
 
     public enum WaterColour
     {
@@ -48,11 +51,19 @@ public class EnvironmentManager : MonoBehaviour
 
     void Start()
     {
+        localFog = localFogParent.GetComponent<LocalVolumetricFog>();
         waterManager = GameObject.Find("WaterManager").GetComponent<WaterManager>();
     }
 
     void Update()
     {
+        if (localFog != null)
+        {
+            ManageLocalFog();
+        } else
+        {
+            Debug.LogError("No local fog set!");
+        }
         if(waterManager != null)
         {
             // ManageWaterLevel();
@@ -60,7 +71,7 @@ public class EnvironmentManager : MonoBehaviour
             ManageWaterColour();
         }
 
-        if (powerStationSmoke != null && powerStationFog != null)
+        if (powerStationSmoke != null)// && powerStationFog != null)
         {
             ManagePowerStation();
         }
@@ -133,7 +144,7 @@ public class EnvironmentManager : MonoBehaviour
                 }
 
             }
-            if (powerStationFog.activeSelf)
+            /*if (powerStationFog.activeSelf)
             {
                 LocalVolumetricFog fog = powerStationFog.GetComponent<LocalVolumetricFog>();
                 float fogDistance = fog.parameters.meanFreePath;
@@ -145,13 +156,35 @@ public class EnvironmentManager : MonoBehaviour
                 {
                     powerStationFog.SetActive(false);
                 }
-            }
+            }*/
         } else if (smokeScale.x < 1)
         {
             powerStationSmoke.SetActive(true);
             float growAmount = shrinkSpeed * Time.deltaTime;
             powerStationSmoke.transform.localScale =
                 new Vector3(smokeScale.x + growAmount, smokeScale.y + growAmount, smokeScale.z + growAmount);
+        }
+    }
+
+    private void ManageLocalFog()
+    {
+        float desiredFogDistance = fogIntensity * 1000;
+        float currentfogDistance = localFog.parameters.distanceFadeEnd;
+
+        if (desiredFogDistance != currentfogDistance)
+        {
+            float fogLevelDifference = desiredFogDistance - currentfogDistance;
+
+            if (Mathf.Abs(fogLevelDifference) < fogChangeSpeed * Time.deltaTime)
+            {
+                currentfogDistance = desiredFogDistance;
+            }
+            else
+            {
+                currentfogDistance += Mathf.Sign(fogLevelDifference) * fogChangeSpeed * Time.deltaTime;
+            }
+
+            localFog.parameters.distanceFadeEnd = currentfogDistance;
         }
     }
 

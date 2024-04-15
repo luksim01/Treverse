@@ -71,25 +71,30 @@ public class GameManager : MonoBehaviour
         {
             // keep wind farm inactive
             windFarm.WindFarmInactive();
-
+            environmentManager.powerStationActive = true;
             // set environment to 100% pollution
             environmentManager.waterColour = EnvironmentManager.WaterColour.purpleApocalypse;
+            environmentManager.fogIntensity = 0.5f;
         }
         else if (activeWindConnectors != windFarmConnectors.Length)
         {
             // keep wind farm inactive
             windFarm.WindFarmInactive();
+            environmentManager.powerStationActive = false;
 
             // set to 50% polluted
             environmentManager.waterColour = EnvironmentManager.WaterColour.polluted;
+            environmentManager.fogIntensity = 0.1f;
         }
         else
         {
             // activate wind farm
             windFarm.WindFarmActive();
+            environmentManager.powerStationActive = false;
 
             // set to clean environment
             environmentManager.waterColour = EnvironmentManager.WaterColour.shallow;
+            environmentManager.fogIntensity = 0;
         }
     }
 }
