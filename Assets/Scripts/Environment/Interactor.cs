@@ -86,6 +86,8 @@ public class Interactor : MonoBehaviour, IInteractor
             isInteractiveObject = hitInfo.collider.gameObject.TryGetComponent(out interactiveObject);
             seenObject = hitInfo.collider.gameObject;
 
+            Debug.Log("seen: " + seenObject.name);
+
             if (isInteractiveObject)
             {
                 objectStatus = interactiveObject.GetObjectStatus();
