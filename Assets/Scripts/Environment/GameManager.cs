@@ -13,9 +13,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject[] coalPlantConnectors;
     [SerializeField] private GameObject[] windFarmConnectors;
 
+    WindFarm windFarm;
+
     void Start()
     {
-
+        windFarm = GameObject.Find("WindFarm").GetComponent<WindFarm>();
     }
 
 
@@ -67,16 +69,25 @@ public class GameManager : MonoBehaviour
         }
         if (activeCoalConnectors != 0)
         {
+            // keep wind farm inactive
+            windFarm.WindFarmInactive();
+
             // set environment to 100% pollution
             environmentManager.waterColour = EnvironmentManager.WaterColour.purpleApocalypse;
         }
         else if (activeWindConnectors != windFarmConnectors.Length)
         {
+            // keep wind farm inactive
+            windFarm.WindFarmInactive();
+
             // set to 50% polluted
             environmentManager.waterColour = EnvironmentManager.WaterColour.polluted;
         }
         else
         {
+            // activate wind farm
+            windFarm.WindFarmActive();
+
             // set to clean environment
             environmentManager.waterColour = EnvironmentManager.WaterColour.shallow;
         }
