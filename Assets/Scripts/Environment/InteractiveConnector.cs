@@ -16,12 +16,16 @@ public class InteractiveConnector : MonoBehaviour, IInteractiveObject
 
     private InteractiveObjectStatus connectorStatus;
 
+    CubeAudio cubeAudioScript;
+
     private void Start()
     {
         kayak = GameObject.Find("Kayak");
         cameraManager = GameObject.Find("Camera Manager");
         interactor = cameraManager.GetComponent<Interactor>();
+        cubeAudioScript = GameObject.FindGameObjectWithTag("EnergyCube").GetComponent<CubeAudio>();
     }
+
 
     public void Interact()
     {
@@ -74,19 +78,33 @@ public class InteractiveConnector : MonoBehaviour, IInteractiveObject
     public InteractiveObjectStatus GetObjectStatus()
     {
         return connectorStatus;
+        
     }
 
     public void SetObjectStatus(InteractiveObjectStatus objectStatus)
     {
         connectorStatus = objectStatus;
+       
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject == kayak)
+        if (collision.gameObject == kayak && connectorStatus != InteractiveObjectStatus.destroyed)
         {
             connectorStatus = InteractiveObjectStatus.destroyed;
             interactor.AddObjectToDestroy(gameObject);
+            
+            // Destroy(gameObject);
+
+            cubeAudioScript.AudioSustainPlayback();
+            
         }
     }
+
+   
+
+    
+
+
+  
 }
