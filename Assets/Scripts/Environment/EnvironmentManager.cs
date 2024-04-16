@@ -8,6 +8,8 @@ public class EnvironmentManager : MonoBehaviour
 {
     [Header("Lighting")]
     [SerializeField] Light directionalLight;
+    [SerializeField] private float lightColourChangeSpeed = 1f;
+    private Color desiredLightColour;
     public float fogIntensity = 0.7f; // 0 -> 1
     [SerializeField] GameObject localFogParent;
     [SerializeField] private float fogChangeSpeed = 15.0f;
@@ -27,6 +29,7 @@ public class EnvironmentManager : MonoBehaviour
 
     [Header("Water Colour")]
     public WaterColour waterColour;
+    private Color desiredWaterColour = new Color(0, 0.83f, 1, 0.47f);
 
     private Color shallowWaterColor = new Color(0.0f, 0.85f, 1.0f, 0.6f);
     private Color deepWaterColor = new Color(0.0f, 0.15f, 0.5f, 0.9f);
@@ -71,6 +74,11 @@ public class EnvironmentManager : MonoBehaviour
             ManageWaterColour();
         }
 
+        if (directionalLight)
+        {
+            ManageLightColour();
+        }
+
         if (powerStationSmoke != null)// && powerStationFog != null)
         {
             ManagePowerStation();
@@ -82,29 +90,56 @@ public class EnvironmentManager : MonoBehaviour
         switch (waterColour)
         {
             case WaterColour.shallow:
+                desiredWaterColour = shallowWaterColor;
+                desiredLightColour = convertToFilterColour(shallowWaterColor);
                 waterManager.InitiateWaterTileColourChangeTo(shallowWaterColor, waterColourChangeSpeed);
-                directionalLight.GetComponent<Light>().color = convertToFilterColour(shallowWaterColor);
                 break;
             case WaterColour.deep:
+                desiredWaterColour = deepWaterColor;
+                desiredLightColour = convertToFilterColour(deepWaterColor);
                 waterManager.InitiateWaterTileColourChangeTo(deepWaterColor, waterColourChangeSpeed);
-                directionalLight.GetComponent<Light>().color = convertToFilterColour(deepWaterColor);
                 break;
             case WaterColour.polluted:
+                desiredWaterColour = pollutedWaterColor;
+                desiredLightColour = convertToFilterColour(pollutedWaterColor);
                 waterManager.InitiateWaterTileColourChangeTo(pollutedWaterColor, waterColourChangeSpeed);
-                directionalLight.GetComponent<Light>().color = convertToFilterColour(pollutedWaterColor);
                 break;
             case WaterColour.apocalyptic:
+                desiredWaterColour = apocalypticWaterColor;
+                desiredLightColour = convertToFilterColour(apocalypticWaterColor);
                 waterManager.InitiateWaterTileColourChangeTo(apocalypticWaterColor, waterColourChangeSpeed);
-                directionalLight.GetComponent<Light>().color = convertToFilterColour(apocalypticWaterColor);
                 break;
             case WaterColour.purpleApocalypse:
+                desiredWaterColour = purpleApocalypseColor;
+                desiredLightColour = purpleApocalypseColor;
                 waterManager.InitiateWaterTileColourChangeTo(new Color(0, 0.83f, 1, 0.47f), waterColourChangeSpeed);
-                directionalLight.GetComponent<Light>().color = purpleApocalypseColor;
                 break;
             case WaterColour.black:
+                desiredWaterColour = blackWaterColor;
+                desiredLightColour = convertToFilterColour(blackWaterColor);
                 waterManager.InitiateWaterTileColourChangeTo(blackWaterColor, waterColourChangeSpeed);
-                directionalLight.GetComponent<Light>().color = convertToFilterColour(blackWaterColor);
                 break;
+        }
+    }
+
+    private void ManageLightColour()
+    {
+        Color currentLightColour = directionalLight.GetComponent<Light>().color;
+        if (desiredLightColour != currentLightColour)
+        {
+            float vectorLength = 1; Mathf.Sqrt((desiredLightColour[0] * currentLightColour[0]) +
+                                            (desiredLightColour[1] * currentLightColour[1]) +
+                                            (desiredLightColour[2] * currentLightColour[2]) +
+                                            (desiredLightColour[3] * currentLightColour[3]));
+            
+            float rNormalized = (desiredLightColour[0] - currentLightColour[0]) / vectorLength;
+            float bNormalized = (desiredLightColour[1] - currentLightColour[1]) / vectorLength;
+            float gNormalized = (desiredLightColour[2] - currentLightColour[2]) / vectorLength;
+            float aNormalized = (desiredLightColour[3] - currentLightColour[3]) / vectorLength;
+
+            Color lightColourDelta = new Color(rNormalized, bNormalized, gNormalized, aNormalized) * lightColourChangeSpeed * Time.deltaTime;
+            currentLightColour += lightColourDelta;
+            directionalLight.GetComponent<Light>().color = currentLightColour;
         }
     }
 
