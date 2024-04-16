@@ -13,6 +13,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject[] coalPlantConnectors;
     [SerializeField] private GameObject[] windFarmConnectors;
 
+    [SerializeField] private GameObject lightBeaconCoal;
+    [SerializeField] private GameObject lightBeaconWind;
+    [SerializeField] private GameObject lightBeaconCityHall;
+
     WindFarm windFarm;
 
     void Start()
@@ -69,6 +73,10 @@ public class GameManager : MonoBehaviour
         }
         if (activeCoalConnectors != 0)
         {
+            // light beacon on coal
+            lightBeaconCoal.SetActive(true);
+            lightBeaconWind.SetActive(false);
+            lightBeaconCityHall.SetActive(false);
             // keep wind farm inactive
             windFarm.WindFarmInactive();
             environmentManager.powerStationActive = true;
@@ -78,6 +86,11 @@ public class GameManager : MonoBehaviour
         }
         else if (activeWindConnectors != windFarmConnectors.Length)
         {
+            // light beacon on wind
+            lightBeaconCoal.SetActive(false);
+            lightBeaconWind.SetActive(true);
+            lightBeaconCityHall.SetActive(false);
+
             // keep wind farm inactive
             windFarm.WindFarmInactive();
             environmentManager.powerStationActive = false;
@@ -88,6 +101,11 @@ public class GameManager : MonoBehaviour
         }
         else
         {
+            // light beacon on city hall
+            lightBeaconCoal.SetActive(false);
+            lightBeaconWind.SetActive(false);
+            lightBeaconCityHall.SetActive(true);
+
             // activate wind farm
             windFarm.WindFarmActive();
             environmentManager.powerStationActive = false;
