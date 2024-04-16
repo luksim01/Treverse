@@ -95,7 +95,23 @@ public class InteractiveConnector : MonoBehaviour, IInteractiveObject
 
             connectorStatus = InteractiveObjectStatus.destroyed;
             interactor.AddObjectToDestroy(gameObject);
-            
+
+            // check if interactive connector has an associated interactive slot to reactivate
+            Dictionary<GameObject, GameObject> connectorSlotPairs = interactor.GetConnectorSlotPairs();
+            List<GameObject> connectorSlotPairRemoveList = new List<GameObject>();
+
+            foreach (KeyValuePair<GameObject, GameObject> connectorSlotPair in connectorSlotPairs)
+            {
+                GameObject connector = connectorSlotPair.Key;
+                GameObject slot = connectorSlotPair.Value;
+
+                if (gameObject == connector)
+                {
+                    slot.GetComponent<Slot>().Reactivate();
+                    connectorSlotPairRemoveList.Add(connector);
+                }
+            }
+
             // Destroy(gameObject);
 
             cubeAudioScript.AudioSustainPlayback();

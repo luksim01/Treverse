@@ -86,6 +86,7 @@ public class Slot : MonoBehaviour, IInsertConnector
         {
             GameObject connectorContact = transform.GetChild(i).gameObject;
             connectorContact.GetComponent<InteractiveSlotElement>().SetObjectStatus(InteractiveObjectStatus.active);
+            connectorContact.layer = LayerMask.NameToLayer("Default");
             isConnectorInSlot = false;
             gameManager.UpdateEnvironment();
         }

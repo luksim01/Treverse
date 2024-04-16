@@ -96,7 +96,7 @@ public class KayakController : MonoBehaviour
 
     IEnumerator BoostDurationCountdown()
     {
-        boostMultiplier = 2f;
+        boostMultiplier = 1.5f;
         yield return new WaitForSeconds(boostDuration);
         gameManager.ChangeBottleCollectedBy(-1);
         if(gameManager.GetBottlesHeld() > 0)

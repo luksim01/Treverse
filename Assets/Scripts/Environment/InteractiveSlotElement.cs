@@ -6,9 +6,19 @@ public class InteractiveSlotElement : MonoBehaviour, IInteractiveObject
 {
     private InteractiveObjectStatus slotStatus;
 
+    private KayakController kayakController;
+
+    void Start()
+    {
+        kayakController = GameObject.Find("Kayak").GetComponent<KayakController>();
+    }
+
     public void Interact()
     {
-        slotStatus = InteractiveObjectStatus.inactive;
+        if (kayakController.energyCubeCount > 0)
+        {
+            slotStatus = InteractiveObjectStatus.inactive;
+        }
     }
 
     public InteractiveObjectStatus GetObjectStatus()
