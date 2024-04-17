@@ -17,6 +17,14 @@ public class Slot : MonoBehaviour, IInsertConnector
     private GameManager gameManager;
     private Interactor interactor;
 
+    // WindCubeAudio windCubeAudioScript;
+    public static FMOD.Studio.EventInstance narratorCubeWind;
+    public static int cubeSustainingCountWind = 0;
+
+    void Awake()
+    {
+        narratorCubeWind = FMODUnity.RuntimeManager.CreateInstance("event:/Narration/Narration_10");
+    }
     private void Start()
     {
         cameraManager = GameObject.Find("Camera Manager");
@@ -27,6 +35,8 @@ public class Slot : MonoBehaviour, IInsertConnector
         {
             DeactivateSlotAddConnector();
         }
+
+        
     }
 
     private void FixedUpdate()
@@ -52,9 +62,14 @@ public class Slot : MonoBehaviour, IInsertConnector
                     {
                         kayak.GetComponent<KayakController>().energyCubeCount--;
                         DeactivateSlotAddConnector();
+                 
                     }
                 }
+                AudioSustainPlaybackWind();
+                Debug.Log("Audio maybe?");
             }
+
+            
         }
     }
 
@@ -77,6 +92,8 @@ public class Slot : MonoBehaviour, IInsertConnector
     {
         GameObject connectorObjectInSlot = Instantiate(connector, transform.position, transform.rotation);
         interactor.AddConnectorSlotPair(connectorObjectInSlot, gameObject);
+        
+        
     }
 
     // interface methods 
@@ -90,5 +107,43 @@ public class Slot : MonoBehaviour, IInsertConnector
             isConnectorInSlot = false;
             gameManager.UpdateEnvironment();
         }
+    }
+
+    public void AudioSustainPlaybackWind()
+    {
+        FMOD.Studio.PLAYBACK_STATE PbState;
+        narratorCubeWind.getPlaybackState(out PbState);
+
+        if (cubeSustainingCountWind == 0)
+        {
+            Debug.Log("First");
+            narratorCubeWind.start();
+            cubeSustainingCountWind++;
+
+        }
+        // once audio in playing pause at first sustain marker
+        else if (cubeSustainingCountWind == 1)
+        {
+            if (PbState == FMOD.Studio.PLAYBACK_STATE.SUSTAINING)
+            {
+                // Debug.Log("Voice is currently paused");
+                narratorCubeWind.keyOff();
+                Debug.Log("Cue 1");
+                cubeSustainingCountWind++;
+
+            }
+        }
+        else if (cubeSustainingCountWind == 2)
+        {
+            if (PbState == FMOD.Studio.PLAYBACK_STATE.SUSTAINING)
+            {
+                narratorCubeWind.keyOff();
+                cubeSustainingCountWind++;
+                Debug.Log("Play");
+            }
+
+        }
+
+        // I GOT IT WORKING OMGOMGOMGOMGOMGOMGOMGOMGOMGOMGOMGOMGOMGOMGOMG
     }
 }

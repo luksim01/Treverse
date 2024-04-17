@@ -150,10 +150,10 @@ MonoBehaviour:
   Path: Assets/Audio/Fmod/kayak/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638489527570570068
+  lastModified: 638489574779280648
   FileSizes:
   - Name: Desktop
-    Value: 1798
+    Value: 1842
   Exists: 1
 --- !u!114 &-4269996189676486987
 MonoBehaviour:
@@ -197,7 +197,7 @@ MonoBehaviour:
   Path: Assets/Audio/Fmod/kayak/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638489527570549640
+  lastModified: 638489574779249362
   FileSizes:
   - Name: Desktop
     Value: 570752
@@ -400,12 +400,13 @@ MonoBehaviour:
   - {fileID: 8488780984043137448}
   - {fileID: 1827404975286354661}
   - {fileID: 2479629325521905220}
+  - {fileID: 4283052466706997588}
   EditorParameters: []
   MasterBanks:
   - {fileID: -3793696425352921973}
   StringsBanks:
   - {fileID: -5133428505895016790}
-  cacheTime: 638489527637663840
+  cacheTime: 638489574779924847
   cacheVersion: 131617
 --- !u!114 &22637902999472741
 MonoBehaviour:
@@ -449,10 +450,10 @@ MonoBehaviour:
   Path: Assets/Audio/Fmod/kayak/Build/Desktop/Voice.bank
   Name: Voice
   StudioPath: bank:/Voice
-  lastModified: 638489527637663840
+  lastModified: 638489574779924847
   FileSizes:
   - Name: Desktop
-    Value: 2633920
+    Value: 2635520
   Exists: 1
 --- !u!114 &795369225012420569
 MonoBehaviour:
@@ -655,8 +656,8 @@ MonoBehaviour:
     Data3: -170074994
     Data4: -1872501699
   Banks:
-  - {fileID: -3793696425352921973}
   - {fileID: 1030094487550758936}
+  - {fileID: -3793696425352921973}
   IsStream: 1
   Is3D: 1
   IsOneShot: 0
@@ -664,6 +665,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 48501
+--- !u!114 &4283052466706997588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Narration/Narration_10
+  m_EditorClassIdentifier: 
+  Path: event:/Narration/Narration_10
+  Guid:
+    Data1: 2017784809
+    Data2: 1177145741
+    Data3: -403470675
+    Data4: 2029967162
+  Banks:
+  - {fileID: 371660948741988509}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 34500
 --- !u!114 &4288181880208713788
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -47,7 +47,7 @@ public class CubeAudio : MonoBehaviour
             {
                 // Debug.Log("Voice is currently paused");
                 NarratorCube.keyOff();
-                Debug.Log("Cue 1");
+               // Debug.Log("Cue 1");
                 cubeSustainingCount++;
 
             }
@@ -58,7 +58,7 @@ public class CubeAudio : MonoBehaviour
             {
                 NarratorCube.keyOff();
                 cubeSustainingCount++;
-                Debug.Log("Play");
+               // Debug.Log("Play");
             }
             
         }

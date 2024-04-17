@@ -17,6 +17,7 @@ public class InteractiveConnector : MonoBehaviour, IInteractiveObject
     private InteractiveObjectStatus connectorStatus;
 
     CubeAudio cubeAudioScript;
+    
 
     private void Start()
     {
@@ -24,6 +25,7 @@ public class InteractiveConnector : MonoBehaviour, IInteractiveObject
         cameraManager = GameObject.Find("Camera Manager");
         interactor = cameraManager.GetComponent<Interactor>();
         cubeAudioScript = GameObject.FindGameObjectWithTag("EnergyCube").GetComponent<CubeAudio>();
+        
     }
 
 
