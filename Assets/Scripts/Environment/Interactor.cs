@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+
 interface IInteractiveObject
 {
     public void Interact();
@@ -48,6 +50,10 @@ public class Interactor : MonoBehaviour, IInteractor
     // connector and slot link
     Dictionary<GameObject, GameObject> connectorSlotPairs = new Dictionary<GameObject, GameObject>();
 
+    // UI
+    public GameObject cubeInteractUI;
+    private float cubeSeen = 0;
+
     void Update()
     {
         ManageInteractorVision();
@@ -86,10 +92,22 @@ public class Interactor : MonoBehaviour, IInteractor
             isInteractiveObject = hitInfo.collider.gameObject.TryGetComponent(out interactiveObject);
             seenObject = hitInfo.collider.gameObject;
 
-            if (isInteractiveObject)
+            if (isInteractiveObject && cubeSeen == 0)
+            {
+                // UI 
+                cubeInteractUI.SetActive(true);
+                objectStatus = interactiveObject.GetObjectStatus();
+                cubeSeen++;
+            }
+            else if (cubeSeen >= 1 && !isInteractiveObject)
+            {
+                Destroy(cubeInteractUI);
+            }
+            else if (isInteractiveObject && cubeSeen >= 1) 
             {
                 objectStatus = interactiveObject.GetObjectStatus();
             }
+
         }
 
         if (objectStatus == InteractiveObjectStatus.active)
