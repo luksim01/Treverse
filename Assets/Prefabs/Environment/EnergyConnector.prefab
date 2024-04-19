@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 6886433986906694542}
   - component: {fileID: 952046033999444933}
   - component: {fileID: 2325972364593296308}
-  - component: {fileID: 5675103429726427114}
   m_Layer: 0
   m_Name: EnergyConnector
   m_TagString: EnergyCube
@@ -167,18 +166,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3a6772c153df5134a95dd54400ebacb8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &5675103429726427114
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1133140760455510127}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 80a835202a7c91144a6d6650d2293590, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1202281522587995804
