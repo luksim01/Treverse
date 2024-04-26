@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering.HighDefinition;
+using UnityEngine.VFX;
 
 public class EnvironmentManager : MonoBehaviour
 {
@@ -29,7 +30,7 @@ public class EnvironmentManager : MonoBehaviour
 
     [Header("Water Colour")]
     public WaterColour waterColour;
-    private Color desiredWaterColour = new Color(0, 0.83f, 1, 0.47f);
+    private Color desiredWaterColour;
 
     private Color shallowWaterColor = new Color(0.0f, 0.85f, 1.0f, 0.6f);
     private Color deepWaterColor = new Color(0.0f, 0.15f, 0.5f, 0.9f);
@@ -48,14 +49,17 @@ public class EnvironmentManager : MonoBehaviour
     [Header("Power Station")]
     public bool powerStationActive = true;
     [SerializeField] GameObject powerStationSmoke;
-    [SerializeField] GameObject powerStationFog;
+    VisualEffect smokeEffect;
+    int smokeSpawnRate = 200;
+    int maxSmokeSpawnRate = 200;
 
-    private float shrinkSpeed = 0.05f;
+    public float smokeChangeSpeed = 0.05f;
 
     void Start()
     {
         localFog = localFogParent.GetComponent<LocalVolumetricFog>();
         waterManager = GameObject.Find("WaterManager").GetComponent<WaterManager>();
+        smokeEffect = powerStationSmoke.GetComponent<VisualEffect>();
     }
 
     void Update()
@@ -69,7 +73,7 @@ public class EnvironmentManager : MonoBehaviour
         }
         if(waterManager != null)
         {
-            // ManageWaterLevel();
+            ManageWaterLevel();
             // Temporarily removing until water tile bug is fixed
             ManageWaterColour();
         }
@@ -164,41 +168,28 @@ public class EnvironmentManager : MonoBehaviour
 
     private void ManagePowerStation()
     {
-        Vector3 smokeScale = powerStationSmoke.transform.localScale;
         if (!powerStationActive)
         {
             if (powerStationSmoke.activeSelf)
             {
-                float shrinkAmount = shrinkSpeed * Time.deltaTime;
-                powerStationSmoke.transform.localScale =
-                    new Vector3(smokeScale.x - shrinkAmount, smokeScale.y - shrinkAmount, smokeScale.z - shrinkAmount);
+                smokeSpawnRate -= Mathf.CeilToInt(smokeChangeSpeed * Time.deltaTime);
 
-                if (smokeScale.x < 0)
+                if (smokeSpawnRate < 0)
                 {
-                    powerStationSmoke.SetActive(false);
+                    smokeSpawnRate = 0;
                 }
 
             }
-            /*if (powerStationFog.activeSelf)
-            {
-                LocalVolumetricFog fog = powerStationFog.GetComponent<LocalVolumetricFog>();
-                float fogDistance = fog.parameters.meanFreePath;
-                if (fogDistance < 1000)
-                {
-                    fog.parameters.meanFreePath += 2 * Time.deltaTime;
-                }
-                else
-                {
-                    powerStationFog.SetActive(false);
-                }
-            }*/
-        } else if (smokeScale.x < 1)
+        } else if (smokeSpawnRate < maxSmokeSpawnRate)
         {
-            powerStationSmoke.SetActive(true);
-            float growAmount = shrinkSpeed * Time.deltaTime;
-            powerStationSmoke.transform.localScale =
-                new Vector3(smokeScale.x + growAmount, smokeScale.y + growAmount, smokeScale.z + growAmount);
+            smokeSpawnRate += Mathf.CeilToInt(smokeChangeSpeed * Time.deltaTime);
+            if (smokeSpawnRate > 200) {
+                smokeSpawnRate = 200;
+            }
         }
+
+
+        smokeEffect.SetUInt("Spawn Rate", (uint)smokeSpawnRate);
     }
 
     private void ManageLocalFog()
