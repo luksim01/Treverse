@@ -150,7 +150,7 @@ MonoBehaviour:
   Path: Assets/Audio/Fmod/kayak/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638489574779280648
+  lastModified: 638509372056793448
   FileSizes:
   - Name: Desktop
     Value: 1842
@@ -197,7 +197,7 @@ MonoBehaviour:
   Path: Assets/Audio/Fmod/kayak/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638489574779249362
+  lastModified: 638509372056791513
   FileSizes:
   - Name: Desktop
     Value: 570752
@@ -352,7 +352,7 @@ MonoBehaviour:
   Path: Assets/Audio/Fmod/kayak/Build/Desktop/Ambience.bank
   Name: Ambience
   StudioPath: bank:/Ambience
-  lastModified: 638473260715032095
+  lastModified: 638509372056749316
   FileSizes:
   - Name: Desktop
     Value: 877600
@@ -406,7 +406,7 @@ MonoBehaviour:
   - {fileID: -3793696425352921973}
   StringsBanks:
   - {fileID: -5133428505895016790}
-  cacheTime: 638489574779924847
+  cacheTime: 638509372057338060
   cacheVersion: 131617
 --- !u!114 &22637902999472741
 MonoBehaviour:
@@ -450,7 +450,7 @@ MonoBehaviour:
   Path: Assets/Audio/Fmod/kayak/Build/Desktop/Voice.bank
   Name: Voice
   StudioPath: bank:/Voice
-  lastModified: 638489574779924847
+  lastModified: 638509372057338060
   FileSizes:
   - Name: Desktop
     Value: 2635520
@@ -497,7 +497,7 @@ MonoBehaviour:
   Path: Assets/Audio/Fmod/kayak/Build/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 638489527636795429
+  lastModified: 638509372057190990
   FileSizes:
   - Name: Desktop
     Value: 1012896
@@ -656,8 +656,8 @@ MonoBehaviour:
     Data3: -170074994
     Data4: -1872501699
   Banks:
-  - {fileID: 1030094487550758936}
   - {fileID: -3793696425352921973}
+  - {fileID: 1030094487550758936}
   IsStream: 1
   Is3D: 1
   IsOneShot: 0
@@ -815,7 +815,7 @@ MonoBehaviour:
   Path: Assets/Audio/Fmod/kayak/Build/Desktop/Music.bank
   Name: Music
   StudioPath: bank:/Music
-  lastModified: 638489527636394212
+  lastModified: 638509372057110175
   FileSizes:
   - Name: Desktop
     Value: 22528736

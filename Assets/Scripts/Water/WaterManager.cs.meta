@@ -5,7 +5,7 @@ MonoImporter:
   serializedVersion: 2
   defaultReferences:
   - waterTile: {fileID: 6084907976327452131, guid: c2a0c6db648fd4148a80a24fa7e942e6, type: 3}
-  executionOrder: 0
+  executionOrder: 5
   icon: {instanceID: 0}
   userData: 
   assetBundleName: 
